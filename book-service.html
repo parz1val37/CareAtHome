@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Service — Care At Home</title>
-  <meta name="description" content="Book a professional home healthcare service with Care At Home. Choose from nursing, elder care, wound dressing, and physiotherapy." />
+  <meta name="description"
+    content="Book a professional home healthcare service with Care At Home. Choose from nursing, elder care, wound dressing, and physiotherapy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -38,49 +41,167 @@
     }
   </script>
   <style>
-    * { font-family: 'Poppins', sans-serif; }
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
 
     /* Page fade-in */
-    body { animation: pageFadeIn 0.5s ease forwards; }
-    @keyframes pageFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    body {
+      animation: pageFadeIn 0.5s ease forwards;
+    }
 
-    #navbar { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: box-shadow 0.3s, background 0.3s; }
-    #navbar.scrolled { background: rgba(255,255,255,0.97) !important; box-shadow: 0 2px 20px rgba(74,144,217,0.12); }
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
 
-    #mobile-menu { transition: max-height 0.35s ease, opacity 0.3s ease; max-height: 0; overflow: hidden; opacity: 0; }
-    #mobile-menu.open { max-height: 400px; opacity: 1; }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
 
-    .btn-primary { background: linear-gradient(135deg, #4A90D9, #2f72b8); transition: all 0.3s ease; position: relative; overflow: hidden; }
-    .btn-primary::after { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); transition:left .5s ease; }
-    .btn-primary:hover::after { left:150%; }
-    .btn-primary:hover { background:linear-gradient(135deg,#2f72b8,#1e5a9e); transform:translateY(-1px); box-shadow:0 6px 20px rgba(74,144,217,.35); }
+    #navbar {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+    }
 
-    .btn-outline { border: 2px solid #4A90D9; color: #4A90D9; transition: all 0.3s ease; }
-    .btn-outline:hover { background: #4A90D9; color: #fff; }
+    #navbar.scrolled {
+      background: rgba(255, 255, 255, 0.97) !important;
+      box-shadow: 0 2px 20px rgba(74, 144, 217, 0.12);
+    }
+
+    #mobile-menu {
+      transition: max-height 0.35s ease, opacity 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4A90D9, #2f72b8);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+      transition: left .5s ease;
+    }
+
+    .btn-primary:hover::after {
+      left: 150%;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #2f72b8, #1e5a9e);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(74, 144, 217, .35);
+    }
+
+    .btn-outline {
+      border: 2px solid #4A90D9;
+      color: #4A90D9;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: #4A90D9;
+      color: #fff;
+    }
 
     .form-input {
-      border: 1.5px solid #dde4ef; border-radius: 10px; padding: 0.65rem 1rem;
-      width: 100%; transition: border-color 0.25s, box-shadow 0.25s; outline: none;
-      font-family: 'Poppins', sans-serif; font-size: 0.9rem; background: #fff;
+      border: 1.5px solid #dde4ef;
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      width: 100%;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      background: #fff;
     }
-    .form-input:focus { border-color: #4A90D9; box-shadow: 0 0 0 3px rgba(74,144,217,0.12); }
-    .form-input:disabled { background: #f8fafc; color: #94a3b8; cursor: not-allowed; }
 
-    footer { background: linear-gradient(135deg, #1a2f4e 0%, #1e3a5f 100%); }
+    .form-input:focus {
+      border-color: #4A90D9;
+      box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.12);
+    }
+
+    .form-input:disabled {
+      background: #f8fafc;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #1a2f4e 0%, #1e3a5f 100%);
+    }
 
     /* Step indicator */
-    .step-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease; flex-shrink: 0; }
-    .step-line { flex: 1; height: 2px; transition: background 0.4s ease; }
+    .step-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .step-line {
+      flex: 1;
+      height: 2px;
+      transition: background 0.4s ease;
+    }
 
     /* Service info card */
-    #service-info { transition: all 0.3s ease; }
+    #service-info {
+      transition: all 0.3s ease;
+    }
 
     /* Price badge */
-    .price-badge { background: linear-gradient(135deg, #e8f2fc, #e8f7ef); border: 1.5px solid #c5dff5; }
+    .price-badge {
+      background: linear-gradient(135deg, #e8f2fc, #e8f7ef);
+      border: 1.5px solid #c5dff5;
+    }
 
     /* Success animation */
-    @keyframes successPop { 0%{transform:scale(0.8);opacity:0} 60%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
-    #booking-success { animation: successPop 0.5s ease forwards; }
+    @keyframes successPop {
+      0% {
+        transform: scale(0.8);
+        opacity: 0
+      }
+
+      60% {
+        transform: scale(1.05)
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    #booking-success {
+      animation: successPop 0.5s ease forwards;
+    }
 
     /* ── Nurse Card Styles ── */
     .nurse-card {
@@ -92,27 +213,61 @@
       position: relative;
       overflow: hidden;
     }
-    .nurse-card:hover { border-color: #4A90D9; box-shadow: 0 8px 32px rgba(74,144,217,0.12); transform: translateY(-2px); }
+
+    .nurse-card:hover {
+      border-color: #4A90D9;
+      box-shadow: 0 8px 32px rgba(74, 144, 217, 0.12);
+      transform: translateY(-2px);
+    }
+
     .nurse-card.selected {
       border-color: #4CAF80;
       background: linear-gradient(135deg, #f0fbf5, #ffffff);
-      box-shadow: 0 8px 32px rgba(76,175,128,0.18);
+      box-shadow: 0 8px 32px rgba(76, 175, 128, 0.18);
     }
 
     .nurse-photo-wrap {
-      width: 90px;
-      height: 90px;
-      border-radius: 16px;
-      border: 2.5px solid #e2e8f0;
+      width: 100%;
+      height: 273px;
+      border-radius: 14px;
+      border: 2px solid #e2e8f0;
       overflow: hidden;
-      flex-shrink: 0;
       background: #f8fafc;
+      margin-bottom: 10px;
     }
+
     .nurse-photo-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
+    }
+
+    .nurse-name-rating-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .nurse-name-rating-row .nurse-name {
+      font-weight: 700;
+      font-size: 1.42rem;
+      color: #1a202c;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
+    .nurse-name-rating-row .nurse-rating {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .badge {
@@ -122,15 +277,16 @@
       border-radius: 999px;
       font-size: 0.68rem;
       font-weight: 600;
-      background: rgba(74,144,217,0.1);
+      background: rgba(74, 144, 217, 0.1);
       color: #2f72b8;
-      border: 1px solid rgba(74,144,217,0.2);
+      border: 1px solid rgba(74, 144, 217, 0.2);
       white-space: nowrap;
     }
+
     .badge-green {
-      background: rgba(76,175,128,0.1);
+      background: rgba(76, 175, 128, 0.1);
       color: #38895f;
-      border-color: rgba(76,175,128,0.2);
+      border-color: rgba(76, 175, 128, 0.2);
     }
 
     .nurse-select-btn {
@@ -146,15 +302,25 @@
       white-space: nowrap;
       font-family: 'Poppins', sans-serif;
     }
-    .nurse-select-btn:hover { background: #4A90D9; color: #fff; }
+
+    .nurse-select-btn:hover {
+      background: #4A90D9;
+      color: #fff;
+    }
+
     .nurse-select-btn.selected-state {
       background: linear-gradient(135deg, #4CAF80, #38895f);
       border-color: transparent;
       color: #fff;
     }
-    .nurse-select-btn.selected-state:hover { filter: brightness(0.9); }
 
-    .star-fill { color: #f59e0b; }
+    .nurse-select-btn.selected-state:hover {
+      filter: brightness(0.9);
+    }
+
+    .star-fill {
+      color: #f59e0b;
+    }
 
     .price-pill {
       background: linear-gradient(135deg, #4A90D9, #2f72b8);
@@ -166,44 +332,76 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      box-shadow: 0 4px 16px rgba(74,144,217,0.3);
+      box-shadow: 0 4px 16px rgba(74, 144, 217, 0.3);
       flex-shrink: 0;
     }
 
-    #nurse-grid { display: flex; flex-direction: column; gap: 1rem; }
-    #confirm-nurse-btn:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+    #nurse-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      #nurse-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #nurse-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    #confirm-nurse-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800">
 
   <!-- ===== NAVBAR ===== -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/90 border-b border-gray-100" role="navigation" aria-label="Main navigation">
+  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/90 border-b border-gray-100" role="navigation"
+    aria-label="Main navigation">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="index.html" class="flex items-center gap-2 group" aria-label="Care At Home — Home">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <div
+            class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-house-medical text-white text-sm"></i>
           </div>
           <span class="text-lg font-bold text-gray-800">Care <span class="text-brand-blue">At Home</span></span>
         </a>
 
         <div class="hidden md:flex items-center gap-6">
-          <a href="index.html#hero" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Home</a>
-          <a href="index.html#services" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Services</a>
-          <a href="index.html#about" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">About Us</a>
-          <a href="index.html#contact" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Contact Us</a>
+          <a href="index.html#hero"
+            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Home</a>
+          <a href="index.html#services"
+            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Services</a>
+          <a href="index.html#about"
+            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">About Us</a>
+          <a href="index.html#contact"
+            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Contact Us</a>
         </div>
 
         <div class="hidden md:flex items-center gap-3">
-          <a href="fee-calculator.html" class="btn-outline text-sm font-semibold px-4 py-2 rounded-full" aria-label="Open Fee Calculator">
+          <a href="fee-calculator.html" class="btn-outline text-sm font-semibold px-4 py-2 rounded-full"
+            aria-label="Open Fee Calculator">
             <i class="fa-solid fa-calculator mr-1.5"></i>Fee Calculator
           </a>
-          <a href="book-service.html" class="btn-primary text-white text-sm font-semibold px-5 py-2 rounded-full" aria-label="Book a Service">
+          <a href="book-service.html" class="btn-primary text-white text-sm font-semibold px-5 py-2 rounded-full"
+            aria-label="Book a Service">
             <i class="fa-solid fa-calendar-check mr-1.5"></i>Book a Service
           </a>
         </div>
 
-        <button id="hamburger" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue-light transition-colors" aria-label="Toggle mobile menu" aria-expanded="false">
+        <button id="hamburger"
+          class="md:hidden p-2 rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue-light transition-colors"
+          aria-label="Toggle mobile menu" aria-expanded="false">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
       </div>
@@ -215,8 +413,10 @@
         <a href="index.html#about" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">About Us</a>
         <a href="index.html#contact" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Contact Us</a>
         <hr class="border-gray-200 my-1" />
-        <a href="fee-calculator.html" class="btn-outline text-sm font-semibold px-4 py-2 rounded-full text-center">Fee Calculator</a>
-        <a href="book-service.html" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center">Book a Service</a>
+        <a href="fee-calculator.html" class="btn-outline text-sm font-semibold px-4 py-2 rounded-full text-center">Fee
+          Calculator</a>
+        <a href="book-service.html"
+          class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center">Book a Service</a>
       </div>
     </div>
   </nav>
@@ -230,15 +430,17 @@
         <span class="text-brand-blue font-semibold">Book a Service</span>
       </nav>
       <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">Book a Service</h1>
-      <p class="text-gray-500">Select your preferred service and fill in patient details. We'll reach out to confirm your booking.</p>
+      <p class="text-gray-500">Select your preferred service and fill in patient details. We'll reach out to confirm
+        your booking.</p>
     </div>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
 
     <!-- Step indicator (3 steps) -->
-    <div class="flex items-center mb-10" role="progressbar" aria-label="Booking steps" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" id="step-indicator">
+    <div class="flex items-center mb-10" role="progressbar" aria-label="Booking steps" aria-valuenow="1"
+      aria-valuemin="1" aria-valuemax="3" id="step-indicator">
       <div class="step-dot bg-brand-blue text-white" id="step1-dot">1</div>
       <div class="step-line bg-gray-200" id="step-line-1"></div>
       <div class="step-dot bg-gray-200 text-gray-400" id="step2-dot">2</div>
@@ -252,7 +454,8 @@
       <!-- ── STEP 1: Service Selection ── -->
       <div id="step1" class="p-8">
         <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">1</span>
+          <span
+            class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">1</span>
           Select Your Service
         </h2>
 
@@ -282,7 +485,8 @@
         </div>
 
         <!-- Dynamic service info card -->
-        <div id="service-info" class="hidden rounded-xl border border-brand-blue/20 bg-brand-blue-light/50 p-5 mb-6 animate-fade-in">
+        <div id="service-info"
+          class="hidden rounded-xl border border-brand-blue/20 bg-brand-blue-light/50 p-5 mb-6 animate-fade-in">
           <div class="flex items-start gap-4">
             <div id="service-emoji" class="text-4xl flex-shrink-0"></div>
             <div class="flex-1">
@@ -292,18 +496,22 @@
           </div>
           <div class="mt-4 pt-4 border-t border-brand-blue/15 flex items-center justify-between">
             <span class="text-sm font-medium text-gray-600">Estimated Rate</span>
-            <span id="service-price" class="price-badge text-brand-blue-dark font-extrabold text-lg px-4 py-1 rounded-full"></span>
+            <span id="service-price"
+              class="price-badge text-brand-blue-dark font-extrabold text-lg px-4 py-1 rounded-full"></span>
           </div>
         </div>
 
         <!-- Placeholder when nothing selected -->
-        <div id="service-placeholder" class="rounded-xl border-2 border-dashed border-gray-200 p-8 text-center text-gray-400 mb-6">
+        <div id="service-placeholder"
+          class="rounded-xl border-2 border-dashed border-gray-200 p-8 text-center text-gray-400 mb-6">
           <i class="fa-solid fa-hand-pointer text-3xl mb-3 opacity-40"></i>
           <p class="text-sm">Select a service above to see details and pricing</p>
         </div>
 
         <div class="flex justify-end">
-          <button id="next-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full opacity-50 cursor-not-allowed" disabled aria-label="Proceed to booking form">
+          <button id="next-btn"
+            class="btn-primary text-white font-bold px-8 py-3 rounded-full opacity-50 cursor-not-allowed" disabled
+            aria-label="Proceed to booking form">
             Continue <i class="fa-solid fa-arrow-right ml-2"></i>
           </button>
         </div>
@@ -312,19 +520,23 @@
       <!-- ── STEP 2: Booking Form ── -->
       <div id="step2" class="hidden p-8">
         <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">2</span>
+          <span
+            class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">2</span>
           Patient Details
         </h2>
 
         <!-- Selected service summary -->
-        <div class="bg-gradient-to-r from-brand-blue-light to-brand-green-light rounded-xl p-4 mb-6 flex items-center gap-4 border border-brand-blue/15">
+        <div
+          class="bg-gradient-to-r from-brand-blue-light to-brand-green-light rounded-xl p-4 mb-6 flex items-center gap-4 border border-brand-blue/15">
           <span id="summary-emoji" class="text-3xl"></span>
           <div>
             <p class="text-xs text-gray-500 font-medium">Selected Service</p>
             <p class="font-bold text-gray-800" id="summary-service"></p>
             <p class="text-brand-blue font-extrabold text-sm" id="summary-price"></p>
           </div>
-          <button id="change-service-btn" class="ml-auto text-xs text-brand-blue font-semibold hover:underline flex items-center gap-1" aria-label="Change selected service">
+          <button id="change-service-btn"
+            class="ml-auto text-xs text-brand-blue font-semibold hover:underline flex items-center gap-1"
+            aria-label="Change selected service">
             <i class="fa-solid fa-pen-to-square"></i> Change
           </button>
         </div>
@@ -332,45 +544,64 @@
         <form id="booking-form" novalidate>
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label for="book-name" class="block text-sm font-semibold text-gray-700 mb-1.5">Patient Full Name <span class="text-red-500">*</span></label>
-              <input type="text" id="book-name" name="fullName" class="form-input" placeholder="e.g. Anand Mishra" required aria-label="Full Name" />
+              <label for="book-name" class="block text-sm font-semibold text-gray-700 mb-1.5">Patient Full Name <span
+                  class="text-red-500">*</span></label>
+              <input type="text" id="book-name" name="fullName" class="form-input" placeholder="e.g. Anand Mishra"
+                required aria-label="Full Name" />
             </div>
             <div>
-              <label for="book-age" class="block text-sm font-semibold text-gray-700 mb-1.5">Patient Age <span class="text-red-500">*</span></label>
-              <input type="number" id="book-age" name="Age" class="form-input" placeholder="e.g. 67" required aria-label="Patient Age" />
+              <label for="book-age" class="block text-sm font-semibold text-gray-700 mb-1.5">Patient Age <span
+                  class="text-red-500">*</span></label>
+              <input type="number" id="book-age" name="Age" class="form-input" placeholder="e.g. 67" required
+                aria-label="Patient Age" />
             </div>
             <div>
-              <label for="book-email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address <span class="text-red-500">*</span></label>
-              <input type="email" id="book-email" name="email" class="form-input" placeholder="you@email.com" required aria-label="Email Address" />
+              <label for="book-email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address <span
+                  class="text-red-500">*</span></label>
+              <input type="email" id="book-email" name="email" class="form-input" placeholder="you@email.com" required
+                aria-label="Email Address" />
             </div>
             <div>
-              <label for="book-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">Phone Number <span class="text-red-500">*</span></label>
-              <input type="tel" id="book-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required aria-label="Phone Number" />
+              <label for="book-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">Phone Number <span
+                  class="text-red-500">*</span></label>
+              <input type="tel" id="book-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required
+                aria-label="Phone Number" />
             </div>
             <div>
-              <label for="book-address" class="block text-sm font-semibold text-gray-700 mb-1.5">Address <span class="text-red-500">*</span></label>
-              <input type="text" id="book-address" name="address" class="form-input" placeholder="House / Flat, Street, Area" required aria-label="Street Address" />
+              <label for="book-address" class="block text-sm font-semibold text-gray-700 mb-1.5">Address <span
+                  class="text-red-500">*</span></label>
+              <input type="text" id="book-address" name="address" class="form-input"
+                placeholder="House / Flat, Street, Area" required aria-label="Street Address" />
             </div>
             <div>
-              <label for="book-city" class="block text-sm font-semibold text-gray-700 mb-1.5">City <span class="text-red-500">*</span></label>
-              <input type="text" id="book-city" name="city" class="form-input" placeholder="e.g. Mumbai" required aria-label="City" />
+              <label for="book-city" class="block text-sm font-semibold text-gray-700 mb-1.5">City <span
+                  class="text-red-500">*</span></label>
+              <input type="text" id="book-city" name="city" class="form-input" placeholder="e.g. Mumbai" required
+                aria-label="City" />
             </div>
             <div>
-              <label for="book-state" class="block text-sm font-semibold text-gray-700 mb-1.5">State <span class="text-red-500">*</span></label>
-              <input type="text" id="book-state" name="state" class="form-input" placeholder="e.g. Maharashtra" required aria-label="State" />
+              <label for="book-state" class="block text-sm font-semibold text-gray-700 mb-1.5">State <span
+                  class="text-red-500">*</span></label>
+              <input type="text" id="book-state" name="state" class="form-input" placeholder="e.g. Maharashtra" required
+                aria-label="State" />
             </div>
             <div>
-              <label for="book-zip" class="block text-sm font-semibold text-gray-700 mb-1.5">ZIP Code <span class="text-red-500">*</span></label>
-              <input type="text" id="book-zip" name="zip" class="form-input" placeholder="e.g. 400001" required aria-label="ZIP Code" />
+              <label for="book-zip" class="block text-sm font-semibold text-gray-700 mb-1.5">ZIP Code <span
+                  class="text-red-500">*</span></label>
+              <input type="text" id="book-zip" name="zip" class="form-input" placeholder="e.g. 400001" required
+                aria-label="ZIP Code" />
             </div>
           </div>
 
           <!-- Step 2: Back + Continue (NO Confirm Booking here) -->
           <div class="flex items-center gap-4 mt-8">
-            <button type="button" id="back-btn" class="btn-outline font-semibold px-6 py-3 rounded-full" aria-label="Go back to service selection">
+            <button type="button" id="back-btn" class="btn-outline font-semibold px-6 py-3 rounded-full"
+              aria-label="Go back to service selection">
               <i class="fa-solid fa-arrow-left mr-2"></i>Back
             </button>
-            <button type="button" id="to-step3-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" aria-label="Continue to choose nurse">
+            <button type="button" id="to-step3-btn"
+              class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none"
+              aria-label="Continue to choose nurse">
               Continue <i class="fa-solid fa-arrow-right ml-2"></i>
             </button>
           </div>
@@ -380,13 +611,16 @@
       <!-- ── STEP 3: Choose Your Nurse (NEW) ── -->
       <div id="step3" class="hidden p-8">
         <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-          <span class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">3</span>
+          <span
+            class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">3</span>
           Choose Your Nurse
         </h2>
-        <p class="text-gray-500 text-sm mb-5">All nurses are verified, certified, and matched to your selected service.</p>
+        <p class="text-gray-500 text-sm mb-5">All nurses are verified, certified, and matched to your selected service.
+        </p>
 
         <!-- Service + Price header -->
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-7 p-4 rounded-2xl bg-gradient-to-r from-brand-blue-light to-brand-green-light border border-brand-blue/15">
+        <div
+          class="flex flex-wrap items-center justify-between gap-3 mb-7 p-4 rounded-2xl bg-gradient-to-r from-brand-blue-light to-brand-green-light border border-brand-blue/15">
           <div class="flex items-center gap-3">
             <span id="step3-summary-emoji" class="text-3xl"></span>
             <div>
@@ -404,18 +638,23 @@
         <div id="nurse-grid" class="mb-6"></div>
 
         <!-- Empty state -->
-        <div id="no-nurses" class="hidden rounded-xl border-2 border-dashed border-gray-200 p-10 text-center text-gray-400 mb-6">
+        <div id="no-nurses"
+          class="hidden rounded-xl border-2 border-dashed border-gray-200 p-10 text-center text-gray-400 mb-6">
           <i class="fa-solid fa-user-slash text-3xl mb-3 opacity-40"></i>
           <p class="font-semibold text-gray-500 mb-1">No nurses available</p>
-          <p class="text-sm">No nurses match the selected service and shift. Please go back and adjust your selection.</p>
+          <p class="text-sm">No nurses match the selected service and shift. Please go back and adjust your selection.
+          </p>
         </div>
 
         <!-- Step 3 actions -->
         <div class="flex items-center gap-4">
-          <button type="button" id="back-to-step2-btn" class="btn-outline font-semibold px-6 py-3 rounded-full" aria-label="Go back to patient details">
+          <button type="button" id="back-to-step2-btn" class="btn-outline font-semibold px-6 py-3 rounded-full"
+            aria-label="Go back to patient details">
             <i class="fa-solid fa-arrow-left mr-2"></i>Back
           </button>
-          <button type="button" id="confirm-nurse-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" disabled aria-label="Confirm Booking">
+          <button type="button" id="confirm-nurse-btn"
+            class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" disabled
+            aria-label="Confirm Booking">
             <i class="fa-solid fa-check mr-2"></i>Confirm Booking
           </button>
         </div>
@@ -424,18 +663,22 @@
     </div>
 
     <!-- ── Success Message ── -->
-    <div id="booking-success" class="hidden mt-8 bg-white rounded-2xl shadow-xl border border-brand-green/20 p-10 text-center">
+    <div id="booking-success"
+      class="hidden mt-8 bg-white rounded-2xl shadow-xl border border-brand-green/20 p-10 text-center">
       <div class="w-20 h-20 rounded-full bg-brand-green-light flex items-center justify-center mx-auto mb-5">
         <i class="fa-solid fa-circle-check text-brand-green text-5xl"></i>
       </div>
       <h2 class="text-2xl font-extrabold text-gray-800 mb-3">Booking Submitted!</h2>
-      <p class="text-gray-600 mb-2 max-w-md mx-auto">Your booking has been submitted successfully! We will contact you shortly to confirm the details.</p>
+      <p class="text-gray-600 mb-2 max-w-md mx-auto">Your booking has been submitted successfully! We will contact you
+        shortly to confirm the details.</p>
       <p class="text-sm font-semibold text-brand-green mb-6" id="success-nurse-info"></p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="index.html" class="btn-primary text-white font-semibold px-6 py-2.5 rounded-full" aria-label="Return to Home">
+        <a href="index.html" class="btn-primary text-white font-semibold px-6 py-2.5 rounded-full"
+          aria-label="Return to Home">
           <i class="fa-solid fa-house mr-2"></i>Back to Home
         </a>
-        <button id="book-another" class="btn-outline font-semibold px-6 py-2.5 rounded-full" aria-label="Book another service">
+        <button id="book-another" class="btn-outline font-semibold px-6 py-2.5 rounded-full"
+          aria-label="Book another service">
           Book Another Service
         </button>
       </div>
@@ -448,34 +691,49 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div class="lg:col-span-2">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center">
+            <div
+              class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center">
               <i class="fa-solid fa-house-medical text-white text-sm"></i>
             </div>
             <span class="text-xl font-bold">Care At Home</span>
           </div>
-          <p class="text-gray-400 text-sm leading-relaxed max-w-xs">Providing the best in home healthcare services. Expertise, compassion, and care — right at your doorstep.</p>
+          <p class="text-gray-400 text-sm leading-relaxed max-w-xs">Providing the best in home healthcare services.
+            Expertise, compassion, and care — right at your doorstep.</p>
           <div class="flex gap-3 mt-5">
-            <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-blue transition-colors flex items-center justify-center"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-pink-500 transition-colors flex items-center justify-center"><i class="fa-brands fa-instagram text-sm"></i></a>
-            <a href="#" aria-label="X (Twitter)" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-gray-600 transition-colors flex items-center justify-center"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+            <a href="#" aria-label="Facebook"
+              class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-blue transition-colors flex items-center justify-center"><i
+                class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a href="#" aria-label="Instagram"
+              class="w-9 h-9 rounded-lg bg-white/10 hover:bg-pink-500 transition-colors flex items-center justify-center"><i
+                class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="#" aria-label="X (Twitter)"
+              class="w-9 h-9 rounded-lg bg-white/10 hover:bg-gray-600 transition-colors flex items-center justify-center"><i
+                class="fa-brands fa-x-twitter text-sm"></i></a>
           </div>
         </div>
         <div>
           <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Quick Links</h4>
           <ul class="space-y-2.5">
             <li><a href="index.html#hero" class="text-gray-400 text-sm hover:text-white transition-colors">Home</a></li>
-            <li><a href="index.html#services" class="text-gray-400 text-sm hover:text-white transition-colors">Services</a></li>
-            <li><a href="index.html#about" class="text-gray-400 text-sm hover:text-white transition-colors">About Us</a></li>
-            <li><a href="index.html#contact" class="text-gray-400 text-sm hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="index.html#services"
+                class="text-gray-400 text-sm hover:text-white transition-colors">Services</a></li>
+            <li><a href="index.html#about" class="text-gray-400 text-sm hover:text-white transition-colors">About Us</a>
+            </li>
+            <li><a href="index.html#contact" class="text-gray-400 text-sm hover:text-white transition-colors">Contact
+                Us</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Services</h4>
           <ul class="space-y-2.5">
-            <li><a href="book-service.html?service=home-nursing-attendant" class="text-gray-400 text-sm hover:text-white transition-colors">Home Nursing</a></li>
-            <li><a href="book-service.html?service=elder-caretaker" class="text-gray-400 text-sm hover:text-white transition-colors">Elder Caretaker</a></li>
-            <li><a href="book-service.html?service=post-surgery-wound-dressing" class="text-gray-400 text-sm hover:text-white transition-colors">Wound Dressing</a></li>
-            <li><a href="book-service.html?service=physiotherapy-visits" class="text-gray-400 text-sm hover:text-white transition-colors">Physiotherapy</a></li>
+            <li><a href="book-service.html?service=home-nursing-attendant"
+                class="text-gray-400 text-sm hover:text-white transition-colors">Home Nursing</a></li>
+            <li><a href="book-service.html?service=elder-caretaker"
+                class="text-gray-400 text-sm hover:text-white transition-colors">Elder Caretaker</a></li>
+            <li><a href="book-service.html?service=post-surgery-wound-dressing"
+                class="text-gray-400 text-sm hover:text-white transition-colors">Wound Dressing</a></li>
+            <li><a href="book-service.html?service=physiotherapy-visits"
+                class="text-gray-400 text-sm hover:text-white transition-colors">Physiotherapy</a></li>
           </ul>
         </div>
       </div>
@@ -525,54 +783,54 @@
     const shiftLabel = { '12hr': '12-Hour Duty', '24hr': '24-Hour Duty' };
 
     // ── Nurse state (fetched once) ─────────────────────────
-    let allNurses    = [];
+    let allNurses = [];
     let selectedNurse = null;
 
     async function loadNurses() {
       try {
         const res = await fetch('assets/nurse_details.json');
-        allNurses  = await res.json();
+        allNurses = await res.json();
       } catch (e) {
         console.error('Failed to load nurse data:', e);
       }
     }
 
     // ── Elements ──────────────────────────────────────────
-    const serviceSelect       = document.getElementById('service-select');
-    const shiftWrapper        = document.getElementById('shift-wrapper');
-    const shiftSelect         = document.getElementById('shift-select');
-    const serviceInfo         = document.getElementById('service-info');
-    const servicePlaceholder  = document.getElementById('service-placeholder');
-    const nextBtn             = document.getElementById('next-btn');
+    const serviceSelect = document.getElementById('service-select');
+    const shiftWrapper = document.getElementById('shift-wrapper');
+    const shiftSelect = document.getElementById('shift-select');
+    const serviceInfo = document.getElementById('service-info');
+    const servicePlaceholder = document.getElementById('service-placeholder');
+    const nextBtn = document.getElementById('next-btn');
 
-    const step1               = document.getElementById('step1');
-    const step2               = document.getElementById('step2');
-    const step3               = document.getElementById('step3');
-    const step1Dot            = document.getElementById('step1-dot');
-    const step2Dot            = document.getElementById('step2-dot');
-    const step3Dot            = document.getElementById('step3-dot');
-    const stepLine1           = document.getElementById('step-line-1');
-    const stepLine2           = document.getElementById('step-line-2');
-    const stepLabel           = document.getElementById('step-label');
-    const stepIndicator       = document.getElementById('step-indicator');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const step1Dot = document.getElementById('step1-dot');
+    const step2Dot = document.getElementById('step2-dot');
+    const step3Dot = document.getElementById('step3-dot');
+    const stepLine1 = document.getElementById('step-line-1');
+    const stepLine2 = document.getElementById('step-line-2');
+    const stepLabel = document.getElementById('step-label');
+    const stepIndicator = document.getElementById('step-indicator');
 
-    const summaryEmoji        = document.getElementById('summary-emoji');
-    const summaryService      = document.getElementById('summary-service');
-    const summaryPrice        = document.getElementById('summary-price');
+    const summaryEmoji = document.getElementById('summary-emoji');
+    const summaryService = document.getElementById('summary-service');
+    const summaryPrice = document.getElementById('summary-price');
 
-    const backBtn             = document.getElementById('back-btn');
-    const changeBtn           = document.getElementById('change-service-btn');
-    const toStep3Btn          = document.getElementById('to-step3-btn');
-    const backToStep2Btn      = document.getElementById('back-to-step2-btn');
-    const confirmNurseBtn     = document.getElementById('confirm-nurse-btn');
+    const backBtn = document.getElementById('back-btn');
+    const changeBtn = document.getElementById('change-service-btn');
+    const toStep3Btn = document.getElementById('to-step3-btn');
+    const backToStep2Btn = document.getElementById('back-to-step2-btn');
+    const confirmNurseBtn = document.getElementById('confirm-nurse-btn');
 
-    const nurseGrid           = document.getElementById('nurse-grid');
-    const noNurses            = document.getElementById('no-nurses');
+    const nurseGrid = document.getElementById('nurse-grid');
+    const noNurses = document.getElementById('no-nurses');
 
-    const bookingForm         = document.getElementById('booking-form');
-    const bookingSuccess      = document.getElementById('booking-success');
-    const bookAnother         = document.getElementById('book-another');
-    const successNurseInfo    = document.getElementById('success-nurse-info');
+    const bookingForm = document.getElementById('booking-form');
+    const bookingSuccess = document.getElementById('booking-success');
+    const bookAnother = document.getElementById('book-another');
+    const successNurseInfo = document.getElementById('success-nurse-info');
 
     // ── Helpers ───────────────────────────────────────────
     function getPrice(svcKey) {
@@ -599,7 +857,7 @@
 
       document.getElementById('service-emoji').textContent = s.emoji;
       document.getElementById('service-title').textContent = s.name;
-      document.getElementById('service-desc').textContent  = s.description;
+      document.getElementById('service-desc').textContent = s.description;
       document.getElementById('service-price').textContent = getPrice(key);
 
       serviceInfo.classList.remove('hidden');
@@ -628,7 +886,7 @@
       const key = serviceSelect.value;
       if (!key) return [];
       const svc = services[key];
-      const selectedSpecialty  = svc.specialty;
+      const selectedSpecialty = svc.specialty;
       const selectedShiftLabel = svc.hasShift ? shiftLabel[shiftSelect.value] : null;
 
       return allNurses.filter(nurse => {
@@ -643,12 +901,12 @@
 
     // ── Star rating HTML ──────────────────────────────────
     function starsHTML(rating) {
-      const full  = Math.floor(rating);
-      const half  = rating % 1 >= 0.5 ? 1 : 0;
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.5 ? 1 : 0;
       const empty = 5 - full - half;
       let h = '';
-      for (let i = 0; i < full;  i++) h += '<i class="fa-solid fa-star star-fill text-xs"></i>';
-      if (half)                        h += '<i class="fa-solid fa-star-half-stroke star-fill text-xs"></i>';
+      for (let i = 0; i < full; i++) h += '<i class="fa-solid fa-star star-fill text-xs"></i>';
+      if (half) h += '<i class="fa-solid fa-star-half-stroke star-fill text-xs"></i>';
       for (let i = 0; i < empty; i++) h += '<i class="fa-regular fa-star star-fill text-xs opacity-40"></i>';
       return h;
     }
@@ -676,43 +934,42 @@
         card.setAttribute('aria-selected', isSelected ? 'true' : 'false');
         card.setAttribute('data-nurse', nurse.name);
 
-        const certBadges     = (nurse.certifications || []).map(c => `<span class="badge">${c}</span>`).join('');
-        const specialtyBadges = (nurse.specialties  || []).map(sp => `<span class="badge badge-green">${sp}</span>`).join('');
+        const certBadges = (nurse.certifications || []).map(c => `<span class="badge">${c}</span>`).join('');
+        const specialtyBadges = (nurse.specialties || []).map(sp => `<span class="badge badge-green">${sp}</span>`).join('');
         const langList = (nurse.languages || []).join(', ');
         const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(nurse.name)}&background=e8f2fc&color=2f72b8&size=128&bold=true&font-size=0.4`;
 
         card.innerHTML = `
-          <div class="flex gap-4 items-start">
-            <div class="nurse-photo-wrap">
-              <img src="${nurse.photo}" alt="Photo of ${nurse.name}" loading="lazy"
-                   onerror="this.onerror=null;this.src='${avatarFallback}'">
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex flex-wrap items-start justify-between gap-2 mb-1.5">
-                <div>
-                  <h3 class="font-bold text-gray-900 text-base leading-tight">${nurse.name}</h3>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <div class="flex gap-0.5">${starsHTML(nurse.rating)}</div>
-                    <span class="text-xs font-semibold text-gray-700">${nurse.rating.toFixed(1)}</span>
-                    <span class="text-xs text-gray-400">(${nurse.reviewCount} reviews)</span>
-                  </div>
-                </div>
-                <button class="nurse-select-btn${isSelected ? ' selected-state' : ''}"
-                        data-nurse="${nurse.name}"
-                        aria-label="${isSelected ? 'Selected: ' : 'Select nurse '}${nurse.name}">
-                  ${isSelected ? '<i class="fa-solid fa-circle-check mr-1.5"></i>Selected' : 'Select'}
-                </button>
-              </div>
-              <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-3">
-                <span><i class="fa-solid fa-briefcase-medical mr-1 text-brand-blue opacity-70"></i>${nurse.experienceYears} yrs experience</span>
-                <span><i class="fa-solid fa-language mr-1 text-brand-blue opacity-70"></i>${langList}</span>
-              </div>
-              <div class="flex flex-wrap gap-1.5">
-                ${certBadges}
-                ${specialtyBadges}
-              </div>
+          <!-- Photo full width -->
+          <div class="nurse-photo-wrap">
+            <img src="${nurse.photo}" alt="Photo of ${nurse.name}" loading="lazy"
+                 onerror="this.onerror=null;this.src='${avatarFallback}'">
+          </div>
+          <!-- Name (left) + Stars/rating (right) in same row -->
+          <div class="nurse-name-rating-row">
+            <h3 class="nurse-name">${nurse.name}</h3>
+            <div class="nurse-rating">
+              <div class="flex gap-0.5">${starsHTML(nurse.rating)}</div>
+              <span class="text-xs font-semibold text-gray-700">${nurse.rating.toFixed(1)}</span>
+              <span class="text-xs text-gray-400">(${nurse.reviewCount})</span>
             </div>
           </div>
+          <!-- Meta: experience + languages -->
+          <div class="flex flex-col gap-0.5 text-xs text-gray-500 mb-3">
+            <span><i class="fa-solid fa-briefcase-medical mr-1 text-brand-blue opacity-70"></i>${nurse.experienceYears} yrs experience</span>
+            <span class="truncate"><i class="fa-solid fa-language mr-1 text-brand-blue opacity-70"></i>${langList}</span>
+          </div>
+          <!-- Badges -->
+          <div class="flex flex-wrap gap-1 mb-4">
+            ${certBadges}
+            ${specialtyBadges}
+          </div>
+          <!-- Select button full width -->
+          <button class="nurse-select-btn w-full${isSelected ? ' selected-state' : ''}"
+                  data-nurse="${nurse.name}"
+                  aria-label="${isSelected ? 'Selected: ' : 'Select nurse '}${nurse.name}">
+            ${isSelected ? '<i class="fa-solid fa-circle-check mr-1.5"></i>Selected' : 'Select'}
+          </button>
         `;
 
         card.addEventListener('click', () => selectNurse(nurse));
@@ -726,7 +983,7 @@
 
       document.querySelectorAll('.nurse-card').forEach(card => {
         const name = card.getAttribute('data-nurse');
-        const btn  = card.querySelector('.nurse-select-btn');
+        const btn = card.querySelector('.nurse-select-btn');
         if (name === nurse.name) {
           card.classList.add('selected');
           card.setAttribute('aria-selected', 'true');
@@ -787,11 +1044,11 @@
       const key = serviceSelect.value;
       const s = services[key];
 
-      summaryEmoji.textContent   = s.emoji;
+      summaryEmoji.textContent = s.emoji;
       summaryService.textContent = s.hasShift
         ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
         : s.name;
-      summaryPrice.textContent   = getPrice(key);
+      summaryPrice.textContent = getPrice(key);
 
       step1.classList.add('hidden');
       step2.classList.remove('hidden');
@@ -819,10 +1076,10 @@
         return;
       }
       const key = serviceSelect.value;
-      const s   = services[key];
+      const s = services[key];
       const price = getPrice(key);
 
-      document.getElementById('step3-summary-emoji').textContent   = s.emoji;
+      document.getElementById('step3-summary-emoji').textContent = s.emoji;
       document.getElementById('step3-summary-service').textContent = s.hasShift
         ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
         : s.name;
@@ -854,7 +1111,7 @@
 
       setTimeout(() => {
         const key = serviceSelect.value;
-        const s   = services[key];
+        const s = services[key];
         successNurseInfo.textContent =
           `Your nurse: ${selectedNurse.name} · ${s.hasShift ? shiftSelect.options[shiftSelect.selectedIndex].text : s.name}`;
 
@@ -886,7 +1143,7 @@
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
 
-    const hamburger  = document.getElementById('hamburger');
+    const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
@@ -898,4 +1155,5 @@
     loadNurses();
   </script>
 </body>
+
 </html>
