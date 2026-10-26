@@ -72,10 +72,47 @@
 
     /* Hero gradient */
     .hero-gradient {
-      /*background: linear-gradient(160deg, #e8f4fd 0%, #f0fbf7 35%, #e6f3fb 70%, #edfaf4 100%); */
-      /*background-color: rgb(224, 224, 224); */
-      background: rgb(238, 238, 238);
+      background: linear-gradient(135deg, #0f2942 0%, #0d3d4f 40%, #0a4a5c 70%, #0e3d52 100%);
     }
+
+    /* Hero text overrides */
+    .hero-badge {
+      background: rgba(20, 184, 166, 0.15);
+      color: #5eead4;
+      border: 1px solid rgba(94, 234, 212, 0.25);
+    }
+    .hero-badge-dot { background: #2dd4bf; }
+    .hero-heading { color: #f0f9ff; }
+    .hero-heading-accent {
+      background: linear-gradient(90deg, #2dd4bf, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc { color: #94a3b8; }
+    .hero-stat-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .hero-stat-card p:last-child { color: #94a3b8; }
+    .hero-illustration-panel {
+      background: linear-gradient(135deg, rgba(45,212,191,0.18) 0%, rgba(56,189,248,0.18) 100%);
+      border: 1px solid rgba(94,234,212,0.2);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35), 0 0 40px rgba(45,212,191,0.1);
+    }
+    .hero-floating-card {
+      background: rgba(15, 41, 66, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(94,234,212,0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .hero-floating-card-blue p:first-child { color: #38bdf8; }
+    .hero-floating-card-green p:first-child { color: #2dd4bf; }
+    .hero-floating-card p:last-child { color: #94a3b8; }
+    .hero-stat-blue { color: #38bdf8; }
+    .hero-stat-teal { color: #2dd4bf; }
 
     /* Blob decorations */
     .blob {
@@ -219,24 +256,23 @@
   <section id="hero" class="hero-gradient min-h-screen flex items-center relative overflow-hidden pt-16">
 
     <!-- Blob bg decorations -->
-    <div class="absolute top-10 right-0 w-80 h-80 blob bg-brand-blue/10 animate-float" style="animation-delay:0s;"></div>
-    <div class="absolute bottom-10 left-0 w-64 h-64 blob bg-brand-green/10 animate-float" style="animation-delay:2s;"></div>
-    <div class="absolute top-1/2 left-1/3 w-40 h-40 blob bg-brand-blue/5 animate-float" style="animation-delay:4s;"></div>
-
+    <!-- <div class="absolute top-10 right-0 w-80 h-80 blob animate-float" style="background:rgba(45,212,191,0.08);animation-delay:0s;"></div> -->
+    <!-- <div class="absolute bottom-10 left-0 w-64 h-64 blob animate-float" style="background:rgba(56,189,248,0.07);animation-delay:2s;"></div> -->
+    <!-- <div class="absolute top-1/2 left-1/3 w-40 h-40 blob animate-float" style="background:rgba(94,234,212,0.05);animation-delay:4s;"></div> -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
 
         <!-- Text content -->
         <div class="animate-fade-in-up">
-          <div class="inline-flex items-center gap-2 bg-brand-blue-light text-brand-blue text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-            <span class="w-2 h-2 bg-brand-blue rounded-full animate-pulse"></span>
+          <div class="hero-badge inline-flex items-center gap-2 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+            <span class="hero-badge-dot w-2 h-2 rounded-full animate-pulse"></span>
             Trusted Home Healthcare
           </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+          <h1 class="hero-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
             Book a Service for
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-green">Your Loved One</span>
+            <span class="hero-heading-accent">Your Loved One</span>
           </h1>
-          <p class="text-gray-600 text-lg leading-relaxed mb-8 max-w-xl">
+          <p class="hero-desc text-lg leading-relaxed mb-8 max-w-xl">
             Get all your home healthcare needs at one place. Providing the best in health at your doorstep. We take care of you with expertise and compassion.
           </p>
           <div class="flex flex-wrap gap-4">
@@ -252,21 +288,21 @@
         <!-- Hero illustration panel -->
         <div class="hidden lg:flex justify-center" style="animation: fadeInUp 0.9s 0.3s ease both;">
           <div class="relative">
-            <div class="w-80 h-80 bg-gradient-to-br from-brand-blue/20 to-brand-green/20 rounded-3xl flex items-center justify-center shadow-2xl animate-float">
+            <div class="hero-illustration-panel w-80 h-80 rounded-3xl flex items-center justify-center animate-float">
               <div class="text-center">
                 <div class="text-8xl mb-4">🏥</div>
-                <p class="text-brand-blue font-bold text-lg">Professional Care</p>
-                <p class="text-gray-500 text-sm">At Your Doorstep</p>
+                <p class="font-bold text-lg" style="color:#5eead4;">Professional Care</p>
+                <p class="text-sm" style="color:#94a3b8;">At Your Doorstep</p>
               </div>
             </div>
             <!-- Floating stat cards -->
-            <div class="absolute -top-6 -left-8 bg-white rounded-2xl shadow-xl px-5 py-3 stat-card animate-fade-in" style="animation-delay:0.8s;">
-              <p class="text-2xl font-extrabold text-brand-blue">500+</p>
-              <p class="text-xs text-gray-500 font-medium">Happy Families</p>
+            <div class="hero-floating-card hero-floating-card-blue absolute -top-6 -left-8 rounded-2xl px-5 py-3 animate-fade-in" style="animation-delay:0.8s;border-left:4px solid #38bdf8;">
+              <p class="text-2xl font-extrabold hero-stat-blue">500+</p>
+              <p class="text-xs font-medium" style="color:#94a3b8;">Happy Families</p>
             </div>
-            <div class="absolute -bottom-4 -right-6 bg-white rounded-2xl shadow-xl px-5 py-3 border-l-4 border-brand-green animate-fade-in" style="animation-delay:1s;">
-              <p class="text-2xl font-extrabold text-brand-green">24/7</p>
-              <p class="text-xs text-gray-500 font-medium">Support Available</p>
+            <div class="hero-floating-card hero-floating-card-green absolute -bottom-4 -right-6 rounded-2xl px-5 py-3 animate-fade-in" style="animation-delay:1s;border-left:4px solid #2dd4bf;">
+              <p class="text-2xl font-extrabold hero-stat-teal">24/7</p>
+              <p class="text-xs font-medium" style="color:#94a3b8;">Support Available</p>
             </div>
           </div>
         </div>
@@ -274,21 +310,21 @@
       
       <!-- Stats row -->
       <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
-        <div class="bg-white/80 backdrop-blur rounded-2xl p-5 text-center shadow-md border border-gray-100">
-          <p class="text-3xl font-extrabold text-brand-blue">5+</p>
-          <p class="text-sm text-gray-500 mt-1">Years Experience</p>
+        <div class="hero-stat-card rounded-2xl p-5 text-center">
+          <p class="text-3xl font-extrabold hero-stat-blue">5+</p>
+          <p class="text-sm mt-1" style="color:#94a3b8;">Years Experience</p>
         </div>
-        <div class="bg-white/80 backdrop-blur rounded-2xl p-5 text-center shadow-md border border-gray-100">
-          <p class="text-3xl font-extrabold text-brand-green">200+</p>
-          <p class="text-sm text-gray-500 mt-1">Trained Caregivers</p>
+        <div class="hero-stat-card rounded-2xl p-5 text-center">
+          <p class="text-3xl font-extrabold hero-stat-teal">200+</p>
+          <p class="text-sm mt-1" style="color:#94a3b8;">Trained Caregivers</p>
         </div>
-        <div class="bg-white/80 backdrop-blur rounded-2xl p-5 text-center shadow-md border border-gray-100">
-          <p class="text-3xl font-extrabold text-brand-blue">4</p>
-          <p class="text-sm text-gray-500 mt-1">Core Services</p>
+        <div class="hero-stat-card rounded-2xl p-5 text-center">
+          <p class="text-3xl font-extrabold hero-stat-blue">4</p>
+          <p class="text-sm mt-1" style="color:#94a3b8;">Core Services</p>
         </div>
-        <div class="bg-white/80 backdrop-blur rounded-2xl p-5 text-center shadow-md border border-gray-100">
-          <p class="text-3xl font-extrabold text-brand-green">98%</p>
-          <p class="text-sm text-gray-500 mt-1">Satisfaction Rate</p>
+        <div class="hero-stat-card rounded-2xl p-5 text-center">
+          <p class="text-3xl font-extrabold hero-stat-teal">98%</p>
+          <p class="text-sm mt-1" style="color:#94a3b8;">Satisfaction Rate</p>
         </div>
       </div>
     </div>
