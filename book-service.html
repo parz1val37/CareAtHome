@@ -69,7 +69,7 @@
     footer { background: linear-gradient(135deg, #1a2f4e 0%, #1e3a5f 100%); }
 
     /* Step indicator */
-    .step-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease; }
+    .step-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease; flex-shrink: 0; }
     .step-line { flex: 1; height: 2px; transition: background 0.4s ease; }
 
     /* Service info card */
@@ -81,6 +81,97 @@
     /* Success animation */
     @keyframes successPop { 0%{transform:scale(0.8);opacity:0} 60%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
     #booking-success { animation: successPop 0.5s ease forwards; }
+
+    /* ── Nurse Card Styles ── */
+    .nurse-card {
+      border: 2px solid #e5eaf3;
+      border-radius: 20px;
+      background: #fff;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .nurse-card:hover { border-color: #4A90D9; box-shadow: 0 8px 32px rgba(74,144,217,0.12); transform: translateY(-2px); }
+    .nurse-card.selected {
+      border-color: #4CAF80;
+      background: linear-gradient(135deg, #f0fbf5, #ffffff);
+      box-shadow: 0 8px 32px rgba(76,175,128,0.18);
+    }
+
+    .nurse-photo-wrap {
+      width: 90px;
+      height: 90px;
+      border-radius: 16px;
+      border: 2.5px solid #e2e8f0;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f8fafc;
+    }
+    .nurse-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: rgba(74,144,217,0.1);
+      color: #2f72b8;
+      border: 1px solid rgba(74,144,217,0.2);
+      white-space: nowrap;
+    }
+    .badge-green {
+      background: rgba(76,175,128,0.1);
+      color: #38895f;
+      border-color: rgba(76,175,128,0.2);
+    }
+
+    .nurse-select-btn {
+      border: 2px solid #4A90D9;
+      color: #4A90D9;
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.42rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+    }
+    .nurse-select-btn:hover { background: #4A90D9; color: #fff; }
+    .nurse-select-btn.selected-state {
+      background: linear-gradient(135deg, #4CAF80, #38895f);
+      border-color: transparent;
+      color: #fff;
+    }
+    .nurse-select-btn.selected-state:hover { filter: brightness(0.9); }
+
+    .star-fill { color: #f59e0b; }
+
+    .price-pill {
+      background: linear-gradient(135deg, #4A90D9, #2f72b8);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.5rem 1.3rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 4px 16px rgba(74,144,217,0.3);
+      flex-shrink: 0;
+    }
+
+    #nurse-grid { display: flex; flex-direction: column; gap: 1rem; }
+    #confirm-nurse-btn:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -146,12 +237,14 @@
   <!-- ===== MAIN CONTENT ===== -->
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
 
-    <!-- Step indicator -->
-    <div class="flex items-center mb-10" role="progressbar" aria-label="Booking steps" aria-valuenow="1" aria-valuemin="1" aria-valuemax="2" id="step-indicator">
+    <!-- Step indicator (3 steps) -->
+    <div class="flex items-center mb-10" role="progressbar" aria-label="Booking steps" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" id="step-indicator">
       <div class="step-dot bg-brand-blue text-white" id="step1-dot">1</div>
-      <div class="step-line bg-gray-200" id="step-line"></div>
+      <div class="step-line bg-gray-200" id="step-line-1"></div>
       <div class="step-dot bg-gray-200 text-gray-400" id="step2-dot">2</div>
-      <div class="ml-4 text-sm font-medium text-brand-blue" id="step-label">Step 1 of 2 — Service Selection</div>
+      <div class="step-line bg-gray-200" id="step-line-2"></div>
+      <div class="step-dot bg-gray-200 text-gray-400" id="step3-dot">3</div>
+      <div class="ml-4 text-sm font-medium text-brand-blue" id="step-label">Step 1 of 3 — Service Selection</div>
     </div>
 
     <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
@@ -272,15 +365,60 @@
             </div>
           </div>
 
+          <!-- Step 2: Back + Continue (NO Confirm Booking here) -->
           <div class="flex items-center gap-4 mt-8">
             <button type="button" id="back-btn" class="btn-outline font-semibold px-6 py-3 rounded-full" aria-label="Go back to service selection">
               <i class="fa-solid fa-arrow-left mr-2"></i>Back
             </button>
-            <button type="submit" id="confirm-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" aria-label="Confirm Booking">
-              <i class="fa-solid fa-check mr-2"></i>Confirm Booking
+            <button type="button" id="to-step3-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" aria-label="Continue to choose nurse">
+              Continue <i class="fa-solid fa-arrow-right ml-2"></i>
             </button>
           </div>
         </form>
+      </div>
+
+      <!-- ── STEP 3: Choose Your Nurse (NEW) ── -->
+      <div id="step3" class="hidden p-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">3</span>
+          Choose Your Nurse
+        </h2>
+        <p class="text-gray-500 text-sm mb-5">All nurses are verified, certified, and matched to your selected service.</p>
+
+        <!-- Service + Price header -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-7 p-4 rounded-2xl bg-gradient-to-r from-brand-blue-light to-brand-green-light border border-brand-blue/15">
+          <div class="flex items-center gap-3">
+            <span id="step3-summary-emoji" class="text-3xl"></span>
+            <div>
+              <p class="text-xs text-gray-500 font-medium">Selected Service</p>
+              <p class="font-bold text-gray-800 text-sm" id="step3-summary-service"></p>
+            </div>
+          </div>
+          <div class="price-pill">
+            <i class="fa-solid fa-tag text-sm opacity-80"></i>
+            <span id="step3-price-text"></span>
+          </div>
+        </div>
+
+        <!-- Nurse cards -->
+        <div id="nurse-grid" class="mb-6"></div>
+
+        <!-- Empty state -->
+        <div id="no-nurses" class="hidden rounded-xl border-2 border-dashed border-gray-200 p-10 text-center text-gray-400 mb-6">
+          <i class="fa-solid fa-user-slash text-3xl mb-3 opacity-40"></i>
+          <p class="font-semibold text-gray-500 mb-1">No nurses available</p>
+          <p class="text-sm">No nurses match the selected service and shift. Please go back and adjust your selection.</p>
+        </div>
+
+        <!-- Step 3 actions -->
+        <div class="flex items-center gap-4">
+          <button type="button" id="back-to-step2-btn" class="btn-outline font-semibold px-6 py-3 rounded-full" aria-label="Go back to patient details">
+            <i class="fa-solid fa-arrow-left mr-2"></i>Back
+          </button>
+          <button type="button" id="confirm-nurse-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" disabled aria-label="Confirm Booking">
+            <i class="fa-solid fa-check mr-2"></i>Confirm Booking
+          </button>
+        </div>
       </div>
 
     </div>
@@ -291,7 +429,8 @@
         <i class="fa-solid fa-circle-check text-brand-green text-5xl"></i>
       </div>
       <h2 class="text-2xl font-extrabold text-gray-800 mb-3">Booking Submitted!</h2>
-      <p class="text-gray-600 mb-6 max-w-md mx-auto">Your booking has been submitted successfully! We will contact you shortly to confirm the details.</p>
+      <p class="text-gray-600 mb-2 max-w-md mx-auto">Your booking has been submitted successfully! We will contact you shortly to confirm the details.</p>
+      <p class="text-sm font-semibold text-brand-green mb-6" id="success-nurse-info"></p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="index.html" class="btn-primary text-white font-semibold px-6 py-2.5 rounded-full" aria-label="Return to Home">
           <i class="fa-solid fa-house mr-2"></i>Back to Home
@@ -347,10 +486,11 @@
   </footer>
 
   <script>
-    // ── Data ──────────────────────────────────────────────
+    // ── Service Data ──────────────────────────────────────
     const services = {
       'home-nursing-attendant': {
         name: 'Home Nursing Attendant',
+        specialty: 'Home Nursing Attendant',
         emoji: '🧑‍⚕️',
         description: 'We provide trained and compassionate home nursing attendants for both 12-hour and 24-hour shifts. Our attendants assist with daily activities, medication reminders, mobility support, and companionship to ensure your loved one receives professional care in the comfort of their own home.',
         hasShift: true,
@@ -358,6 +498,7 @@
       },
       'elder-caretaker': {
         name: 'Elder Caretaker',
+        specialty: 'Elder Caretaker',
         emoji: '👴',
         description: 'Our elder caretakers offer comprehensive support for seniors, helping them maintain independence and quality of life. Services include meal preparation, personal care, light housekeeping, companionship, and monitoring of health conditions. Available in both 12-hour and 24-hour care.',
         hasShift: true,
@@ -365,6 +506,7 @@
       },
       'post-surgery-wound-dressing': {
         name: 'Post-Surgery Wound Dressing',
+        specialty: 'Post-Surgery Wound Dressing',
         emoji: '🩹',
         description: 'Professional wound care services provided by certified nurses at your doorstep. We handle post-surgical wound dressing, dressing changes, and wound care for various types of wounds to promote healing and prevent infections. Available as per requirement.',
         hasShift: false,
@@ -372,6 +514,7 @@
       },
       'physiotherapy-visits': {
         name: 'Physiotherapy Visits at Home',
+        specialty: 'Physiotherapy Visits at Home',
         emoji: '🏃',
         description: 'Receive expert physiotherapy care in the convenience of your home. Our licensed physiotherapists provide personalized treatment plans, including therapeutic exercises, manual therapy, and rehabilitation programs to help you recover from injury, manage pain, and improve mobility.',
         hasShift: false,
@@ -379,36 +522,62 @@
       }
     };
 
+    const shiftLabel = { '12hr': '12-Hour Duty', '24hr': '24-Hour Duty' };
+
+    // ── Nurse state (fetched once) ─────────────────────────
+    let allNurses    = [];
+    let selectedNurse = null;
+
+    async function loadNurses() {
+      try {
+        const res = await fetch('assets/nurse_details.json');
+        allNurses  = await res.json();
+      } catch (e) {
+        console.error('Failed to load nurse data:', e);
+      }
+    }
+
     // ── Elements ──────────────────────────────────────────
-    const serviceSelect = document.getElementById('service-select');
-    const shiftWrapper  = document.getElementById('shift-wrapper');
-    const shiftSelect   = document.getElementById('shift-select');
-    const serviceInfo   = document.getElementById('service-info');
-    const servicePlaceholder = document.getElementById('service-placeholder');
-    const nextBtn       = document.getElementById('next-btn');
+    const serviceSelect       = document.getElementById('service-select');
+    const shiftWrapper        = document.getElementById('shift-wrapper');
+    const shiftSelect         = document.getElementById('shift-select');
+    const serviceInfo         = document.getElementById('service-info');
+    const servicePlaceholder  = document.getElementById('service-placeholder');
+    const nextBtn             = document.getElementById('next-btn');
 
-    const step1         = document.getElementById('step1');
-    const step2         = document.getElementById('step2');
-    const step1Dot      = document.getElementById('step1-dot');
-    const step2Dot      = document.getElementById('step2-dot');
-    const stepLine      = document.getElementById('step-line');
-    const stepLabel     = document.getElementById('step-label');
-    const stepIndicator = document.getElementById('step-indicator');
+    const step1               = document.getElementById('step1');
+    const step2               = document.getElementById('step2');
+    const step3               = document.getElementById('step3');
+    const step1Dot            = document.getElementById('step1-dot');
+    const step2Dot            = document.getElementById('step2-dot');
+    const step3Dot            = document.getElementById('step3-dot');
+    const stepLine1           = document.getElementById('step-line-1');
+    const stepLine2           = document.getElementById('step-line-2');
+    const stepLabel           = document.getElementById('step-label');
+    const stepIndicator       = document.getElementById('step-indicator');
 
-    const summaryEmoji  = document.getElementById('summary-emoji');
-    const summaryService= document.getElementById('summary-service');
-    const summaryPrice  = document.getElementById('summary-price');
+    const summaryEmoji        = document.getElementById('summary-emoji');
+    const summaryService      = document.getElementById('summary-service');
+    const summaryPrice        = document.getElementById('summary-price');
 
-    const backBtn       = document.getElementById('back-btn');
-    const changeBtn     = document.getElementById('change-service-btn');
-    const bookingForm   = document.getElementById('booking-form');
-    const bookingSuccess= document.getElementById('booking-success');
-    const bookAnother   = document.getElementById('book-another');
+    const backBtn             = document.getElementById('back-btn');
+    const changeBtn           = document.getElementById('change-service-btn');
+    const toStep3Btn          = document.getElementById('to-step3-btn');
+    const backToStep2Btn      = document.getElementById('back-to-step2-btn');
+    const confirmNurseBtn     = document.getElementById('confirm-nurse-btn');
+
+    const nurseGrid           = document.getElementById('nurse-grid');
+    const noNurses            = document.getElementById('no-nurses');
+
+    const bookingForm         = document.getElementById('booking-form');
+    const bookingSuccess      = document.getElementById('booking-success');
+    const bookAnother         = document.getElementById('book-another');
+    const successNurseInfo    = document.getElementById('success-nurse-info');
 
     // ── Helpers ───────────────────────────────────────────
-    function getPrice(svc) {
-      if (!svc) return '';
-      const s = services[svc];
+    function getPrice(svcKey) {
+      if (!svcKey) return '';
+      const s = services[svcKey];
       if (!s) return '';
       if (s.hasShift) return s.prices[shiftSelect.value] || s.prices['12hr'];
       return s.prices.default;
@@ -426,8 +595,6 @@
       }
       const s = services[key];
       servicePlaceholder.classList.add('hidden');
-
-      // Show/hide shift
       shiftWrapper.classList.toggle('hidden', !s.hasShift);
 
       document.getElementById('service-emoji').textContent = s.emoji;
@@ -440,6 +607,165 @@
       nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     }
 
+    // Re-validate selected nurse when service/shift changes
+    function revalidateNurseSelection() {
+      if (!selectedNurse) return;
+      const filtered = filterNurses();
+      const stillValid = filtered.some(n => n.name === selectedNurse.name);
+      if (!stillValid) {
+        selectedNurse = null;
+        confirmNurseBtn.disabled = true;
+      }
+    }
+
+    function onServiceOrShiftChange() {
+      updateServiceInfo();
+      revalidateNurseSelection();
+    }
+
+    // ── Nurse Filtering ───────────────────────────────────
+    function filterNurses() {
+      const key = serviceSelect.value;
+      if (!key) return [];
+      const svc = services[key];
+      const selectedSpecialty  = svc.specialty;
+      const selectedShiftLabel = svc.hasShift ? shiftLabel[shiftSelect.value] : null;
+
+      return allNurses.filter(nurse => {
+        if (!nurse.specialties || !nurse.specialties.includes(selectedSpecialty)) return false;
+        // Nurses with no shift field → available for all shifts
+        if (selectedShiftLabel && Array.isArray(nurse.shift) && nurse.shift.length > 0) {
+          return nurse.shift.includes(selectedShiftLabel);
+        }
+        return true;
+      });
+    }
+
+    // ── Star rating HTML ──────────────────────────────────
+    function starsHTML(rating) {
+      const full  = Math.floor(rating);
+      const half  = rating % 1 >= 0.5 ? 1 : 0;
+      const empty = 5 - full - half;
+      let h = '';
+      for (let i = 0; i < full;  i++) h += '<i class="fa-solid fa-star star-fill text-xs"></i>';
+      if (half)                        h += '<i class="fa-solid fa-star-half-stroke star-fill text-xs"></i>';
+      for (let i = 0; i < empty; i++) h += '<i class="fa-regular fa-star star-fill text-xs opacity-40"></i>';
+      return h;
+    }
+
+    // ── Render Nurse Cards ────────────────────────────────
+    function renderNurses() {
+      const nurses = filterNurses();
+      nurseGrid.innerHTML = '';
+
+      if (nurses.length === 0) {
+        nurseGrid.classList.add('hidden');
+        noNurses.classList.remove('hidden');
+        confirmNurseBtn.disabled = true;
+        return;
+      }
+
+      nurseGrid.classList.remove('hidden');
+      noNurses.classList.add('hidden');
+
+      nurses.forEach(nurse => {
+        const isSelected = selectedNurse && selectedNurse.name === nurse.name;
+        const card = document.createElement('div');
+        card.className = 'nurse-card p-5' + (isSelected ? ' selected' : '');
+        card.setAttribute('role', 'option');
+        card.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        card.setAttribute('data-nurse', nurse.name);
+
+        const certBadges     = (nurse.certifications || []).map(c => `<span class="badge">${c}</span>`).join('');
+        const specialtyBadges = (nurse.specialties  || []).map(sp => `<span class="badge badge-green">${sp}</span>`).join('');
+        const langList = (nurse.languages || []).join(', ');
+        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(nurse.name)}&background=e8f2fc&color=2f72b8&size=128&bold=true&font-size=0.4`;
+
+        card.innerHTML = `
+          <div class="flex gap-4 items-start">
+            <div class="nurse-photo-wrap">
+              <img src="${nurse.photo}" alt="Photo of ${nurse.name}" loading="lazy"
+                   onerror="this.onerror=null;this.src='${avatarFallback}'">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-1.5">
+                <div>
+                  <h3 class="font-bold text-gray-900 text-base leading-tight">${nurse.name}</h3>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <div class="flex gap-0.5">${starsHTML(nurse.rating)}</div>
+                    <span class="text-xs font-semibold text-gray-700">${nurse.rating.toFixed(1)}</span>
+                    <span class="text-xs text-gray-400">(${nurse.reviewCount} reviews)</span>
+                  </div>
+                </div>
+                <button class="nurse-select-btn${isSelected ? ' selected-state' : ''}"
+                        data-nurse="${nurse.name}"
+                        aria-label="${isSelected ? 'Selected: ' : 'Select nurse '}${nurse.name}">
+                  ${isSelected ? '<i class="fa-solid fa-circle-check mr-1.5"></i>Selected' : 'Select'}
+                </button>
+              </div>
+              <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 mb-3">
+                <span><i class="fa-solid fa-briefcase-medical mr-1 text-brand-blue opacity-70"></i>${nurse.experienceYears} yrs experience</span>
+                <span><i class="fa-solid fa-language mr-1 text-brand-blue opacity-70"></i>${langList}</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                ${certBadges}
+                ${specialtyBadges}
+              </div>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => selectNurse(nurse));
+        nurseGrid.appendChild(card);
+      });
+    }
+
+    function selectNurse(nurse) {
+      selectedNurse = nurse;
+      confirmNurseBtn.disabled = false;
+
+      document.querySelectorAll('.nurse-card').forEach(card => {
+        const name = card.getAttribute('data-nurse');
+        const btn  = card.querySelector('.nurse-select-btn');
+        if (name === nurse.name) {
+          card.classList.add('selected');
+          card.setAttribute('aria-selected', 'true');
+          btn.classList.add('selected-state');
+          btn.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i>Selected';
+          btn.setAttribute('aria-label', `Selected: ${nurse.name}`);
+        } else {
+          card.classList.remove('selected');
+          card.setAttribute('aria-selected', 'false');
+          btn.classList.remove('selected-state');
+          btn.innerHTML = 'Select';
+          btn.setAttribute('aria-label', `Select nurse ${name}`);
+        }
+      });
+    }
+
+    // ── Step indicator helper ─────────────────────────────
+    function setStepIndicator(step) {
+      const labels = ['Service Selection', 'Patient Details', 'Choose Your Nurse'];
+      stepLabel.textContent = `Step ${step} of 3 — ${labels[step - 1]}`;
+      stepIndicator.setAttribute('aria-valuenow', step);
+
+      [step1Dot, step2Dot, step3Dot].forEach((dot, i) => {
+        const n = i + 1;
+        if (n < step) {
+          dot.className = 'step-dot bg-brand-green text-white';
+          dot.innerHTML = '<i class="fa-solid fa-check text-xs"></i>';
+        } else if (n === step) {
+          dot.className = 'step-dot bg-brand-blue text-white';
+          dot.textContent = n;
+        } else {
+          dot.className = 'step-dot bg-gray-200 text-gray-400';
+          dot.textContent = n;
+        }
+      });
+      stepLine1.style.background = step > 1 ? '#4CAF80' : '';
+      stepLine2.style.background = step > 2 ? '#4CAF80' : '';
+    }
+
     // ── URL query param pre-selection ─────────────────────
     const params = new URLSearchParams(window.location.search);
     const preService = params.get('service');
@@ -449,76 +775,98 @@
     }
 
     // ── Event Listeners ───────────────────────────────────
-    serviceSelect.addEventListener('change', updateServiceInfo);
+    serviceSelect.addEventListener('change', onServiceOrShiftChange);
     shiftSelect.addEventListener('change', () => {
       document.getElementById('service-price').textContent = getPrice(serviceSelect.value);
+      revalidateNurseSelection();
     });
 
-    // Next: go to step 2
+    // Step 1 → Step 2
     nextBtn.addEventListener('click', () => {
       if (!serviceSelect.value) return;
       const key = serviceSelect.value;
       const s = services[key];
 
-      summaryEmoji.textContent  = s.emoji;
+      summaryEmoji.textContent   = s.emoji;
       summaryService.textContent = s.hasShift
         ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
         : s.name;
-      summaryPrice.textContent  = getPrice(key);
+      summaryPrice.textContent   = getPrice(key);
 
       step1.classList.add('hidden');
       step2.classList.remove('hidden');
       step2.classList.add('animate-fade-in-up');
-
-      // Step indicator
-      step1Dot.className = 'step-dot bg-brand-green text-white';
-      step1Dot.innerHTML = '<i class="fa-solid fa-check text-xs"></i>';
-      step2Dot.className = 'step-dot bg-brand-blue text-white';
-      stepLine.style.background = '#4CAF80';
-      stepLabel.textContent = 'Step 2 of 2 — Your Details';
-      stepIndicator.setAttribute('aria-valuenow', '2');
-
+      setStepIndicator(2);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Back: go to step 1
-    function goBack() {
+    // Step 2/3 → Step 1
+    function goToStep1() {
       step2.classList.add('hidden');
+      step3.classList.add('hidden');
       step1.classList.remove('hidden');
       step1.classList.add('animate-fade-in');
-
-      step1Dot.className = 'step-dot bg-brand-blue text-white';
-      step1Dot.textContent = '1';
-      step2Dot.className = 'step-dot bg-gray-200 text-gray-400';
-      step2Dot.textContent = '2';
-      stepLine.style.background = '';
-      stepLabel.textContent = 'Step 1 of 2 — Service Selection';
-      stepIndicator.setAttribute('aria-valuenow', '1');
-
+      setStepIndicator(1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    backBtn.addEventListener('click', goBack);
-    changeBtn.addEventListener('click', goBack);
+    backBtn.addEventListener('click', goToStep1);
+    changeBtn.addEventListener('click', goToStep1);
 
-    // Form submit
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+    // Step 2 → Step 3
+    toStep3Btn.addEventListener('click', () => {
       if (!bookingForm.checkValidity()) {
         bookingForm.reportValidity();
         return;
       }
-      const btn = document.getElementById('confirm-btn');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+      const key = serviceSelect.value;
+      const s   = services[key];
+      const price = getPrice(key);
+
+      document.getElementById('step3-summary-emoji').textContent   = s.emoji;
+      document.getElementById('step3-summary-service').textContent = s.hasShift
+        ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
+        : s.name;
+      document.getElementById('step3-price-text').textContent = price;
+
+      renderNurses();
+
+      step2.classList.add('hidden');
+      step3.classList.remove('hidden');
+      step3.classList.add('animate-fade-in-up');
+      setStepIndicator(3);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Step 3 → Step 2
+    backToStep2Btn.addEventListener('click', () => {
+      step3.classList.add('hidden');
+      step2.classList.remove('hidden');
+      step2.classList.add('animate-fade-in');
+      setStepIndicator(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Confirm booking (Step 3)
+    confirmNurseBtn.addEventListener('click', () => {
+      if (!selectedNurse) return;
+      confirmNurseBtn.disabled = true;
+      confirmNurseBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
 
       setTimeout(() => {
+        const key = serviceSelect.value;
+        const s   = services[key];
+        successNurseInfo.textContent =
+          `Your nurse: ${selectedNurse.name} · ${s.hasShift ? shiftSelect.options[shiftSelect.selectedIndex].text : s.name}`;
+
         bookingForm.reset();
-        step2.classList.add('hidden');
+        step3.classList.add('hidden');
         bookingSuccess.classList.remove('hidden');
         stepIndicator.classList.add('hidden');
+
+        selectedNurse = null;
+        confirmNurseBtn.disabled = true;
+        confirmNurseBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Confirm Booking';
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Confirm Booking';
       }, 1400);
     });
 
@@ -527,15 +875,10 @@
       bookingSuccess.classList.add('hidden');
       step1.classList.remove('hidden');
       serviceSelect.value = '';
+      selectedNurse = null;
       updateServiceInfo();
       stepIndicator.classList.remove('hidden');
-      step1Dot.className = 'step-dot bg-brand-blue text-white';
-      step1Dot.textContent = '1';
-      step2Dot.className = 'step-dot bg-gray-200 text-gray-400';
-      step2Dot.textContent = '2';
-      stepLine.style.background = '';
-      stepLabel.textContent = 'Step 1 of 2 — Service Selection';
-      stepIndicator.setAttribute('aria-valuenow', '1');
+      setStepIndicator(1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -543,13 +886,16 @@
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
 
-    const hamburger = document.getElementById('hamburger');
+    const hamburger  = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       hamburger.setAttribute('aria-expanded', open);
       hamburger.querySelector('i').className = open ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
     });
+
+    // ── Init ──────────────────────────────────────────────
+    loadNurses();
   </script>
 </body>
 </html>
