@@ -1,537 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fee Calculator — Care At Home</title>
-  <meta name="description" content="Estimate the cost of home healthcare services with Care At Home's fee calculator. Transparent pricing for nursing, elder care, wound dressing, and physiotherapy." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              blue: '#4A90D9',
-              'blue-dark': '#2f72b8',
-              'blue-light': '#e8f2fc',
-              green: '#4CAF80',
-              'green-dark': '#38895f',
-              'green-light': '#e8f7ef',
-            }
-          },
-          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
-          animation: {
-            'fade-in-up': 'fadeInUp 0.5s ease forwards',
-            'fade-in': 'fadeIn 0.5s ease forwards',
-            'count-up': 'countUp 0.4s ease forwards',
-          },
-          keyframes: {
-            fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    * { font-family: 'Poppins', sans-serif; }
+    /* ---- Basic Reset ---- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    body { animation: pageFadeIn 0.5s ease forwards; }
-    @keyframes pageFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background-color: #f5f5f5;
+    }
 
-    #navbar { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: box-shadow 0.3s, background 0.3s; }
-    #navbar.scrolled { background: rgba(255,255,255,0.97) !important; box-shadow: 0 2px 20px rgba(74,144,217,0.12); }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    #mobile-menu { transition: max-height 0.35s ease, opacity 0.3s ease; max-height: 0; overflow: hidden; opacity: 0; }
-    #mobile-menu.open { max-height: 400px; opacity: 1; }
+    /* ---- Navbar ---- */
+    .navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .btn-primary { background: linear-gradient(135deg, #4A90D9, #2f72b8); transition: all 0.3s ease; position: relative; overflow: hidden; }
-    .btn-primary::after { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); transition:left .5s ease; }
-    .btn-primary:hover::after { left:150%; }
-    .btn-primary:hover { background:linear-gradient(135deg,#2f72b8,#1e5a9e); transform:translateY(-1px); box-shadow:0 6px 20px rgba(74,144,217,.35); }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-    .btn-outline { border: 2px solid #4A90D9; color: #4A90D9; transition: all 0.3s ease; }
-    .btn-outline:hover { background: #4A90D9; color: #fff; }
+    .logo span {
+      color: #4A90D9;
+    }
 
-    .btn-outline-gray { border: 2px solid #d1d5db; color: #6b7280; transition: all 0.3s ease; }
-    .btn-outline-gray:hover { border-color: #9ca3af; color: #374151; background: #f9fafb; }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #4A90D9;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px 30px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: #555;
+      font-size: 14px;
+      padding: 5px 0;
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: #4A90D9;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #2f72b8;
+    }
+
+    .btn-primary:disabled {
+      background-color: #aac8e8;
+      cursor: not-allowed;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #4A90D9;
+      border: 2px solid #4A90D9;
+    }
+
+    .btn-outline:hover {
+      background-color: #4A90D9;
+      color: #fff;
+    }
+
+    .btn-reset {
+      background-color: transparent;
+      color: #888;
+      border: 2px solid #ccc;
+    }
+
+    .btn-reset:hover {
+      border-color: #999;
+      color: #555;
+    }
+
+    /* ---- Hidden ---- */
+    .hidden {
+      display: none;
+    }
+
+    /* ---- Page Header ---- */
+    .page-header {
+      background-color: #e8f2fc;
+      padding: 40px 30px;
+    }
+
+    .page-header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .breadcrumb a {
+      color: #888;
+    }
+
+    .breadcrumb a:hover {
+      color: #4A90D9;
+    }
+
+    .breadcrumb span {
+      color: #4A90D9;
+      font-weight: bold;
+    }
+
+    /* ---- Main Layout ---- */
+    .main-layout {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px 40px;
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    /* ---- Calculator Panel ---- */
+    .calc-panel {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .card h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Form Styles ---- */
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
 
     .form-input {
-      border: 1.5px solid #dde4ef; border-radius: 10px; padding: 0.65rem 1rem;
-      width: 100%; transition: border-color 0.25s, box-shadow 0.25s; outline: none;
-      font-family: 'Poppins', sans-serif; font-size: 0.9rem; background: #fff;
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      outline: none;
     }
-    .form-input:focus { border-color: #4A90D9; box-shadow: 0 0 0 3px rgba(74,144,217,0.12); }
 
-    footer { background: linear-gradient(135deg, #1a2f4e 0%, #1e3a5f 100%); }
+    .form-input:focus {
+      border-color: #4A90D9;
+    }
 
-    /* Result card */
-    @keyframes resultReveal { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: none; } }
-    #result-card { animation: resultReveal 0.45s ease forwards; }
-
-    /* Breakdown row */
-    .breakdown-row { display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 0; border-bottom: 1px solid #f0f4fa; }
-    .breakdown-row:last-child { border-bottom: none; }
-
-    /* Total glow */
-    .total-badge {
-      background: linear-gradient(135deg, #4A90D9, #2f72b8);
-      border-radius: 16px;
-      padding: 1.2rem 1.8rem;
+    /* ---- Placeholder ---- */
+    .placeholder-box {
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      padding: 30px;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(74,144,217,0.3);
+      color: #aaa;
+      margin-bottom: 20px;
     }
 
-    /* Quick pricing reference */
-    .price-row { transition: background 0.2s; }
-    .price-row:hover { background: #f0f7ff; }
+    /* ---- Result Card ---- */
+    .result-card {
+      border: 1px solid #c5dff5;
+      border-radius: 12px;
+      margin-top: 25px;
+      overflow: hidden;
+    }
+
+    .result-header {
+      background-color: #4A90D9;
+      color: #fff;
+      padding: 15px 20px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .result-body {
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+
+    .breakdown-row:last-child {
+      border-bottom: none;
+    }
+
+    .breakdown-label {
+      color: #888;
+    }
+
+    .breakdown-value {
+      font-weight: bold;
+    }
+
+    .total-box {
+      background-color: #4A90D9;
+      color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .total-box .label {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+
+    .total-box .amount {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .total-box .note {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-top: 5px;
+    }
+
+    .book-cta {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .book-cta p {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    /* ---- Pricing Sidebar ---- */
+    .pricing-sidebar {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .price-section {
+      margin-bottom: 20px;
+    }
+
+    .price-section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .price-section-title .emoji {
+      font-size: 20px;
+    }
+
+    .price-section-title p {
+      font-size: 14px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .price-table {
+      width: 100%;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    .price-row:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+
+    .price-row .label {
+      color: #888;
+    }
+
+    .price-row .value {
+      font-weight: bold;
+      color: #4A90D9;
+    }
+
+    .price-row .value.green {
+      color: #4CAF80;
+    }
+
+    .transparency-note {
+      background-color: #e8f2fc;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #2f72b8;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    /* ---- Footer ---- */
+    .footer {
+      background-color: #1a2f4e;
+      color: #fff;
+      padding: 40px 30px 20px;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .footer-brand {
+      flex: 2;
+      min-width: 250px;
+    }
+
+    .footer-brand h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .footer-links h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links ul li a {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .footer-links ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 15px;
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-bottom p {
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-buttons {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .main-layout {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
   <!-- ===== NAVBAR ===== -->
-  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/90 border-b border-gray-100" role="navigation" aria-label="Main navigation">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-2 group" aria-label="Care At Home — Home">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-house-medical text-white text-sm"></i>
-          </div>
-          <span class="text-lg font-bold text-gray-800">Care <span class="text-brand-blue">At Home</span></span>
-        </a>
-
-        <div class="hidden md:flex items-center gap-6">
-          <a href="index.html#hero" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Home</a>
-          <a href="index.html#services" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Services</a>
-          <a href="index.html#about" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">About Us</a>
-          <a href="index.html#contact" class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Contact Us</a>
-        </div>
-
-        <div class="hidden md:flex items-center gap-3">
-          <a href="fee-calculator.html" class="btn-primary text-white text-sm font-semibold px-4 py-2 rounded-full" aria-label="Fee Calculator (current page)">
-            <i class="fa-solid fa-calculator mr-1.5"></i>Fee Calculator
-          </a>
-          <a href="book-service.html" class="btn-outline text-sm font-semibold px-5 py-2 rounded-full" aria-label="Book a Service">
-            <i class="fa-solid fa-calendar-check mr-1.5"></i>Book a Service
-          </a>
-        </div>
-
-        <button id="hamburger" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue-light transition-colors" aria-label="Toggle mobile menu" aria-expanded="false">
-          <i class="fa-solid fa-bars text-xl"></i>
-        </button>
-      </div>
+  <nav class="navbar">
+    <a href="index.html" class="logo">Care <span>At Home</span></a>
+    <div class="nav-links">
+      <a href="index.html#hero">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact Us</a>
     </div>
-    <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
-      <div class="flex flex-col gap-3 pt-4">
-        <a href="index.html#hero" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Home</a>
-        <a href="index.html#services" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Services</a>
-        <a href="index.html#about" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">About Us</a>
-        <a href="index.html#contact" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Contact Us</a>
-        <hr class="border-gray-200 my-1" />
-        <a href="fee-calculator.html" class="btn-primary text-white text-sm font-semibold px-4 py-2 rounded-full text-center">Fee Calculator</a>
-        <a href="book-service.html" class="btn-outline text-sm font-semibold px-5 py-2.5 rounded-full text-center">Book a Service</a>
-      </div>
+    <div class="nav-buttons">
+      <a href="fee-calculator.html" class="btn btn-primary">Fee Calculator</a>
+      <a href="book-service.html" class="btn btn-outline">Book a Service</a>
     </div>
+    <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#hero">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About Us</a>
+    <a href="index.html#contact">Contact Us</a>
+    <a href="fee-calculator.html">Fee Calculator</a>
+    <a href="book-service.html">Book a Service</a>
+  </div>
 
   <!-- ===== PAGE HEADER ===== -->
-  <!-- <div class="pt-16 bg-gradient-to-br from-brand-blue-light via-white to-brand-green-light"> -->
-  <div class="pt-16 bg-blue-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-        <a href="index.html" class="hover:text-brand-blue transition-colors">Home</a>
-        <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
-        <span class="text-brand-blue font-semibold">Fee Calculator</span>
-      </nav>
-      <div class="flex items-start gap-4">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center flex-shrink-0 shadow-lg">
-          <i class="fa-solid fa-calculator text-white text-xl"></i>
-        </div>
-        <div>
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">Fee Calculator</h1>
-          <p class="text-gray-500">Get an instant estimate for your home healthcare service. No hidden charges.</p>
-        </div>
-      </div>
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; <span>Fee Calculator</span>
     </div>
+    <h1>Fee Calculator</h1>
+    <p>Get an instant estimate for your home healthcare service. No hidden charges.</p>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
-    <div class="grid lg:grid-cols-3 gap-8 items-start">
+  <div class="main-layout">
 
-      <!-- ── Calculator Panel ── -->
-      <div class="lg:col-span-2">
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-          <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-            <i class="fa-solid fa-sliders text-brand-blue"></i>
-            Calculate Your Estimate
-          </h2>
+    <!-- Calculator Panel -->
+    <div class="calc-panel">
+      <div class="card">
+        <h2>Calculate Your Estimate</h2>
 
-          <form id="calc-form" novalidate>
-            <div class="grid sm:grid-cols-2 gap-5 mb-5">
-
-              <!-- Service -->
-              <div>
-                <label for="calc-service" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Select Service <span class="text-red-500">*</span>
-                </label>
-                <select id="calc-service" class="form-input" required aria-label="Select a service" aria-required="true">
-                  <option value="">— Choose a service —</option>
-                  <option value="home-nursing-attendant">Home Nursing Attendant</option>
-                  <option value="elder-caretaker">Elder Caretaker</option>
-                  <option value="post-surgery-wound-dressing">Post-Surgery Wound Dressing</option>
-                  <option value="physiotherapy-visits">Physiotherapy Visits at Home</option>
-                </select>
-              </div>
-
-              <!-- Shift type (services 1 & 2 only) -->
-              <div id="calc-shift-wrapper" class="hidden">
-                <label for="calc-shift" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Shift Type <span class="text-red-500">*</span>
-                </label>
-                <select id="calc-shift" class="form-input" aria-label="Select shift type">
-                  <option value="12hr">12-Hour Duty</option>
-                  <option value="24hr">24-Hour Duty</option>
-                </select>
-              </div>
-
-              <!-- Number of Days (services 1 & 2) -->
-              <div id="calc-days-wrapper" class="hidden">
-                <label for="calc-days" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Number of Days <span class="text-red-500">*</span>
-                </label>
-                <input type="number" id="calc-days" class="form-input" min="1" max="365" value="1" placeholder="e.g. 7" aria-label="Number of Days" />
-              </div>
-
-              <!-- Number of Visits (services 3 & 4) -->
-              <div id="calc-visits-wrapper" class="hidden">
-                <label for="calc-visits" class="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Number of Visits <span class="text-red-500">*</span>
-                </label>
-                <input type="number" id="calc-visits" class="form-input" min="1" max="500" value="1" placeholder="e.g. 5" aria-label="Number of Visits" />
-              </div>
+        <form id="calc-form">
+          <div class="form-row">
+            <!-- Service -->
+            <div class="form-group">
+              <label for="calc-service">Select Service *</label>
+              <select id="calc-service" class="form-input" required>
+                <option value="">— Choose a service —</option>
+                <option value="home-nursing-attendant">Home Nursing Attendant</option>
+                <option value="elder-caretaker">Elder Caretaker</option>
+                <option value="post-surgery-wound-dressing">Post-Surgery Wound Dressing</option>
+                <option value="physiotherapy-visits">Physiotherapy Visits at Home</option>
+              </select>
             </div>
 
-            <!-- Empty state nudge -->
-            <div id="calc-nudge" class="rounded-xl border-2 border-dashed border-gray-200 p-6 text-center text-gray-400 mb-5">
-              <i class="fa-solid fa-calculator text-3xl mb-3 opacity-30"></i>
-              <p class="text-sm">Select a service to begin calculating your estimate</p>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-3">
-              <button type="submit" id="calc-btn" class="btn-primary text-white font-bold px-8 py-3 rounded-full opacity-50 cursor-not-allowed" disabled aria-label="Calculate Total">
-                <i class="fa-solid fa-equals mr-2"></i>Calculate Total
-              </button>
-              <button type="button" id="reset-btn" class="btn-outline-gray font-semibold px-6 py-3 rounded-full hidden" aria-label="Reset Calculator">
-                <i class="fa-solid fa-rotate-left mr-1.5"></i>Reset
-              </button>
-            </div>
-          </form>
-
-          <!-- ── Result ── -->
-          <div id="result-card" class="hidden mt-8 rounded-2xl border border-brand-blue/20 overflow-hidden">
-
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-brand-blue to-brand-blue-dark px-6 py-4 flex items-center gap-3">
-              <i class="fa-solid fa-receipt text-white text-lg"></i>
-              <h3 class="text-white font-bold text-lg">Cost Breakdown</h3>
-            </div>
-
-            <!-- Breakdown -->
-            <div class="p-6 bg-white">
-              <div id="breakdown-content" class="mb-4"></div>
-
-              <!-- Total -->
-              <div class="total-badge mt-4">
-                <p class="text-white/80 text-sm font-medium mb-1">Total Estimated Cost</p>
-                <p id="total-amount" class="text-white text-4xl font-extrabold"></p>
-                <p class="text-white/60 text-xs mt-1">*Indicative estimate. Final price may vary.</p>
-              </div>
-
-              <!-- CTA -->
-              <div class="mt-5 text-center">
-                <p class="text-gray-500 text-sm mb-3">Ready to book? Let's get started.</p>
-                <a id="book-now-link" href="book-service.html" class="btn-primary text-white font-bold px-8 py-3 rounded-full inline-block" aria-label="Book this service">
-                  <i class="fa-solid fa-calendar-check mr-2"></i>Book This Service
-                </a>
-              </div>
+            <!-- Shift Type (for nursing/elder care) -->
+            <div class="form-group hidden" id="calc-shift-wrapper">
+              <label for="calc-shift">Shift Type *</label>
+              <select id="calc-shift" class="form-input">
+                <option value="12hr">12-Hour Duty</option>
+                <option value="24hr">24-Hour Duty</option>
+              </select>
             </div>
           </div>
 
-        </div>
-      </div>
-
-      <!-- ── Pricing Reference ── -->
-      <div class="lg:col-span-1">
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sticky top-20">
-          <h3 class="text-base font-bold text-gray-800 mb-5 flex items-center gap-2">
-            <i class="fa-solid fa-tags text-brand-green"></i>
-            Pricing Reference
-          </h3>
-
-          <!-- Nursing -->
-          <div class="mb-5">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xl">🧑‍⚕️</span>
-              <p class="text-sm font-bold text-gray-700">Home Nursing Attendant</p>
-            </div>
-            <div class="rounded-xl overflow-hidden border border-gray-100">
-              <div class="price-row flex justify-between px-3 py-2 bg-gray-50">
-                <span class="text-xs text-gray-500">12-Hour Duty</span>
-                <span class="text-xs font-bold text-brand-blue">₹1,000/day</span>
-              </div>
-              <div class="price-row flex justify-between px-3 py-2">
-                <span class="text-xs text-gray-500">24-Hour Duty</span>
-                <span class="text-xs font-bold text-brand-blue">₹1,800/day</span>
-              </div>
-            </div>
+          <!-- Number of Days (for shift-based services) -->
+          <div class="form-group hidden" id="calc-days-wrapper">
+            <label for="calc-days">Number of Days *</label>
+            <input type="number" id="calc-days" class="form-input" min="1" max="365" value="1" placeholder="e.g. 7">
           </div>
 
-          <!-- Elder -->
-          <div class="mb-5">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xl">👴</span>
-              <p class="text-sm font-bold text-gray-700">Elder Caretaker</p>
-            </div>
-            <div class="rounded-xl overflow-hidden border border-gray-100">
-              <div class="price-row flex justify-between px-3 py-2 bg-gray-50">
-                <span class="text-xs text-gray-500">12-Hour Duty</span>
-                <span class="text-xs font-bold text-brand-green">₹1,200/day</span>
-              </div>
-              <div class="price-row flex justify-between px-3 py-2">
-                <span class="text-xs text-gray-500">24-Hour Duty</span>
-                <span class="text-xs font-bold text-brand-green">₹2,000/day</span>
-              </div>
-            </div>
+          <!-- Number of Visits (for per-visit services) -->
+          <div class="form-group hidden" id="calc-visits-wrapper">
+            <label for="calc-visits">Number of Visits *</label>
+            <input type="number" id="calc-visits" class="form-input" min="1" max="500" value="1" placeholder="e.g. 5">
           </div>
 
-          <!-- Wound -->
-          <div class="mb-5">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xl">🩹</span>
-              <p class="text-sm font-bold text-gray-700">Wound Dressing</p>
-            </div>
-            <div class="rounded-xl overflow-hidden border border-gray-100">
-              <div class="price-row flex justify-between px-3 py-2 bg-gray-50">
-                <span class="text-xs text-gray-500">Per Visit</span>
-                <span class="text-xs font-bold text-brand-blue">₹500/visit</span>
-              </div>
-            </div>
+          <!-- Placeholder -->
+          <div class="placeholder-box" id="calc-nudge">
+            Select a service to begin calculating your estimate
           </div>
 
-          <!-- Physio -->
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xl">🏃</span>
-              <p class="text-sm font-bold text-gray-700">Physiotherapy</p>
-            </div>
-            <div class="rounded-xl overflow-hidden border border-gray-100">
-              <div class="price-row flex justify-between px-3 py-2 bg-gray-50">
-                <span class="text-xs text-gray-500">Per Visit</span>
-                <span class="text-xs font-bold text-brand-green">₹800/visit</span>
-              </div>
-            </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="submit" class="btn btn-primary" id="calc-btn" disabled>Calculate Total</button>
+            <button type="button" class="btn btn-reset hidden" id="reset-btn">Reset</button>
           </div>
+        </form>
 
-          <div class="mt-5 p-3 bg-brand-blue-light rounded-xl">
-            <p class="text-xs text-brand-blue-dark text-center font-medium">
-              <i class="fa-solid fa-shield-halved mr-1"></i>
-              All prices are transparent. No hidden charges.
-            </p>
+        <!-- Result -->
+        <div class="result-card hidden" id="result-card">
+          <div class="result-header">Cost Breakdown</div>
+          <div class="result-body">
+            <div id="breakdown-content"></div>
+            <div class="total-box">
+              <div class="label">Total Estimated Cost</div>
+              <div class="amount" id="total-amount"></div>
+              <div class="note">*Indicative estimate. Final price may vary.</div>
+            </div>
+            <div class="book-cta">
+              <p>Ready to book? Let's get started.</p>
+              <a id="book-now-link" href="book-service.html" class="btn btn-primary">Book This Service</a>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </main>
+
+    <!-- Pricing Reference Sidebar -->
+    <div class="pricing-sidebar">
+      <div class="card">
+        <h2 style="font-size: 16px;">Pricing Reference</h2>
+
+        <!-- Nursing -->
+        <div class="price-section">
+          <div class="price-section-title">
+            <span class="emoji">&#129489;&#8205;&#9877;&#65039;</span>
+            <p>Home Nursing Attendant</p>
+          </div>
+          <div class="price-table">
+            <div class="price-row">
+              <span class="label">12-Hour Duty</span>
+              <span class="value">&#8377;1,000/day</span>
+            </div>
+            <div class="price-row">
+              <span class="label">24-Hour Duty</span>
+              <span class="value">&#8377;1,800/day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elder -->
+        <div class="price-section">
+          <div class="price-section-title">
+            <span class="emoji">&#128116;</span>
+            <p>Elder Caretaker</p>
+          </div>
+          <div class="price-table">
+            <div class="price-row">
+              <span class="label">12-Hour Duty</span>
+              <span class="value green">&#8377;1,200/day</span>
+            </div>
+            <div class="price-row">
+              <span class="label">24-Hour Duty</span>
+              <span class="value green">&#8377;2,000/day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wound Dressing -->
+        <div class="price-section">
+          <div class="price-section-title">
+            <span class="emoji">&#129657;</span>
+            <p>Wound Dressing</p>
+          </div>
+          <div class="price-table">
+            <div class="price-row">
+              <span class="label">Per Visit</span>
+              <span class="value">&#8377;500/visit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Physiotherapy -->
+        <div class="price-section">
+          <div class="price-section-title">
+            <span class="emoji">&#127939;</span>
+            <p>Physiotherapy</p>
+          </div>
+          <div class="price-table">
+            <div class="price-row">
+              <span class="label">Per Visit</span>
+              <span class="value green">&#8377;800/visit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="transparency-note">
+          All prices are transparent. No hidden charges.
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="text-white pt-14 pb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-        <div class="lg:col-span-2">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center">
-              <i class="fa-solid fa-house-medical text-white text-sm"></i>
-            </div>
-            <span class="text-xl font-bold">Care At Home</span>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed max-w-xs">Providing the best in home healthcare services. Expertise, compassion, and care — right at your doorstep.</p>
-          <div class="flex gap-3 mt-5">
-            <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-blue transition-colors flex items-center justify-center"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-pink-500 transition-colors flex items-center justify-center"><i class="fa-brands fa-instagram text-sm"></i></a>
-            <a href="#" aria-label="X (Twitter)" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-gray-600 transition-colors flex items-center justify-center"><i class="fa-brands fa-x-twitter text-sm"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Quick Links</h4>
-          <ul class="space-y-2.5">
-            <li><a href="index.html#hero" class="text-gray-400 text-sm hover:text-white transition-colors">Home</a></li>
-            <li><a href="index.html#services" class="text-gray-400 text-sm hover:text-white transition-colors">Services</a></li>
-            <li><a href="index.html#about" class="text-gray-400 text-sm hover:text-white transition-colors">About Us</a></li>
-            <li><a href="index.html#contact" class="text-gray-400 text-sm hover:text-white transition-colors">Contact Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Services</h4>
-          <ul class="space-y-2.5">
-            <li><a href="book-service.html?service=home-nursing-attendant" class="text-gray-400 text-sm hover:text-white transition-colors">Home Nursing</a></li>
-            <li><a href="book-service.html?service=elder-caretaker" class="text-gray-400 text-sm hover:text-white transition-colors">Elder Caretaker</a></li>
-            <li><a href="book-service.html?service=post-surgery-wound-dressing" class="text-gray-400 text-sm hover:text-white transition-colors">Wound Dressing</a></li>
-            <li><a href="book-service.html?service=physiotherapy-visits" class="text-gray-400 text-sm hover:text-white transition-colors">Physiotherapy</a></li>
-            <li><a href="fee-calculator.html" class="text-gray-400 text-sm hover:text-white transition-colors">Fee Calculator</a></li>
-          </ul>
-        </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Care At Home</h3>
+        <p>Providing the best in home healthcare services. Expertise, compassion, and care &mdash; right at your doorstep.</p>
       </div>
-      <div class="border-t border-white/10 pt-6 text-center">
-        <p class="text-gray-500 text-sm">© 2024 Care At Home. All rights reserved.</p>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
       </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="book-service.html?service=home-nursing-attendant">Home Nursing</a></li>
+          <li><a href="book-service.html?service=elder-caretaker">Elder Caretaker</a></li>
+          <li><a href="book-service.html?service=post-surgery-wound-dressing">Wound Dressing</a></li>
+          <li><a href="book-service.html?service=physiotherapy-visits">Physiotherapy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Care At Home. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // ── Data ──────────────────────────────────────────────
-    const services = {
-      'home-nursing-attendant': {
-        name: 'Home Nursing Attendant',
-        emoji: '🧑‍⚕️',
+    // ===== SERVICE DATA =====
+    var services = {
+      "home-nursing-attendant": {
+        name: "Home Nursing Attendant",
         hasShift: true,
-        rates: { '12hr': 1000, '24hr': 1800 },
-        rateLabel: { '12hr': '₹1,000 / day', '24hr': '₹1,800 / day' },
-        unit: 'day'
+        rates: { "12hr": 1000, "24hr": 1800 },
+        rateLabel: { "12hr": "₹1,000 / day", "24hr": "₹1,800 / day" },
+        unit: "day"
       },
-      'elder-caretaker': {
-        name: 'Elder Caretaker',
-        emoji: '👴',
+      "elder-caretaker": {
+        name: "Elder Caretaker",
         hasShift: true,
-        rates: { '12hr': 1200, '24hr': 2000 },
-        rateLabel: { '12hr': '₹1,200 / day', '24hr': '₹2,000 / day' },
-        unit: 'day'
+        rates: { "12hr": 1200, "24hr": 2000 },
+        rateLabel: { "12hr": "₹1,200 / day", "24hr": "₹2,000 / day" },
+        unit: "day"
       },
-      'post-surgery-wound-dressing': {
-        name: 'Post-Surgery Wound Dressing',
-        emoji: '🩹',
+      "post-surgery-wound-dressing": {
+        name: "Post-Surgery Wound Dressing",
         hasShift: false,
-        rates: { default: 500 },
-        rateLabel: { default: '₹500 / visit' },
-        unit: 'visit'
+        rates: { "default": 500 },
+        rateLabel: { "default": "₹500 / visit" },
+        unit: "visit"
       },
-      'physiotherapy-visits': {
-        name: 'Physiotherapy Visits at Home',
-        emoji: '🏃',
+      "physiotherapy-visits": {
+        name: "Physiotherapy Visits at Home",
         hasShift: false,
-        rates: { default: 800 },
-        rateLabel: { default: '₹800 / visit' },
-        unit: 'visit'
+        rates: { "default": 800 },
+        rateLabel: { "default": "₹800 / visit" },
+        unit: "visit"
       }
     };
 
-    // ── Elements ──────────────────────────────────────────
-    const calcService     = document.getElementById('calc-service');
-    const calcShiftWrapper= document.getElementById('calc-shift-wrapper');
-    const calcShift       = document.getElementById('calc-shift');
-    const calcDaysWrapper = document.getElementById('calc-days-wrapper');
-    const calcDays        = document.getElementById('calc-days');
-    const calcVisitsWrapper=document.getElementById('calc-visits-wrapper');
-    const calcVisits      = document.getElementById('calc-visits');
-    const calcNudge       = document.getElementById('calc-nudge');
-    const calcBtn         = document.getElementById('calc-btn');
-    const resetBtn        = document.getElementById('reset-btn');
-    const resultCard      = document.getElementById('result-card');
-    const breakdownContent= document.getElementById('breakdown-content');
-    const totalAmount     = document.getElementById('total-amount');
-    const bookNowLink     = document.getElementById('book-now-link');
+    // ===== GET ELEMENTS =====
+    var calcService = document.getElementById("calc-service");
+    var calcShiftWrapper = document.getElementById("calc-shift-wrapper");
+    var calcShift = document.getElementById("calc-shift");
+    var calcDaysWrapper = document.getElementById("calc-days-wrapper");
+    var calcDays = document.getElementById("calc-days");
+    var calcVisitsWrapper = document.getElementById("calc-visits-wrapper");
+    var calcVisits = document.getElementById("calc-visits");
+    var calcNudge = document.getElementById("calc-nudge");
+    var calcBtn = document.getElementById("calc-btn");
+    var resetBtn = document.getElementById("reset-btn");
+    var resultCard = document.getElementById("result-card");
+    var breakdownContent = document.getElementById("breakdown-content");
+    var totalAmount = document.getElementById("total-amount");
+    var bookNowLink = document.getElementById("book-now-link");
 
-    // ── Service change handler ────────────────────────────
-    calcService.addEventListener('change', () => {
-      const key = calcService.value;
+    // ===== SERVICE CHANGE =====
+    calcService.addEventListener("change", function () {
+      var key = calcService.value;
+
       if (!key) {
-        calcShiftWrapper.classList.add('hidden');
-        calcDaysWrapper.classList.add('hidden');
-        calcVisitsWrapper.classList.add('hidden');
-        calcNudge.classList.remove('hidden');
+        calcShiftWrapper.classList.add("hidden");
+        calcDaysWrapper.classList.add("hidden");
+        calcVisitsWrapper.classList.add("hidden");
+        calcNudge.classList.remove("hidden");
         calcBtn.disabled = true;
-        calcBtn.classList.add('opacity-50', 'cursor-not-allowed');
         return;
       }
-      const s = services[key];
-      calcNudge.classList.add('hidden');
-      calcShiftWrapper.classList.toggle('hidden', !s.hasShift);
-      calcDaysWrapper.classList.toggle('hidden', !s.hasShift);
-      calcVisitsWrapper.classList.toggle('hidden', s.hasShift);
+
+      var s = services[key];
+      calcNudge.classList.add("hidden");
+
+      if (s.hasShift) {
+        calcShiftWrapper.classList.remove("hidden");
+        calcDaysWrapper.classList.remove("hidden");
+        calcVisitsWrapper.classList.add("hidden");
+      } else {
+        calcShiftWrapper.classList.add("hidden");
+        calcDaysWrapper.classList.add("hidden");
+        calcVisitsWrapper.classList.remove("hidden");
+      }
+
       calcBtn.disabled = false;
-      calcBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     });
 
-    // ── Calculate ─────────────────────────────────────────
-    document.getElementById('calc-form').addEventListener('submit', (e) => {
+    // ===== CALCULATE =====
+    document.getElementById("calc-form").addEventListener("submit", function (e) {
       e.preventDefault();
-      const key = calcService.value;
+      var key = calcService.value;
       if (!key) return;
 
-      const s = services[key];
-      const shift   = s.hasShift ? calcShift.value : 'default';
-      const rate    = s.rates[shift];
-      const rLabel  = s.rateLabel[shift];
-      const qty     = s.hasShift ? Math.max(1, parseInt(calcDays.value) || 1) : Math.max(1, parseInt(calcVisits.value) || 1);
-      const shiftLabel = s.hasShift ? calcShift.options[calcShift.selectedIndex].text : null;
-      const total   = rate * qty;
+      var s = services[key];
+      var shift = s.hasShift ? calcShift.value : "default";
+      var rate = s.rates[shift];
+      var rLabel = s.rateLabel[shift];
+
+      // Get quantity (days or visits)
+      var qty;
+      if (s.hasShift) {
+        qty = parseInt(calcDays.value) || 1;
+        if (qty < 1) qty = 1;
+      } else {
+        qty = parseInt(calcVisits.value) || 1;
+        if (qty < 1) qty = 1;
+      }
+
+      var shiftText = s.hasShift ? calcShift.options[calcShift.selectedIndex].text : null;
+      var total = rate * qty;
 
       // Build breakdown rows
-      let html = '';
+      var html = "";
 
-      const row = (label, val, cls='text-gray-700') =>
-        `<div class="breakdown-row"><span class="text-sm text-gray-500">${label}</span><span class="text-sm font-semibold ${cls}">${val}</span></div>`;
+      html += '<div class="breakdown-row">';
+      html += '  <span class="breakdown-label">Service</span>';
+      html += '  <span class="breakdown-value">' + s.name + '</span>';
+      html += '</div>';
 
-      html += row('Service', `${s.emoji} ${s.name}`);
-      if (shiftLabel) html += row('Shift Type', shiftLabel);
-      html += row('Rate', rLabel, 'text-brand-blue');
-      html += row(s.hasShift ? 'Duration' : 'Number of Visits', s.hasShift ? `${qty} day${qty > 1 ? 's' : ''}` : `${qty} visit${qty > 1 ? 's' : ''}`);
+      if (shiftText) {
+        html += '<div class="breakdown-row">';
+        html += '  <span class="breakdown-label">Shift Type</span>';
+        html += '  <span class="breakdown-value">' + shiftText + '</span>';
+        html += '</div>';
+      }
+
+      html += '<div class="breakdown-row">';
+      html += '  <span class="breakdown-label">Rate</span>';
+      html += '  <span class="breakdown-value" style="color: #4A90D9;">' + rLabel + '</span>';
+      html += '</div>';
+
+      var durationLabel = s.hasShift ? "Duration" : "Number of Visits";
+      var durationValue = s.hasShift
+        ? qty + " day" + (qty > 1 ? "s" : "")
+        : qty + " visit" + (qty > 1 ? "s" : "");
+
+      html += '<div class="breakdown-row">';
+      html += '  <span class="breakdown-label">' + durationLabel + '</span>';
+      html += '  <span class="breakdown-value">' + durationValue + '</span>';
+      html += '</div>';
 
       breakdownContent.innerHTML = html;
-      totalAmount.textContent = `₹${total.toLocaleString('en-IN')}`;
-      bookNowLink.href = `book-service.html?service=${key}`;
+      totalAmount.textContent = "₹" + total.toLocaleString("en-IN");
+      bookNowLink.href = "book-service.html?service=" + key;
 
-      resultCard.classList.remove('hidden');
-      resetBtn.classList.remove('hidden');
-
-      // Smooth scroll to result
-      setTimeout(() => resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      resultCard.classList.remove("hidden");
+      resetBtn.classList.remove("hidden");
     });
 
-    // ── Reset ─────────────────────────────────────────────
-    resetBtn.addEventListener('click', () => {
-      calcService.value = '';
-      calcShiftWrapper.classList.add('hidden');
-      calcDaysWrapper.classList.add('hidden');
-      calcVisitsWrapper.classList.add('hidden');
+    // ===== RESET =====
+    resetBtn.addEventListener("click", function () {
+      calcService.value = "";
+      calcShiftWrapper.classList.add("hidden");
+      calcDaysWrapper.classList.add("hidden");
+      calcVisitsWrapper.classList.add("hidden");
       calcDays.value = 1;
       calcVisits.value = 1;
-      calcShift.value = '12hr';
-      calcNudge.classList.remove('hidden');
+      calcShift.value = "12hr";
+      calcNudge.classList.remove("hidden");
       calcBtn.disabled = true;
-      calcBtn.classList.add('opacity-50', 'cursor-not-allowed');
-      resultCard.classList.add('hidden');
-      resetBtn.classList.add('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      resultCard.classList.add("hidden");
+      resetBtn.classList.add("hidden");
+      window.scrollTo(0, 0);
     });
 
-    // ── Navbar ────────────────────────────────────────────
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    // ===== MOBILE MENU =====
+    var hamburger = document.getElementById("hamburger");
+    var mobileMenu = document.getElementById("mobile-menu");
 
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-      hamburger.querySelector('i').className = open ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
+    hamburger.addEventListener("click", function () {
+      if (mobileMenu.classList.contains("open")) {
+        mobileMenu.classList.remove("open");
+        hamburger.innerHTML = "&#9776;";
+      } else {
+        mobileMenu.classList.add("open");
+        hamburger.innerHTML = "&#10005;";
+      }
     });
   </script>
+
 </body>
 </html>

@@ -1,157 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book a Service — Care At Home</title>
-  <meta name="description"
-    content="Book a professional home healthcare service with Care At Home. Choose from nursing, elder care, wound dressing, and physiotherapy." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              blue: '#4A90D9',
-              'blue-dark': '#2f72b8',
-              'blue-light': '#e8f2fc',
-              green: '#4CAF80',
-              'green-dark': '#38895f',
-              'green-light': '#e8f7ef',
-            }
-          },
-          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
-          animation: {
-            'fade-in-up': 'fadeInUp 0.5s ease forwards',
-            'fade-in': 'fadeIn 0.5s ease forwards',
-          },
-          keyframes: {
-            fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-          }
-        }
-      }
-    }
-  </script>
   <style>
+    /* ---- Basic Reset ---- */
     * {
-      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Page fade-in */
     body {
-      animation: pageFadeIn 0.5s ease forwards;
+      font-family: Arial, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background-color: #f5f5f5;
     }
 
-    @keyframes pageFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    #navbar {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: box-shadow 0.3s, background 0.3s;
+    /* ---- Navbar ---- */
+    .navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    #navbar.scrolled {
-      background: rgba(255, 255, 255, 0.97) !important;
-      box-shadow: 0 2px 20px rgba(74, 144, 217, 0.12);
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
     }
 
-    #mobile-menu {
-      transition: max-height 0.35s ease, opacity 0.3s ease;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
+    .logo span {
+      color: #4A90D9;
     }
 
-    #mobile-menu.open {
-      max-height: 400px;
-      opacity: 1;
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #4A90D9;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px 30px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: #555;
+      font-size: 14px;
+      padding: 5px 0;
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      text-align: center;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #4A90D9, #2f72b8);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
-      transition: left .5s ease;
-    }
-
-    .btn-primary:hover::after {
-      left: 150%;
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #2f72b8, #1e5a9e);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(74, 144, 217, .35);
-    }
-
-    .btn-outline {
-      border: 2px solid #4A90D9;
-      color: #4A90D9;
-      transition: all 0.3s ease;
-    }
-
-    .btn-outline:hover {
-      background: #4A90D9;
+      background-color: #4A90D9;
       color: #fff;
     }
 
-    .form-input {
-      border: 1.5px solid #dde4ef;
-      border-radius: 10px;
-      padding: 0.65rem 1rem;
-      width: 100%;
-      transition: border-color 0.25s, box-shadow 0.25s;
-      outline: none;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.9rem;
-      background: #fff;
+    .btn-primary:hover {
+      background-color: #2f72b8;
     }
 
-    .form-input:focus {
-      border-color: #4A90D9;
-      box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.12);
-    }
-
-    .form-input:disabled {
-      background: #f8fafc;
-      color: #94a3b8;
+    .btn-primary:disabled {
+      background-color: #aac8e8;
       cursor: not-allowed;
     }
 
-    footer {
-      background: linear-gradient(135deg, #1a2f4e 0%, #1e3a5f 100%);
+    .btn-outline {
+      background-color: transparent;
+      color: #4A90D9;
+      border: 2px solid #4A90D9;
     }
 
-    /* Step indicator */
+    .btn-outline:hover {
+      background-color: #4A90D9;
+      color: #fff;
+    }
+
+    .btn-green {
+      background-color: #4CAF80;
+      color: #fff;
+    }
+
+    .btn-green:hover {
+      background-color: #38895f;
+    }
+
+    /* ---- Page Header ---- */
+    .page-header {
+      background-color: #e8f2fc;
+      padding: 40px 30px;
+    }
+
+    .page-header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .breadcrumb a {
+      color: #888;
+    }
+
+    .breadcrumb a:hover {
+      color: #4A90D9;
+    }
+
+    .breadcrumb span {
+      color: #4A90D9;
+      font-weight: bold;
+    }
+
+    /* ---- Main Container ---- */
+    .main-container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px 40px;
+    }
+
+    /* ---- Step Indicator ---- */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      gap: 8px;
+    }
+
     .step-dot {
       width: 36px;
       height: 36px;
@@ -159,1001 +195,1068 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
+      background-color: #ccc;
+    }
+
+    .step-dot.active {
+      background-color: #4A90D9;
+    }
+
+    .step-dot.done {
+      background-color: #4CAF80;
     }
 
     .step-line {
       flex: 1;
-      height: 2px;
-      transition: background 0.4s ease;
+      height: 3px;
+      background-color: #ddd;
     }
 
-    /* Service info card */
-    #service-info {
-      transition: all 0.3s ease;
+    .step-line.done {
+      background-color: #4CAF80;
     }
 
-    /* Price badge */
-    .price-badge {
-      background: linear-gradient(135deg, #e8f2fc, #e8f7ef);
-      border: 1.5px solid #c5dff5;
+    .step-label {
+      margin-left: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #4A90D9;
     }
 
-    /* Success animation */
-    @keyframes successPop {
-      0% {
-        transform: scale(0.8);
-        opacity: 0
-      }
-
-      60% {
-        transform: scale(1.05)
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1
-      }
+    /* ---- Card Container ---- */
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 30px;
     }
 
-    #booking-success {
-      animation: successPop 0.5s ease forwards;
+    .card h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
     }
 
-    /* ── Nurse Card Styles ── */
-    .nurse-card {
-      border: 2px solid #e5eaf3;
-      border-radius: 20px;
-      background: #fff;
-      transition: all 0.3s ease;
+    /* ---- Hidden Utility ---- */
+    .hidden {
+      display: none;
+    }
+
+    /* ---- Form Styles ---- */
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: #4A90D9;
+    }
+
+    /* ---- Service Info Box ---- */
+    .service-info-box {
+      background-color: #e8f2fc;
+      border: 1px solid #c5dff5;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .service-info-box h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .service-info-box p {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .service-info-box .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2f72b8;
+    }
+
+    /* ---- Placeholder (no service selected) ---- */
+    .placeholder-box {
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Summary Bar ---- */
+    .summary-bar {
+      background-color: #e8f2fc;
+      border: 1px solid #c5dff5;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .summary-bar .service-name {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .summary-bar .service-price {
+      color: #2f72b8;
+      font-weight: bold;
+    }
+
+    .summary-bar .change-btn {
+      background: none;
+      border: none;
+      color: #4A90D9;
+      font-size: 13px;
+      font-weight: bold;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
+    }
+
+    .summary-bar .change-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* ---- Nurse Grid ---- */
+    .nurse-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .nurse-card {
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      width: 260px;
+      background-color: #fff;
+      cursor: pointer;
     }
 
     .nurse-card:hover {
       border-color: #4A90D9;
-      box-shadow: 0 8px 32px rgba(74, 144, 217, 0.12);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     .nurse-card.selected {
       border-color: #4CAF80;
-      background: linear-gradient(135deg, #f0fbf5, #ffffff);
-      box-shadow: 0 8px 32px rgba(76, 175, 128, 0.18);
+      background-color: #f0fbf5;
     }
 
-    .nurse-photo-wrap {
+    .nurse-photo {
       width: 100%;
-      height: 273px;
-      border-radius: 14px;
-      border: 2px solid #e2e8f0;
-      overflow: hidden;
-      background: #f8fafc;
-      margin-bottom: 10px;
-    }
-
-    .nurse-photo-wrap img {
-      width: 100%;
-      height: 100%;
+      height: 200px;
       object-fit: cover;
       object-position: top center;
-    }
-
-    .nurse-name-rating-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
+      border-radius: 8px;
+      border: 1px solid #eee;
       margin-bottom: 10px;
     }
 
-    .nurse-name-rating-row .nurse-name {
-      font-weight: 700;
-      font-size: 1.42rem;
-      color: #1a202c;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      flex-shrink: 1;
-      min-width: 0;
+    .nurse-card h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
     }
 
-    .nurse-name-rating-row .nurse-rating {
+    .nurse-card .rating {
+      color: #f59e0b;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .nurse-card .details {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .nurse-card .badges {
       display: flex;
-      align-items: center;
-      gap: 3px;
-      flex-shrink: 0;
-      white-space: nowrap;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
     }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.18rem 0.65rem;
-      border-radius: 999px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      background: rgba(74, 144, 217, 0.1);
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      background-color: #e8f2fc;
       color: #2f72b8;
-      border: 1px solid rgba(74, 144, 217, 0.2);
-      white-space: nowrap;
+      border: 1px solid #c5dff5;
     }
 
     .badge-green {
-      background: rgba(76, 175, 128, 0.1);
+      background-color: #e8f7ef;
       color: #38895f;
-      border-color: rgba(76, 175, 128, 0.2);
+      border-color: #b3dfc5;
     }
 
     .nurse-select-btn {
+      width: 100%;
+      padding: 8px;
       border: 2px solid #4A90D9;
+      border-radius: 20px;
+      background-color: transparent;
       color: #4A90D9;
-      background: transparent;
-      border-radius: 999px;
-      padding: 0.42rem 1.2rem;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: bold;
       cursor: pointer;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     .nurse-select-btn:hover {
-      background: #4A90D9;
+      background-color: #4A90D9;
       color: #fff;
     }
 
     .nurse-select-btn.selected-state {
-      background: linear-gradient(135deg, #4CAF80, #38895f);
-      border-color: transparent;
+      background-color: #4CAF80;
+      border-color: #4CAF80;
       color: #fff;
     }
 
-    .nurse-select-btn.selected-state:hover {
-      filter: brightness(0.9);
+    /* ---- Button Row ---- */
+    .button-row {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
     }
 
-    .star-fill {
-      color: #f59e0b;
+    /* ---- Success Message ---- */
+    .success-card {
+      background-color: #fff;
+      border: 1px solid #4CAF80;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 20px;
     }
 
-    .price-pill {
-      background: linear-gradient(135deg, #4A90D9, #2f72b8);
+    .success-card h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .success-card p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .success-card .nurse-info {
+      color: #4CAF80;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    /* ---- Empty State ---- */
+    .empty-state {
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    /* ---- Footer ---- */
+    .footer {
+      background-color: #1a2f4e;
       color: #fff;
-      border-radius: 999px;
-      padding: 0.5rem 1.3rem;
-      font-size: 0.95rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      box-shadow: 0 4px 16px rgba(74, 144, 217, 0.3);
-      flex-shrink: 0;
+      padding: 40px 30px 20px;
     }
 
-    #nurse-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1rem;
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
     }
 
-    @media (min-width: 640px) {
-      #nurse-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .footer-brand {
+      flex: 2;
+      min-width: 250px;
+    }
+
+    .footer-brand h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .footer-links h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links ul li a {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .footer-links ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 15px;
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-bottom p {
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-buttons {
+        display: none;
       }
-    }
 
-    @media (min-width: 1024px) {
-      #nurse-grid {
-        grid-template-columns: repeat(3, 1fr);
+      .hamburger {
+        display: block;
       }
-    }
 
-    #confirm-nurse-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
+      .nurse-card {
+        width: 100%;
+      }
     }
   </style>
 </head>
-
-<body class="bg-gray-50 text-gray-800">
+<body>
 
   <!-- ===== NAVBAR ===== -->
-  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/90 border-b border-gray-100" role="navigation"
-    aria-label="Main navigation">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-2 group" aria-label="Care At Home — Home">
-          <div
-            class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-house-medical text-white text-sm"></i>
-          </div>
-          <span class="text-lg font-bold text-gray-800">Care <span class="text-brand-blue">At Home</span></span>
-        </a>
-
-        <div class="hidden md:flex items-center gap-6">
-          <a href="index.html#hero"
-            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Home</a>
-          <a href="index.html#services"
-            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Services</a>
-          <a href="index.html#about"
-            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">About Us</a>
-          <a href="index.html#contact"
-            class="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Contact Us</a>
-        </div>
-
-        <div class="hidden md:flex items-center gap-3">
-          <a href="fee-calculator.html" class="btn-outline text-sm font-semibold px-4 py-2 rounded-full"
-            aria-label="Open Fee Calculator">
-            <i class="fa-solid fa-calculator mr-1.5"></i>Fee Calculator
-          </a>
-          <a href="book-service.html" class="btn-primary text-white text-sm font-semibold px-5 py-2 rounded-full"
-            aria-label="Book a Service">
-            <i class="fa-solid fa-calendar-check mr-1.5"></i>Book a Service
-          </a>
-        </div>
-
-        <button id="hamburger"
-          class="md:hidden p-2 rounded-lg text-gray-600 hover:text-brand-blue hover:bg-brand-blue-light transition-colors"
-          aria-label="Toggle mobile menu" aria-expanded="false">
-          <i class="fa-solid fa-bars text-xl"></i>
-        </button>
-      </div>
+  <nav class="navbar">
+    <a href="index.html" class="logo">Care <span>At Home</span></a>
+    <div class="nav-links">
+      <a href="index.html#hero">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact Us</a>
     </div>
-    <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
-      <div class="flex flex-col gap-3 pt-4">
-        <a href="index.html#hero" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Home</a>
-        <a href="index.html#services" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Services</a>
-        <a href="index.html#about" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">About Us</a>
-        <a href="index.html#contact" class="text-sm font-medium text-gray-700 hover:text-brand-blue py-1">Contact Us</a>
-        <hr class="border-gray-200 my-1" />
-        <a href="fee-calculator.html" class="btn-outline text-sm font-semibold px-4 py-2 rounded-full text-center">Fee
-          Calculator</a>
-        <a href="book-service.html"
-          class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center">Book a Service</a>
-      </div>
+    <div class="nav-buttons">
+      <a href="fee-calculator.html" class="btn btn-outline">Fee Calculator</a>
+      <a href="book-service.html" class="btn btn-primary">Book a Service</a>
     </div>
+    <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#hero">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About Us</a>
+    <a href="index.html#contact">Contact Us</a>
+    <a href="fee-calculator.html">Fee Calculator</a>
+    <a href="book-service.html">Book a Service</a>
+  </div>
 
   <!-- ===== PAGE HEADER ===== -->
-  <div class="pt-16 bg-gradient-to-br from-brand-blue-light via-white to-brand-green-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-        <a href="index.html" class="hover:text-brand-blue transition-colors">Home</a>
-        <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
-        <span class="text-brand-blue font-semibold">Book a Service</span>
-      </nav>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">Book a Service</h1>
-      <p class="text-gray-500">Select your preferred service and fill in patient details. We'll reach out to confirm
-        your booking.</p>
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; <span>Book a Service</span>
     </div>
+    <h1>Book a Service</h1>
+    <p>Select your preferred service and fill in patient details. We'll reach out to confirm your booking.</p>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-16">
+  <div class="main-container">
 
-    <!-- Step indicator (3 steps) -->
-    <div class="flex items-center mb-10" role="progressbar" aria-label="Booking steps" aria-valuenow="1"
-      aria-valuemin="1" aria-valuemax="3" id="step-indicator">
-      <div class="step-dot bg-brand-blue text-white" id="step1-dot">1</div>
-      <div class="step-line bg-gray-200" id="step-line-1"></div>
-      <div class="step-dot bg-gray-200 text-gray-400" id="step2-dot">2</div>
-      <div class="step-line bg-gray-200" id="step-line-2"></div>
-      <div class="step-dot bg-gray-200 text-gray-400" id="step3-dot">3</div>
-      <div class="ml-4 text-sm font-medium text-brand-blue" id="step-label">Step 1 of 3 — Service Selection</div>
+    <!-- Step Indicator -->
+    <div class="step-indicator" id="step-indicator">
+      <div class="step-dot active" id="step1-dot">1</div>
+      <div class="step-line" id="step-line-1"></div>
+      <div class="step-dot" id="step2-dot">2</div>
+      <div class="step-line" id="step-line-2"></div>
+      <div class="step-dot" id="step3-dot">3</div>
+      <span class="step-label" id="step-label">Step 1 of 3 &mdash; Service Selection</span>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+    <!-- ===== STEP 1: Service Selection ===== -->
+    <div class="card" id="step1">
+      <h2>1. Select Your Service</h2>
 
-      <!-- ── STEP 1: Service Selection ── -->
-      <div id="step1" class="p-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <span
-            class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">1</span>
-          Select Your Service
-        </h2>
-
-        <div class="grid sm:grid-cols-2 gap-5 mb-6">
-          <div>
-            <label for="service-select" class="block text-sm font-semibold text-gray-700 mb-1.5">
-              Select Service <span class="text-red-500">*</span>
-            </label>
-            <select id="service-select" class="form-input" required aria-label="Select a service" aria-required="true">
-              <option value="">— Choose a service —</option>
-              <option value="home-nursing-attendant">Home Nursing Attendant</option>
-              <option value="elder-caretaker">Elder Caretaker</option>
-              <option value="post-surgery-wound-dressing">Post-Surgery Wound Dressing</option>
-              <option value="physiotherapy-visits">Physiotherapy Visits at Home</option>
-            </select>
-          </div>
-
-          <div id="shift-wrapper" class="hidden">
-            <label for="shift-select" class="block text-sm font-semibold text-gray-700 mb-1.5">
-              Shift Type <span class="text-red-500">*</span>
-            </label>
-            <select id="shift-select" class="form-input" aria-label="Select shift type">
-              <option value="12hr">12-Hour Duty</option>
-              <option value="24hr">24-Hour Duty</option>
-            </select>
-          </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="service-select">Select Service *</label>
+          <select id="service-select" class="form-input" required>
+            <option value="">— Choose a service —</option>
+            <option value="home-nursing-attendant">Home Nursing Attendant</option>
+            <option value="elder-caretaker">Elder Caretaker</option>
+            <option value="post-surgery-wound-dressing">Post-Surgery Wound Dressing</option>
+            <option value="physiotherapy-visits">Physiotherapy Visits at Home</option>
+          </select>
         </div>
-
-        <!-- Dynamic service info card -->
-        <div id="service-info"
-          class="hidden rounded-xl border border-brand-blue/20 bg-brand-blue-light/50 p-5 mb-6 animate-fade-in">
-          <div class="flex items-start gap-4">
-            <div id="service-emoji" class="text-4xl flex-shrink-0"></div>
-            <div class="flex-1">
-              <h3 id="service-title" class="font-bold text-gray-800 mb-1.5"></h3>
-              <p id="service-desc" class="text-gray-600 text-sm leading-relaxed"></p>
-            </div>
-          </div>
-          <div class="mt-4 pt-4 border-t border-brand-blue/15 flex items-center justify-between">
-            <span class="text-sm font-medium text-gray-600">Estimated Rate</span>
-            <span id="service-price"
-              class="price-badge text-brand-blue-dark font-extrabold text-lg px-4 py-1 rounded-full"></span>
-          </div>
-        </div>
-
-        <!-- Placeholder when nothing selected -->
-        <div id="service-placeholder"
-          class="rounded-xl border-2 border-dashed border-gray-200 p-8 text-center text-gray-400 mb-6">
-          <i class="fa-solid fa-hand-pointer text-3xl mb-3 opacity-40"></i>
-          <p class="text-sm">Select a service above to see details and pricing</p>
-        </div>
-
-        <div class="flex justify-end">
-          <button id="next-btn"
-            class="btn-primary text-white font-bold px-8 py-3 rounded-full opacity-50 cursor-not-allowed" disabled
-            aria-label="Proceed to booking form">
-            Continue <i class="fa-solid fa-arrow-right ml-2"></i>
-          </button>
+        <div class="form-group hidden" id="shift-wrapper">
+          <label for="shift-select">Shift Type *</label>
+          <select id="shift-select" class="form-input">
+            <option value="12hr">12-Hour Duty</option>
+            <option value="24hr">24-Hour Duty</option>
+          </select>
         </div>
       </div>
 
-      <!-- ── STEP 2: Booking Form ── -->
-      <div id="step2" class="hidden p-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-          <span
-            class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">2</span>
-          Patient Details
-        </h2>
-
-        <!-- Selected service summary -->
-        <div
-          class="bg-gradient-to-r from-brand-blue-light to-brand-green-light rounded-xl p-4 mb-6 flex items-center gap-4 border border-brand-blue/15">
-          <span id="summary-emoji" class="text-3xl"></span>
-          <div>
-            <p class="text-xs text-gray-500 font-medium">Selected Service</p>
-            <p class="font-bold text-gray-800" id="summary-service"></p>
-            <p class="text-brand-blue font-extrabold text-sm" id="summary-price"></p>
-          </div>
-          <button id="change-service-btn"
-            class="ml-auto text-xs text-brand-blue font-semibold hover:underline flex items-center gap-1"
-            aria-label="Change selected service">
-            <i class="fa-solid fa-pen-to-square"></i> Change
-          </button>
-        </div>
-
-        <form id="booking-form" novalidate>
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label for="book-name" class="block text-sm font-semibold text-gray-700 mb-1.5">Patient Full Name <span
-                  class="text-red-500">*</span></label>
-              <input type="text" id="book-name" name="fullName" class="form-input" placeholder="e.g. Anand Mishra"
-                required aria-label="Full Name" />
-            </div>
-            <div>
-              <label for="book-age" class="block text-sm font-semibold text-gray-700 mb-1.5">Patient Age <span
-                  class="text-red-500">*</span></label>
-              <input type="number" id="book-age" name="Age" class="form-input" placeholder="e.g. 67" required
-                aria-label="Patient Age" />
-            </div>
-            <div>
-              <label for="book-email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address <span
-                  class="text-red-500">*</span></label>
-              <input type="email" id="book-email" name="email" class="form-input" placeholder="you@email.com" required
-                aria-label="Email Address" />
-            </div>
-            <div>
-              <label for="book-phone" class="block text-sm font-semibold text-gray-700 mb-1.5">Phone Number <span
-                  class="text-red-500">*</span></label>
-              <input type="tel" id="book-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required
-                aria-label="Phone Number" />
-            </div>
-            <div>
-              <label for="book-address" class="block text-sm font-semibold text-gray-700 mb-1.5">Address <span
-                  class="text-red-500">*</span></label>
-              <input type="text" id="book-address" name="address" class="form-input"
-                placeholder="House / Flat, Street, Area" required aria-label="Street Address" />
-            </div>
-            <div>
-              <label for="book-city" class="block text-sm font-semibold text-gray-700 mb-1.5">City <span
-                  class="text-red-500">*</span></label>
-              <input type="text" id="book-city" name="city" class="form-input" placeholder="e.g. Mumbai" required
-                aria-label="City" />
-            </div>
-            <div>
-              <label for="book-state" class="block text-sm font-semibold text-gray-700 mb-1.5">State <span
-                  class="text-red-500">*</span></label>
-              <input type="text" id="book-state" name="state" class="form-input" placeholder="e.g. Maharashtra" required
-                aria-label="State" />
-            </div>
-            <div>
-              <label for="book-zip" class="block text-sm font-semibold text-gray-700 mb-1.5">ZIP Code <span
-                  class="text-red-500">*</span></label>
-              <input type="text" id="book-zip" name="zip" class="form-input" placeholder="e.g. 400001" required
-                aria-label="ZIP Code" />
-            </div>
-          </div>
-
-          <!-- Step 2: Back + Continue (NO Confirm Booking here) -->
-          <div class="flex items-center gap-4 mt-8">
-            <button type="button" id="back-btn" class="btn-outline font-semibold px-6 py-3 rounded-full"
-              aria-label="Go back to service selection">
-              <i class="fa-solid fa-arrow-left mr-2"></i>Back
-            </button>
-            <button type="button" id="to-step3-btn"
-              class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none"
-              aria-label="Continue to choose nurse">
-              Continue <i class="fa-solid fa-arrow-right ml-2"></i>
-            </button>
-          </div>
-        </form>
+      <!-- Service Info (shown after selection) -->
+      <div class="service-info-box hidden" id="service-info">
+        <h3 id="service-title"></h3>
+        <p id="service-desc"></p>
+        <div class="price" id="service-price"></div>
       </div>
 
-      <!-- ── STEP 3: Choose Your Nurse (NEW) ── -->
-      <div id="step3" class="hidden p-8">
-        <h2 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-          <span
-            class="w-7 h-7 rounded-full bg-brand-blue-light text-brand-blue text-sm flex items-center justify-center font-bold">3</span>
-          Choose Your Nurse
-        </h2>
-        <p class="text-gray-500 text-sm mb-5">All nurses are verified, certified, and matched to your selected service.
-        </p>
-
-        <!-- Service + Price header -->
-        <div
-          class="flex flex-wrap items-center justify-between gap-3 mb-7 p-4 rounded-2xl bg-gradient-to-r from-brand-blue-light to-brand-green-light border border-brand-blue/15">
-          <div class="flex items-center gap-3">
-            <span id="step3-summary-emoji" class="text-3xl"></span>
-            <div>
-              <p class="text-xs text-gray-500 font-medium">Selected Service</p>
-              <p class="font-bold text-gray-800 text-sm" id="step3-summary-service"></p>
-            </div>
-          </div>
-          <div class="price-pill">
-            <i class="fa-solid fa-tag text-sm opacity-80"></i>
-            <span id="step3-price-text"></span>
-          </div>
-        </div>
-
-        <!-- Nurse cards -->
-        <div id="nurse-grid" class="mb-6"></div>
-
-        <!-- Empty state -->
-        <div id="no-nurses"
-          class="hidden rounded-xl border-2 border-dashed border-gray-200 p-10 text-center text-gray-400 mb-6">
-          <i class="fa-solid fa-user-slash text-3xl mb-3 opacity-40"></i>
-          <p class="font-semibold text-gray-500 mb-1">No nurses available</p>
-          <p class="text-sm">No nurses match the selected service and shift. Please go back and adjust your selection.
-          </p>
-        </div>
-
-        <!-- Step 3 actions -->
-        <div class="flex items-center gap-4">
-          <button type="button" id="back-to-step2-btn" class="btn-outline font-semibold px-6 py-3 rounded-full"
-            aria-label="Go back to patient details">
-            <i class="fa-solid fa-arrow-left mr-2"></i>Back
-          </button>
-          <button type="button" id="confirm-nurse-btn"
-            class="btn-primary text-white font-bold px-8 py-3 rounded-full flex-1 sm:flex-none" disabled
-            aria-label="Confirm Booking">
-            <i class="fa-solid fa-check mr-2"></i>Confirm Booking
-          </button>
-        </div>
+      <!-- Placeholder (shown when nothing selected) -->
+      <div class="placeholder-box" id="service-placeholder">
+        Select a service above to see details and pricing
       </div>
 
-    </div>
-
-    <!-- ── Success Message ── -->
-    <div id="booking-success"
-      class="hidden mt-8 bg-white rounded-2xl shadow-xl border border-brand-green/20 p-10 text-center">
-      <div class="w-20 h-20 rounded-full bg-brand-green-light flex items-center justify-center mx-auto mb-5">
-        <i class="fa-solid fa-circle-check text-brand-green text-5xl"></i>
-      </div>
-      <h2 class="text-2xl font-extrabold text-gray-800 mb-3">Booking Submitted!</h2>
-      <p class="text-gray-600 mb-2 max-w-md mx-auto">Your booking has been submitted successfully! We will contact you
-        shortly to confirm the details.</p>
-      <p class="text-sm font-semibold text-brand-green mb-6" id="success-nurse-info"></p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="index.html" class="btn-primary text-white font-semibold px-6 py-2.5 rounded-full"
-          aria-label="Return to Home">
-          <i class="fa-solid fa-house mr-2"></i>Back to Home
-        </a>
-        <button id="book-another" class="btn-outline font-semibold px-6 py-2.5 rounded-full"
-          aria-label="Book another service">
-          Book Another Service
-        </button>
+      <div style="text-align: right;">
+        <button class="btn btn-primary" id="next-btn" disabled>Continue &rarr;</button>
       </div>
     </div>
-  </main>
+
+    <!-- ===== STEP 2: Patient Details ===== -->
+    <div class="card hidden" id="step2">
+      <h2>2. Patient Details</h2>
+
+      <!-- Selected service summary -->
+      <div class="summary-bar">
+        <div>
+          <small style="color: #888;">Selected Service</small><br>
+          <span class="service-name" id="summary-service"></span>
+          <span class="service-price" id="summary-price"></span>
+        </div>
+        <button class="change-btn" id="change-service-btn">Change</button>
+      </div>
+
+      <form id="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-name">Patient Full Name *</label>
+            <input type="text" id="book-name" class="form-input" placeholder="e.g. Anand Mishra" required>
+          </div>
+          <div class="form-group">
+            <label for="book-age">Patient Age *</label>
+            <input type="number" id="book-age" class="form-input" placeholder="e.g. 67" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-email">Email Address *</label>
+            <input type="email" id="book-email" class="form-input" placeholder="you@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="book-phone">Phone Number *</label>
+            <input type="tel" id="book-phone" class="form-input" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-address">Address *</label>
+            <input type="text" id="book-address" class="form-input" placeholder="House / Flat, Street, Area" required>
+          </div>
+          <div class="form-group">
+            <label for="book-city">City *</label>
+            <input type="text" id="book-city" class="form-input" placeholder="e.g. Mumbai" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-state">State *</label>
+            <input type="text" id="book-state" class="form-input" placeholder="e.g. Maharashtra" required>
+          </div>
+          <div class="form-group">
+            <label for="book-zip">ZIP Code *</label>
+            <input type="text" id="book-zip" class="form-input" placeholder="e.g. 400001" required>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="button" class="btn btn-outline" id="back-btn">&larr; Back</button>
+          <button type="button" class="btn btn-primary" id="to-step3-btn">Continue &rarr;</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ===== STEP 3: Choose Your Nurse ===== -->
+    <div class="card hidden" id="step3">
+      <h2>3. Choose Your Nurse</h2>
+      <p style="color: #666; font-size: 14px; margin-bottom: 20px;">All nurses are verified, certified, and matched to your selected service.</p>
+
+      <!-- Service + Price summary -->
+      <div class="summary-bar">
+        <div>
+          <small style="color: #888;">Selected Service</small><br>
+          <span class="service-name" id="step3-summary-service"></span>
+        </div>
+        <span class="service-price" id="step3-price-text" style="font-size: 16px;"></span>
+      </div>
+
+      <!-- Nurse Cards -->
+      <div class="nurse-grid" id="nurse-grid"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="no-nurses">
+        <p><strong>No nurses available</strong></p>
+        <p>No nurses match the selected service and shift. Please go back and adjust your selection.</p>
+      </div>
+
+      <div class="button-row">
+        <button type="button" class="btn btn-outline" id="back-to-step2-btn">&larr; Back</button>
+        <button type="button" class="btn btn-primary" id="confirm-nurse-btn" disabled>Confirm Booking</button>
+      </div>
+    </div>
+
+    <!-- ===== Success Message ===== -->
+    <div class="success-card hidden" id="booking-success">
+      <div class="success-icon">&#10004;</div>
+      <h2>Booking Submitted!</h2>
+      <p>Your booking has been submitted successfully! We will contact you shortly to confirm the details.</p>
+      <p class="nurse-info" id="success-nurse-info"></p>
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+        <button class="btn btn-outline" id="book-another">Book Another Service</button>
+      </div>
+    </div>
+
+  </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="text-white pt-14 pb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-        <div class="lg:col-span-2">
-          <div class="flex items-center gap-2 mb-4">
-            <div
-              class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-green flex items-center justify-center">
-              <i class="fa-solid fa-house-medical text-white text-sm"></i>
-            </div>
-            <span class="text-xl font-bold">Care At Home</span>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed max-w-xs">Providing the best in home healthcare services.
-            Expertise, compassion, and care — right at your doorstep.</p>
-          <div class="flex gap-3 mt-5">
-            <a href="#" aria-label="Facebook"
-              class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-blue transition-colors flex items-center justify-center"><i
-                class="fa-brands fa-facebook-f text-sm"></i></a>
-            <a href="#" aria-label="Instagram"
-              class="w-9 h-9 rounded-lg bg-white/10 hover:bg-pink-500 transition-colors flex items-center justify-center"><i
-                class="fa-brands fa-instagram text-sm"></i></a>
-            <a href="#" aria-label="X (Twitter)"
-              class="w-9 h-9 rounded-lg bg-white/10 hover:bg-gray-600 transition-colors flex items-center justify-center"><i
-                class="fa-brands fa-x-twitter text-sm"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Quick Links</h4>
-          <ul class="space-y-2.5">
-            <li><a href="index.html#hero" class="text-gray-400 text-sm hover:text-white transition-colors">Home</a></li>
-            <li><a href="index.html#services"
-                class="text-gray-400 text-sm hover:text-white transition-colors">Services</a></li>
-            <li><a href="index.html#about" class="text-gray-400 text-sm hover:text-white transition-colors">About Us</a>
-            </li>
-            <li><a href="index.html#contact" class="text-gray-400 text-sm hover:text-white transition-colors">Contact
-                Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Services</h4>
-          <ul class="space-y-2.5">
-            <li><a href="book-service.html?service=home-nursing-attendant"
-                class="text-gray-400 text-sm hover:text-white transition-colors">Home Nursing</a></li>
-            <li><a href="book-service.html?service=elder-caretaker"
-                class="text-gray-400 text-sm hover:text-white transition-colors">Elder Caretaker</a></li>
-            <li><a href="book-service.html?service=post-surgery-wound-dressing"
-                class="text-gray-400 text-sm hover:text-white transition-colors">Wound Dressing</a></li>
-            <li><a href="book-service.html?service=physiotherapy-visits"
-                class="text-gray-400 text-sm hover:text-white transition-colors">Physiotherapy</a></li>
-          </ul>
-        </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Care At Home</h3>
+        <p>Providing the best in home healthcare services. Expertise, compassion, and care &mdash; right at your doorstep.</p>
       </div>
-      <div class="border-t border-white/10 pt-6 text-center">
-        <p class="text-gray-500 text-sm">© 2024 Care At Home. All rights reserved.</p>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
       </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="book-service.html?service=home-nursing-attendant">Home Nursing</a></li>
+          <li><a href="book-service.html?service=elder-caretaker">Elder Caretaker</a></li>
+          <li><a href="book-service.html?service=post-surgery-wound-dressing">Wound Dressing</a></li>
+          <li><a href="book-service.html?service=physiotherapy-visits">Physiotherapy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Care At Home. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // ── Service Data ──────────────────────────────────────
-    const services = {
-      'home-nursing-attendant': {
-        name: 'Home Nursing Attendant',
-        specialty: 'Home Nursing Attendant',
-        emoji: '🧑‍⚕️',
-        description: 'We provide trained and compassionate home nursing attendants for both 12-hour and 24-hour shifts. Our attendants assist with daily activities, medication reminders, mobility support, and companionship to ensure your loved one receives professional care in the comfort of their own home.',
+    // ===== SERVICE DATA =====
+    var services = {
+      "home-nursing-attendant": {
+        name: "Home Nursing Attendant",
+        specialty: "Home Nursing Attendant",
+        description: "We provide trained and compassionate home nursing attendants for both 12-hour and 24-hour shifts. Our attendants assist with daily activities, medication reminders, mobility support, and companionship.",
         hasShift: true,
-        prices: { '12hr': '₹1,000 / day', '24hr': '₹1,800 / day' },
+        prices: { "12hr": "₹1,000 / day", "24hr": "₹1,800 / day" }
       },
-      'elder-caretaker': {
-        name: 'Elder Caretaker',
-        specialty: 'Elder Caretaker',
-        emoji: '👴',
-        description: 'Our elder caretakers offer comprehensive support for seniors, helping them maintain independence and quality of life. Services include meal preparation, personal care, light housekeeping, companionship, and monitoring of health conditions. Available in both 12-hour and 24-hour care.',
+      "elder-caretaker": {
+        name: "Elder Caretaker",
+        specialty: "Elder Caretaker",
+        description: "Our elder caretakers offer comprehensive support for seniors — meal preparation, personal care, light housekeeping, companionship, and health monitoring. Available in 12 and 24 hour care.",
         hasShift: true,
-        prices: { '12hr': '₹1,200 / day', '24hr': '₹2,000 / day' },
+        prices: { "12hr": "₹1,200 / day", "24hr": "₹2,000 / day" }
       },
-      'post-surgery-wound-dressing': {
-        name: 'Post-Surgery Wound Dressing',
-        specialty: 'Post-Surgery Wound Dressing',
-        emoji: '🩹',
-        description: 'Professional wound care services provided by certified nurses at your doorstep. We handle post-surgical wound dressing, dressing changes, and wound care for various types of wounds to promote healing and prevent infections. Available as per requirement.',
+      "post-surgery-wound-dressing": {
+        name: "Post-Surgery Wound Dressing",
+        specialty: "Post-Surgery Wound Dressing",
+        description: "Professional wound care services by certified nurses at your doorstep. We handle post-surgical wound dressing, dressing changes, and wound care to promote healing and prevent infections.",
         hasShift: false,
-        prices: { default: '₹500 / visit' },
+        prices: { "default": "₹500 / visit" }
       },
-      'physiotherapy-visits': {
-        name: 'Physiotherapy Visits at Home',
-        specialty: 'Physiotherapy Visits at Home',
-        emoji: '🏃',
-        description: 'Receive expert physiotherapy care in the convenience of your home. Our licensed physiotherapists provide personalized treatment plans, including therapeutic exercises, manual therapy, and rehabilitation programs to help you recover from injury, manage pain, and improve mobility.',
+      "physiotherapy-visits": {
+        name: "Physiotherapy Visits at Home",
+        specialty: "Physiotherapy Visits at Home",
+        description: "Receive expert physiotherapy care at home. Our licensed physiotherapists provide personalized treatment plans including therapeutic exercises, manual therapy, and rehabilitation programs.",
         hasShift: false,
-        prices: { default: '₹800 / visit' },
+        prices: { "default": "₹800 / visit" }
       }
     };
 
-    const shiftLabel = { '12hr': '12-Hour Duty', '24hr': '24-Hour Duty' };
+    var shiftLabels = { "12hr": "12-Hour Duty", "24hr": "24-Hour Duty" };
 
-    // ── Nurse state (fetched once) ─────────────────────────
-    let allNurses = [];
-    let selectedNurse = null;
+    // ===== NURSE DATA =====
+    var allNurses = [];
+    var selectedNurse = null;
 
-    async function loadNurses() {
-      try {
-        const res = await fetch('assets/nurse_details.json');
-        allNurses = await res.json();
-      } catch (e) {
-        console.error('Failed to load nurse data:', e);
+    // Load nurse data from JSON file
+    function loadNurses() {
+      fetch("assets/nurse_details.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          allNurses = data;
+        })
+        .catch(function (error) {
+          console.log("Error loading nurse data:", error);
+        });
+    }
+
+    // ===== GET ELEMENTS =====
+    var serviceSelect = document.getElementById("service-select");
+    var shiftWrapper = document.getElementById("shift-wrapper");
+    var shiftSelect = document.getElementById("shift-select");
+    var serviceInfo = document.getElementById("service-info");
+    var servicePlaceholder = document.getElementById("service-placeholder");
+    var nextBtn = document.getElementById("next-btn");
+
+    var step1 = document.getElementById("step1");
+    var step2 = document.getElementById("step2");
+    var step3 = document.getElementById("step3");
+
+    var step1Dot = document.getElementById("step1-dot");
+    var step2Dot = document.getElementById("step2-dot");
+    var step3Dot = document.getElementById("step3-dot");
+    var stepLine1 = document.getElementById("step-line-1");
+    var stepLine2 = document.getElementById("step-line-2");
+    var stepLabel = document.getElementById("step-label");
+    var stepIndicator = document.getElementById("step-indicator");
+
+    var summaryService = document.getElementById("summary-service");
+    var summaryPrice = document.getElementById("summary-price");
+
+    var backBtn = document.getElementById("back-btn");
+    var changeBtn = document.getElementById("change-service-btn");
+    var toStep3Btn = document.getElementById("to-step3-btn");
+    var backToStep2Btn = document.getElementById("back-to-step2-btn");
+    var confirmNurseBtn = document.getElementById("confirm-nurse-btn");
+
+    var nurseGrid = document.getElementById("nurse-grid");
+    var noNurses = document.getElementById("no-nurses");
+
+    var bookingForm = document.getElementById("booking-form");
+    var bookingSuccess = document.getElementById("booking-success");
+    var bookAnother = document.getElementById("book-another");
+    var successNurseInfo = document.getElementById("success-nurse-info");
+
+    // ===== HELPER FUNCTIONS =====
+
+    // Get the price text for a service
+    function getPrice(serviceKey) {
+      if (!serviceKey) return "";
+      var s = services[serviceKey];
+      if (!s) return "";
+      if (s.hasShift) {
+        return s.prices[shiftSelect.value] || s.prices["12hr"];
       }
+      return s.prices["default"];
     }
 
-    // ── Elements ──────────────────────────────────────────
-    const serviceSelect = document.getElementById('service-select');
-    const shiftWrapper = document.getElementById('shift-wrapper');
-    const shiftSelect = document.getElementById('shift-select');
-    const serviceInfo = document.getElementById('service-info');
-    const servicePlaceholder = document.getElementById('service-placeholder');
-    const nextBtn = document.getElementById('next-btn');
-
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const step1Dot = document.getElementById('step1-dot');
-    const step2Dot = document.getElementById('step2-dot');
-    const step3Dot = document.getElementById('step3-dot');
-    const stepLine1 = document.getElementById('step-line-1');
-    const stepLine2 = document.getElementById('step-line-2');
-    const stepLabel = document.getElementById('step-label');
-    const stepIndicator = document.getElementById('step-indicator');
-
-    const summaryEmoji = document.getElementById('summary-emoji');
-    const summaryService = document.getElementById('summary-service');
-    const summaryPrice = document.getElementById('summary-price');
-
-    const backBtn = document.getElementById('back-btn');
-    const changeBtn = document.getElementById('change-service-btn');
-    const toStep3Btn = document.getElementById('to-step3-btn');
-    const backToStep2Btn = document.getElementById('back-to-step2-btn');
-    const confirmNurseBtn = document.getElementById('confirm-nurse-btn');
-
-    const nurseGrid = document.getElementById('nurse-grid');
-    const noNurses = document.getElementById('no-nurses');
-
-    const bookingForm = document.getElementById('booking-form');
-    const bookingSuccess = document.getElementById('booking-success');
-    const bookAnother = document.getElementById('book-another');
-    const successNurseInfo = document.getElementById('success-nurse-info');
-
-    // ── Helpers ───────────────────────────────────────────
-    function getPrice(svcKey) {
-      if (!svcKey) return '';
-      const s = services[svcKey];
-      if (!s) return '';
-      if (s.hasShift) return s.prices[shiftSelect.value] || s.prices['12hr'];
-      return s.prices.default;
-    }
-
+    // Update the service info box when selection changes
     function updateServiceInfo() {
-      const key = serviceSelect.value;
+      var key = serviceSelect.value;
+
       if (!key) {
-        serviceInfo.classList.add('hidden');
-        servicePlaceholder.classList.remove('hidden');
-        shiftWrapper.classList.add('hidden');
+        serviceInfo.classList.add("hidden");
+        servicePlaceholder.classList.remove("hidden");
+        shiftWrapper.classList.add("hidden");
         nextBtn.disabled = true;
-        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
         return;
       }
-      const s = services[key];
-      servicePlaceholder.classList.add('hidden');
-      shiftWrapper.classList.toggle('hidden', !s.hasShift);
 
-      document.getElementById('service-emoji').textContent = s.emoji;
-      document.getElementById('service-title').textContent = s.name;
-      document.getElementById('service-desc').textContent = s.description;
-      document.getElementById('service-price').textContent = getPrice(key);
+      var s = services[key];
 
-      serviceInfo.classList.remove('hidden');
-      nextBtn.disabled = false;
-      nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-    }
-
-    // Re-validate selected nurse when service/shift changes
-    function revalidateNurseSelection() {
-      if (!selectedNurse) return;
-      const filtered = filterNurses();
-      const stillValid = filtered.some(n => n.name === selectedNurse.name);
-      if (!stillValid) {
-        selectedNurse = null;
-        confirmNurseBtn.disabled = true;
+      // Show or hide shift dropdown
+      if (s.hasShift) {
+        shiftWrapper.classList.remove("hidden");
+      } else {
+        shiftWrapper.classList.add("hidden");
       }
+
+      // Fill in service info
+      document.getElementById("service-title").textContent = s.name;
+      document.getElementById("service-desc").textContent = s.description;
+      document.getElementById("service-price").textContent = getPrice(key);
+
+      // Show info box, hide placeholder
+      servicePlaceholder.classList.add("hidden");
+      serviceInfo.classList.remove("hidden");
+      nextBtn.disabled = false;
     }
 
-    function onServiceOrShiftChange() {
-      updateServiceInfo();
-      revalidateNurseSelection();
-    }
+    // Update the step indicator dots and label
+    function setStepIndicator(step) {
+      var labels = ["Service Selection", "Patient Details", "Choose Your Nurse"];
+      stepLabel.textContent = "Step " + step + " of 3 — " + labels[step - 1];
 
-    // ── Nurse Filtering ───────────────────────────────────
-    function filterNurses() {
-      const key = serviceSelect.value;
-      if (!key) return [];
-      const svc = services[key];
-      const selectedSpecialty = svc.specialty;
-      const selectedShiftLabel = svc.hasShift ? shiftLabel[shiftSelect.value] : null;
+      var dots = [step1Dot, step2Dot, step3Dot];
+      var lines = [stepLine1, stepLine2];
 
-      return allNurses.filter(nurse => {
-        if (!nurse.specialties || !nurse.specialties.includes(selectedSpecialty)) return false;
-        // Nurses with no shift field → available for all shifts
-        if (selectedShiftLabel && Array.isArray(nurse.shift) && nurse.shift.length > 0) {
-          return nurse.shift.includes(selectedShiftLabel);
+      for (var i = 0; i < 3; i++) {
+        var n = i + 1;
+        dots[i].className = "step-dot";
+
+        if (n < step) {
+          dots[i].classList.add("done");
+          dots[i].textContent = "✓";
+        } else if (n === step) {
+          dots[i].classList.add("active");
+          dots[i].textContent = n;
+        } else {
+          dots[i].textContent = n;
         }
-        return true;
-      });
+      }
+
+      // Color the lines between dots
+      stepLine1.className = step > 1 ? "step-line done" : "step-line";
+      stepLine2.className = step > 2 ? "step-line done" : "step-line";
     }
 
-    // ── Star rating HTML ──────────────────────────────────
-    function starsHTML(rating) {
-      const full = Math.floor(rating);
-      const half = rating % 1 >= 0.5 ? 1 : 0;
-      const empty = 5 - full - half;
-      let h = '';
-      for (let i = 0; i < full; i++) h += '<i class="fa-solid fa-star star-fill text-xs"></i>';
-      if (half) h += '<i class="fa-solid fa-star-half-stroke star-fill text-xs"></i>';
-      for (let i = 0; i < empty; i++) h += '<i class="fa-regular fa-star star-fill text-xs opacity-40"></i>';
-      return h;
+    // Filter nurses based on selected service and shift
+    function filterNurses() {
+      var key = serviceSelect.value;
+      if (!key) return [];
+      var svc = services[key];
+      var selectedSpecialty = svc.specialty;
+      var selectedShiftLabel = svc.hasShift ? shiftLabels[shiftSelect.value] : null;
+
+      var result = [];
+      for (var i = 0; i < allNurses.length; i++) {
+        var nurse = allNurses[i];
+
+        // Check if nurse has the right specialty
+        if (!nurse.specialties || nurse.specialties.indexOf(selectedSpecialty) === -1) {
+          continue;
+        }
+
+        // Check shift compatibility
+        if (selectedShiftLabel && nurse.shift && nurse.shift.length > 0) {
+          if (nurse.shift.indexOf(selectedShiftLabel) === -1) {
+            continue;
+          }
+        }
+
+        result.push(nurse);
+      }
+      return result;
     }
 
-    // ── Render Nurse Cards ────────────────────────────────
+    // Build star rating text (using ★ and ☆)
+    function getStars(rating) {
+      var full = Math.floor(rating);
+      var stars = "";
+      for (var i = 0; i < full; i++) {
+        stars += "★";
+      }
+      for (var i = full; i < 5; i++) {
+        stars += "☆";
+      }
+      return stars;
+    }
+
+    // Render nurse cards into the grid
     function renderNurses() {
-      const nurses = filterNurses();
-      nurseGrid.innerHTML = '';
+      var nurses = filterNurses();
+      nurseGrid.innerHTML = "";
 
       if (nurses.length === 0) {
-        nurseGrid.classList.add('hidden');
-        noNurses.classList.remove('hidden');
+        nurseGrid.classList.add("hidden");
+        noNurses.classList.remove("hidden");
         confirmNurseBtn.disabled = true;
         return;
       }
 
-      nurseGrid.classList.remove('hidden');
-      noNurses.classList.add('hidden');
+      nurseGrid.classList.remove("hidden");
+      noNurses.classList.add("hidden");
 
-      nurses.forEach(nurse => {
-        const isSelected = selectedNurse && selectedNurse.name === nurse.name;
-        const card = document.createElement('div');
-        card.className = 'nurse-card p-5' + (isSelected ? ' selected' : '');
-        card.setAttribute('role', 'option');
-        card.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-        card.setAttribute('data-nurse', nurse.name);
+      for (var i = 0; i < nurses.length; i++) {
+        var nurse = nurses[i];
+        var isSelected = selectedNurse && selectedNurse.name === nurse.name;
 
-        const certBadges = (nurse.certifications || []).map(c => `<span class="badge">${c}</span>`).join('');
-        const specialtyBadges = (nurse.specialties || []).map(sp => `<span class="badge badge-green">${sp}</span>`).join('');
-        const langList = (nurse.languages || []).join(', ');
-        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(nurse.name)}&background=e8f2fc&color=2f72b8&size=128&bold=true&font-size=0.4`;
+        // Create card element
+        var card = document.createElement("div");
+        card.className = "nurse-card" + (isSelected ? " selected" : "");
+        card.setAttribute("data-nurse", nurse.name);
 
-        card.innerHTML = `
-          <!-- Photo full width -->
-          <div class="nurse-photo-wrap">
-            <img src="${nurse.photo}" alt="Photo of ${nurse.name}" loading="lazy"
-                 onerror="this.onerror=null;this.src='${avatarFallback}'">
-          </div>
-          <!-- Name (left) + Stars/rating (right) in same row -->
-          <div class="nurse-name-rating-row">
-            <h3 class="nurse-name">${nurse.name}</h3>
-            <div class="nurse-rating">
-              <div class="flex gap-0.5">${starsHTML(nurse.rating)}</div>
-              <span class="text-xs font-semibold text-gray-700">${nurse.rating.toFixed(1)}</span>
-              <span class="text-xs text-gray-400">(${nurse.reviewCount})</span>
-            </div>
-          </div>
-          <!-- Meta: experience + languages -->
-          <div class="flex flex-col gap-0.5 text-xs text-gray-500 mb-3">
-            <span><i class="fa-solid fa-briefcase-medical mr-1 text-brand-blue opacity-70"></i>${nurse.experienceYears} yrs experience</span>
-            <span class="truncate"><i class="fa-solid fa-language mr-1 text-brand-blue opacity-70"></i>${langList}</span>
-          </div>
-          <!-- Badges -->
-          <div class="flex flex-wrap gap-1 mb-4">
-            ${certBadges}
-            ${specialtyBadges}
-          </div>
-          <!-- Select button full width -->
-          <button class="nurse-select-btn w-full${isSelected ? ' selected-state' : ''}"
-                  data-nurse="${nurse.name}"
-                  aria-label="${isSelected ? 'Selected: ' : 'Select nurse '}${nurse.name}">
-            ${isSelected ? '<i class="fa-solid fa-circle-check mr-1.5"></i>Selected' : 'Select'}
-          </button>
-        `;
+        // Build certification badges
+        var certHTML = "";
+        if (nurse.certifications) {
+          for (var j = 0; j < nurse.certifications.length; j++) {
+            certHTML += '<span class="badge">' + nurse.certifications[j] + "</span>";
+          }
+        }
 
-        card.addEventListener('click', () => selectNurse(nurse));
+        // Build specialty badges
+        if (nurse.specialties) {
+          for (var j = 0; j < nurse.specialties.length; j++) {
+            certHTML += '<span class="badge badge-green">' + nurse.specialties[j] + "</span>";
+          }
+        }
+
+        // Languages
+        var langs = nurse.languages ? nurse.languages.join(", ") : "";
+
+        // Card HTML
+        card.innerHTML =
+          '<img class="nurse-photo" src="' + nurse.photo + '" alt="' + nurse.name + '">' +
+          "<h3>" + nurse.name + "</h3>" +
+          '<div class="rating">' + getStars(nurse.rating) + " " + nurse.rating.toFixed(1) + " (" + nurse.reviewCount + " reviews)</div>" +
+          '<div class="details">' + nurse.experienceYears + " years experience &middot; " + langs + "</div>" +
+          '<div class="badges">' + certHTML + "</div>" +
+          '<button class="nurse-select-btn' + (isSelected ? " selected-state" : "") + '" data-nurse="' + nurse.name + '">' +
+          (isSelected ? "✓ Selected" : "Select") + "</button>";
+
+        // Click handler (using closure to capture nurse)
+        (function (n) {
+          card.addEventListener("click", function () {
+            selectNurse(n);
+          });
+        })(nurse);
+
         nurseGrid.appendChild(card);
-      });
+      }
     }
 
+    // Handle nurse selection
     function selectNurse(nurse) {
       selectedNurse = nurse;
       confirmNurseBtn.disabled = false;
 
-      document.querySelectorAll('.nurse-card').forEach(card => {
-        const name = card.getAttribute('data-nurse');
-        const btn = card.querySelector('.nurse-select-btn');
-        if (name === nurse.name) {
-          card.classList.add('selected');
-          card.setAttribute('aria-selected', 'true');
-          btn.classList.add('selected-state');
-          btn.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i>Selected';
-          btn.setAttribute('aria-label', `Selected: ${nurse.name}`);
+      // Update all cards
+      var cards = document.querySelectorAll(".nurse-card");
+      for (var i = 0; i < cards.length; i++) {
+        var cardName = cards[i].getAttribute("data-nurse");
+        var btn = cards[i].querySelector(".nurse-select-btn");
+
+        if (cardName === nurse.name) {
+          cards[i].classList.add("selected");
+          btn.classList.add("selected-state");
+          btn.textContent = "✓ Selected";
         } else {
-          card.classList.remove('selected');
-          card.setAttribute('aria-selected', 'false');
-          btn.classList.remove('selected-state');
-          btn.innerHTML = 'Select';
-          btn.setAttribute('aria-label', `Select nurse ${name}`);
+          cards[i].classList.remove("selected");
+          btn.classList.remove("selected-state");
+          btn.textContent = "Select";
         }
-      });
+      }
     }
 
-    // ── Step indicator helper ─────────────────────────────
-    function setStepIndicator(step) {
-      const labels = ['Service Selection', 'Patient Details', 'Choose Your Nurse'];
-      stepLabel.textContent = `Step ${step} of 3 — ${labels[step - 1]}`;
-      stepIndicator.setAttribute('aria-valuenow', step);
-
-      [step1Dot, step2Dot, step3Dot].forEach((dot, i) => {
-        const n = i + 1;
-        if (n < step) {
-          dot.className = 'step-dot bg-brand-green text-white';
-          dot.innerHTML = '<i class="fa-solid fa-check text-xs"></i>';
-        } else if (n === step) {
-          dot.className = 'step-dot bg-brand-blue text-white';
-          dot.textContent = n;
-        } else {
-          dot.className = 'step-dot bg-gray-200 text-gray-400';
-          dot.textContent = n;
-        }
-      });
-      stepLine1.style.background = step > 1 ? '#4CAF80' : '';
-      stepLine2.style.background = step > 2 ? '#4CAF80' : '';
+    // Go back to Step 1
+    function goToStep1() {
+      step2.classList.add("hidden");
+      step3.classList.add("hidden");
+      step1.classList.remove("hidden");
+      setStepIndicator(1);
+      window.scrollTo(0, 0);
     }
 
-    // ── URL query param pre-selection ─────────────────────
-    const params = new URLSearchParams(window.location.search);
-    const preService = params.get('service');
+    // ===== EVENT LISTENERS =====
+
+    // Service dropdown change
+    serviceSelect.addEventListener("change", function () {
+      updateServiceInfo();
+    });
+
+    // Shift dropdown change
+    shiftSelect.addEventListener("change", function () {
+      document.getElementById("service-price").textContent = getPrice(serviceSelect.value);
+    });
+
+    // Step 1 → Step 2
+    nextBtn.addEventListener("click", function () {
+      if (!serviceSelect.value) return;
+      var key = serviceSelect.value;
+      var s = services[key];
+
+      // Fill in summary bar
+      if (s.hasShift) {
+        summaryService.textContent = s.name + " (" + shiftSelect.options[shiftSelect.selectedIndex].text + ")";
+      } else {
+        summaryService.textContent = s.name;
+      }
+      summaryPrice.textContent = " — " + getPrice(key);
+
+      step1.classList.add("hidden");
+      step2.classList.remove("hidden");
+      setStepIndicator(2);
+      window.scrollTo(0, 0);
+    });
+
+    // Back and Change buttons → Step 1
+    backBtn.addEventListener("click", goToStep1);
+    changeBtn.addEventListener("click", goToStep1);
+
+    // Step 2 → Step 3
+    toStep3Btn.addEventListener("click", function () {
+      // Check form validity
+      if (!bookingForm.checkValidity()) {
+        bookingForm.reportValidity();
+        return;
+      }
+
+      var key = serviceSelect.value;
+      var s = services[key];
+      var price = getPrice(key);
+
+      // Fill Step 3 summary
+      if (s.hasShift) {
+        document.getElementById("step3-summary-service").textContent = s.name + " (" + shiftSelect.options[shiftSelect.selectedIndex].text + ")";
+      } else {
+        document.getElementById("step3-summary-service").textContent = s.name;
+      }
+      document.getElementById("step3-price-text").textContent = price;
+
+      // Render nurse cards
+      renderNurses();
+
+      step2.classList.add("hidden");
+      step3.classList.remove("hidden");
+      setStepIndicator(3);
+      window.scrollTo(0, 0);
+    });
+
+    // Step 3 → Step 2
+    backToStep2Btn.addEventListener("click", function () {
+      step3.classList.add("hidden");
+      step2.classList.remove("hidden");
+      setStepIndicator(2);
+      window.scrollTo(0, 0);
+    });
+
+    // Confirm Booking
+    confirmNurseBtn.addEventListener("click", function () {
+      if (!selectedNurse) return;
+      confirmNurseBtn.disabled = true;
+      confirmNurseBtn.textContent = "Submitting...";
+
+      setTimeout(function () {
+        var key = serviceSelect.value;
+        var s = services[key];
+        var shiftText = s.hasShift ? shiftSelect.options[shiftSelect.selectedIndex].text : s.name;
+        successNurseInfo.textContent = "Your nurse: " + selectedNurse.name + " · " + shiftText;
+
+        bookingForm.reset();
+        step3.classList.add("hidden");
+        bookingSuccess.classList.remove("hidden");
+        stepIndicator.classList.add("hidden");
+
+        selectedNurse = null;
+        confirmNurseBtn.disabled = true;
+        confirmNurseBtn.textContent = "Confirm Booking";
+        window.scrollTo(0, 0);
+      }, 1200);
+    });
+
+    // Book Another
+    bookAnother.addEventListener("click", function () {
+      bookingSuccess.classList.add("hidden");
+      step1.classList.remove("hidden");
+      serviceSelect.value = "";
+      selectedNurse = null;
+      updateServiceInfo();
+      stepIndicator.classList.remove("hidden");
+      setStepIndicator(1);
+      window.scrollTo(0, 0);
+    });
+
+    // ===== URL PARAMETER (pre-select service) =====
+    var urlParams = new URLSearchParams(window.location.search);
+    var preService = urlParams.get("service");
     if (preService && services[preService]) {
       serviceSelect.value = preService;
       updateServiceInfo();
     }
 
-    // ── Event Listeners ───────────────────────────────────
-    serviceSelect.addEventListener('change', onServiceOrShiftChange);
-    shiftSelect.addEventListener('change', () => {
-      document.getElementById('service-price').textContent = getPrice(serviceSelect.value);
-      revalidateNurseSelection();
-    });
+    // ===== MOBILE MENU =====
+    var hamburger = document.getElementById("hamburger");
+    var mobileMenu = document.getElementById("mobile-menu");
 
-    // Step 1 → Step 2
-    nextBtn.addEventListener('click', () => {
-      if (!serviceSelect.value) return;
-      const key = serviceSelect.value;
-      const s = services[key];
-
-      summaryEmoji.textContent = s.emoji;
-      summaryService.textContent = s.hasShift
-        ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
-        : s.name;
-      summaryPrice.textContent = getPrice(key);
-
-      step1.classList.add('hidden');
-      step2.classList.remove('hidden');
-      step2.classList.add('animate-fade-in-up');
-      setStepIndicator(2);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Step 2/3 → Step 1
-    function goToStep1() {
-      step2.classList.add('hidden');
-      step3.classList.add('hidden');
-      step1.classList.remove('hidden');
-      step1.classList.add('animate-fade-in');
-      setStepIndicator(1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    backBtn.addEventListener('click', goToStep1);
-    changeBtn.addEventListener('click', goToStep1);
-
-    // Step 2 → Step 3
-    toStep3Btn.addEventListener('click', () => {
-      if (!bookingForm.checkValidity()) {
-        bookingForm.reportValidity();
-        return;
+    hamburger.addEventListener("click", function () {
+      if (mobileMenu.classList.contains("open")) {
+        mobileMenu.classList.remove("open");
+        hamburger.innerHTML = "&#9776;";
+      } else {
+        mobileMenu.classList.add("open");
+        hamburger.innerHTML = "&#10005;";
       }
-      const key = serviceSelect.value;
-      const s = services[key];
-      const price = getPrice(key);
-
-      document.getElementById('step3-summary-emoji').textContent = s.emoji;
-      document.getElementById('step3-summary-service').textContent = s.hasShift
-        ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
-        : s.name;
-      document.getElementById('step3-price-text').textContent = price;
-
-      renderNurses();
-
-      step2.classList.add('hidden');
-      step3.classList.remove('hidden');
-      step3.classList.add('animate-fade-in-up');
-      setStepIndicator(3);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Step 3 → Step 2
-    backToStep2Btn.addEventListener('click', () => {
-      step3.classList.add('hidden');
-      step2.classList.remove('hidden');
-      step2.classList.add('animate-fade-in');
-      setStepIndicator(2);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Confirm booking (Step 3)
-    confirmNurseBtn.addEventListener('click', () => {
-      if (!selectedNurse) return;
-      confirmNurseBtn.disabled = true;
-      confirmNurseBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
-
-      setTimeout(() => {
-        const key = serviceSelect.value;
-        const s = services[key];
-        successNurseInfo.textContent =
-          `Your nurse: ${selectedNurse.name} · ${s.hasShift ? shiftSelect.options[shiftSelect.selectedIndex].text : s.name}`;
-
-        bookingForm.reset();
-        step3.classList.add('hidden');
-        bookingSuccess.classList.remove('hidden');
-        stepIndicator.classList.add('hidden');
-
-        selectedNurse = null;
-        confirmNurseBtn.disabled = true;
-        confirmNurseBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Confirm Booking';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 1400);
-    });
-
-    // Book another
-    bookAnother.addEventListener('click', () => {
-      bookingSuccess.classList.add('hidden');
-      step1.classList.remove('hidden');
-      serviceSelect.value = '';
-      selectedNurse = null;
-      updateServiceInfo();
-      stepIndicator.classList.remove('hidden');
-      setStepIndicator(1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ── Navbar scroll ─────────────────────────────────────
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
-
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-      hamburger.querySelector('i').className = open ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
-    });
-
-    // ── Init ──────────────────────────────────────────────
+    // ===== LOAD NURSE DATA =====
     loadNurses();
   </script>
-</body>
 
+</body>
 </html>

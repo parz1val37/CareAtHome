@@ -41,16 +41,16 @@ CareAtHome/
 
 ## 🛠 Tech Stack
 
-This is a **frontend-only** static website — no server, no database, no build step.
+This is a **frontend-only** static website — no server, no database, no build step, no external frameworks.
 
 | Technology | Purpose |
 |---|---|
-| **HTML5** | Semantic page structure and accessibility (ARIA labels) |
-| **Tailwind CSS** (CDN) | Utility-first responsive styling |
-| **Vanilla JavaScript** | DOM manipulation, form handling, multi-step wizard logic |
-| **Font Awesome 6** (CDN) | Icons throughout the UI |
-| **Google Fonts (Poppins)** | Typography |
-| **JSON** | Nurse data stored in a static `nurse_details.json` file |
+| **HTML5** | Page structure, forms, and semantic elements |
+| **CSS3** (internal `<style>` tags) | Styling — colors, layout (flexbox), borders, responsive design |
+| **Vanilla JavaScript** | DOM manipulation, event handling, form validation, multi-step wizard logic |
+| **JSON** | Nurse data stored in a static `nurse_details.json` file, loaded via `fetch()` |
+
+> **No external libraries or CDNs are used** — everything is built with plain HTML, CSS, and JavaScript.
 
 ## 🚀 Getting Started
 
