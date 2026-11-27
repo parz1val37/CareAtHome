@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< Updated upstream
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Care At Home — Quality Home Healthcare Services</title>
@@ -553,6 +554,144 @@
     <div class="nav-buttons">
       <a href="fee-calculator.html" class="btn btn-outline">Fee Calculator</a>
       <a href="book-service.html" class="btn btn-primary">Book a Service</a>
+=======
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Care At Home — Home Healthcare Services</title>
+  <meta name="description" content="Care At Home provides home nursing, elder caretaking, post-surgery wound dressing, and physiotherapy services at your doorstep." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#faf9f7',
+            accent: {
+              DEFAULT: '#2a7d6a',
+              dark: '#1f6354',
+              light: '#eef6f3',
+            },
+            ink: {
+              DEFAULT: '#1a1a1a',
+              secondary: '#5c5c5c',
+              muted: '#9a9a9a',
+            },
+            dark: {
+              DEFAULT: '#1a1d21',
+              raised: '#24272c',
+            }
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    * { font-family: 'DM Sans', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background-color: #faf9f7; color: #1a1a1a; font-size: 15px; }
+
+    /* Lucide default sizing */
+    svg.lucide { width: 18px; height: 18px; stroke-width: 1.5; }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height 0.25s ease, opacity 0.2s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+    #mobile-menu.open { max-height: 360px; opacity: 1; }
+
+    /* Subtle scroll reveal (12px rise, 0.4s) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Form inputs */
+    .form-input {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      padding: 0.625rem 0.875rem;
+      width: 100%;
+      font-size: 15px;
+      background: #ffffff;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-input:focus {
+      border-color: #2a7d6a;
+      box-shadow: 0 0 0 3px rgba(42, 125, 106, 0.12);
+    }
+    .form-input::placeholder { color: #9a9a9a; }
+  </style>
+</head>
+<body class="bg-surface text-ink overflow-x-hidden antialiased">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.06]" role="navigation" aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2.5" aria-label="Care At Home — Home">
+          <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+          </div>
+          <span class="text-base font-semibold tracking-tight text-ink">Care At Home</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#hero" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Home</a>
+          <a href="#services" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Services</a>
+          <a href="#about" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">About us</a>
+          <a href="#contact" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Contact</a>
+        </div>
+
+        <!-- Action buttons (desktop) -->
+        <div class="hidden md:flex items-center gap-2.5">
+          <a href="fee-calculator.html" id="nav-fee-calc" class="text-[13px] font-medium text-ink-secondary hover:text-ink px-3.5 py-2 rounded-lg border border-black/[0.1] hover:border-black/[0.2] bg-white transition-colors inline-flex items-center gap-1.5" aria-label="Open Fee Calculator">
+            <i data-lucide="calculator"></i>Fee calculator
+          </a>
+          <a href="book-service.html" id="nav-book" class="text-[13px] font-medium text-white bg-accent hover:bg-accent-dark px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5" aria-label="Book a Service">
+            Book a service
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="hamburger" class="md:hidden p-2 rounded-lg text-ink-secondary hover:text-ink hover:bg-black/[0.04] transition-colors" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg id="hamburger-open-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="hamburger-close-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-black/[0.06] px-4">
+      <div class="flex flex-col gap-2 py-4">
+        <a href="#hero" class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-1.5 transition-colors">Home</a>
+        <a href="#services" class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-1.5 transition-colors">Services</a>
+        <a href="#about" class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-1.5 transition-colors">About us</a>
+        <a href="#contact" class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-1.5 transition-colors">Contact</a>
+        <hr class="border-black/[0.06] my-1.5" />
+        <a href="fee-calculator.html" class="text-sm font-medium text-ink px-4 py-2.5 rounded-lg border border-black/[0.1] text-center">Fee calculator</a>
+        <a href="book-service.html" class="text-sm font-medium text-white bg-accent px-4 py-2.5 rounded-lg text-center">Book a service</a>
+      </div>
+>>>>>>> Stashed changes
     </div>
     <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
@@ -568,6 +707,7 @@
   </div>
 
   <!-- ===== HERO SECTION ===== -->
+<<<<<<< Updated upstream
   <section id="hero" class="hero">
     <h1>Book a Service for <span>Your Loved One</span></h1>
     <p>Get all your home healthcare needs at one place. Providing the best in health at your doorstep. We take care of you with expertise and compassion.</p>
@@ -591,11 +731,97 @@
       <div class="stat-card">
         <h3>98%</h3>
         <p>Satisfaction Rate</p>
+=======
+  <section id="hero" class="bg-dark text-white py-20 lg:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left: Text content -->
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 text-[13px] font-medium text-white/75 mb-5">
+            <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
+            Home healthcare across India
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-tight leading-[1.15] text-white mb-5">
+            Reliable medical care at home for your family
+          </h1>
+          <p class="text-[15px] leading-relaxed text-white/70 mb-8 max-w-xl">
+            Trained nursing attendants, elder caretakers, wound dressing nurses, and physiotherapists available for 12-hour shifts, 24-hour duty, or single home visits.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="book-service.html" id="hero-book-btn" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2" aria-label="Book a Service Now">
+              Book a service
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="#services" class="bg-dark-raised hover:bg-white/[0.1] text-white/90 text-sm font-medium px-6 py-3 rounded-lg border border-white/[0.12] transition-colors inline-flex items-center gap-2" aria-label="View our services">
+              View services
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Booking confirmation preview card -->
+        <!-- <div class="lg:col-span-5">
+          <div class="bg-dark-raised rounded-xl border border-white/[0.08] p-6">
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
+                <span class="text-[13px] font-medium text-white/90">Nurse assigned</span>
+              </div>
+              <span class="text-xs text-white/50">12-Hour Duty</span>
+            </div>
+
+            <div class="flex items-center gap-4 mb-5">
+              <img src="assets/photos/Muskan.jpg" alt="Muskan — Home Nursing Attendant" class="w-16 h-16 rounded-lg object-cover object-top border border-white/[0.1] flex-shrink-0" />
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+                  <p class="text-base font-semibold text-white truncate">Muskan</p>
+                </div>
+                <p class="text-[13px] text-white/65 mt-0.5">Home Nursing Attendant</p>
+                <p class="text-xs text-white/50 mt-1">6 yrs experience · Hindi, English</p>
+              </div>
+            </div>
+
+            <div class="bg-dark rounded-lg p-3.5 border border-white/[0.06] space-y-2 text-[13px]">
+              <div class="flex items-center justify-between">
+                <span class="text-white/55">Visit schedule</span>
+                <span class="text-white/90 font-medium">8:00 AM – 8:00 PM</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-white/55">Daily rate</span>
+                <span class="text-white font-semibold">₹1,000 / day</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+
+      <!-- Quiet stats row -->
+      <div class="mt-14 pt-8 border-t border-white/[0.08] grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <p class="text-2xl font-semibold text-white">5+ years</p>
+          <p class="text-[13px] text-white/55 mt-1">Experience in home care</p>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold text-white">200+</p>
+          <p class="text-[13px] text-white/55 mt-1">Trained caregivers</p>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold text-white">4 services</p>
+          <p class="text-[13px] text-white/55 mt-1">Nursing, elder care, wound, physio</p>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold text-white">98%</p>
+          <p class="text-[13px] text-white/55 mt-1">Family satisfaction rate</p>
+        </div>
+>>>>>>> Stashed changes
       </div>
     </div>
   </section>
 
   <!-- ===== SERVICES SECTION ===== -->
+<<<<<<< Updated upstream
   <section id="services" class="section">
     <div class="section-title">
       <h2>Our Services</h2>
@@ -617,6 +843,94 @@
         <p>Comprehensive support for seniors, 12 or 24 hours.</p>
         <div class="price" style="color: #4CAF80;">&#8377;1,200<span>/day</span></div>
         <a href="book-service.html?service=elder-caretaker" class="btn btn-green">Book Now</a>
+=======
+  <section id="services" class="py-20 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 reveal max-w-xl">
+        <p class="text-[13px] font-medium text-accent mb-2">Our services</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-3">Home healthcare services</h2>
+        <p class="text-[15px] text-ink-secondary leading-relaxed">Clear daily and per-visit pricing with verified caregivers matched to your schedule.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- Service 1: Home Nursing Attendant -->
+        <div class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-5">
+            <i data-lucide="heart-pulse"></i>
+          </div>
+          <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+            Home Nursing Attendant
+          </h3>
+          <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Daily personal care, medication reminders, and vitals monitoring for 12 or 24 hours.</p>
+          <div class="mt-6 pt-4 border-t border-black/[0.06]">
+            <div class="text-xs text-ink-muted mb-1">Starting from</div>
+            <div class="text-xl font-semibold text-ink mb-4">₹1,000<span class="text-[13px] font-normal text-ink-muted"> / day</span></div>
+            <a href="book-service.html?service=home-nursing-attendant" id="book-nursing" class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors" aria-label="Book Home Nursing Attendant">
+              Book service
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 2: Elder Caretaker -->
+        <div class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-5">
+            <i data-lucide="users"></i>
+          </div>
+          <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+            Elder Caretaker
+          </h3>
+          <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Mobility assistance, meal support, and companionship for seniors, 12 or 24 hours.</p>
+          <div class="mt-6 pt-4 border-t border-black/[0.06]">
+            <div class="text-xs text-ink-muted mb-1">Starting from</div>
+            <div class="text-xl font-semibold text-ink mb-4">₹1,200<span class="text-[13px] font-normal text-ink-muted"> / day</span></div>
+            <a href="book-service.html?service=elder-caretaker" id="book-elder" class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors" aria-label="Book Elder Caretaker">
+              Book service
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3: Post-Surgery Wound Dressing -->
+        <div class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-5">
+            <i data-lucide="scissors"></i>
+          </div>
+          <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+            Wound Dressing
+          </h3>
+          <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Certified nurse visits at home for sterile post-surgical dressing and wound care.</p>
+          <div class="mt-6 pt-4 border-t border-black/[0.06]">
+            <div class="text-xs text-ink-muted mb-1">Per visit</div>
+            <div class="text-xl font-semibold text-ink mb-4">₹500<span class="text-[13px] font-normal text-ink-muted"> / visit</span></div>
+            <a href="book-service.html?service=post-surgery-wound-dressing" id="book-wound" class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors" aria-label="Book Post-Surgery Wound Dressing">
+              Book service
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 4: Physiotherapy -->
+        <div class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-5">
+            <i data-lucide="activity"></i>
+          </div>
+          <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+            Physiotherapy Visits
+          </h3>
+          <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Licensed physiotherapist visits for guided rehabilitation and mobility recovery.</p>
+          <div class="mt-6 pt-4 border-t border-black/[0.06]">
+            <div class="text-xs text-ink-muted mb-1">Per visit</div>
+            <div class="text-xl font-semibold text-ink mb-4">₹800<span class="text-[13px] font-normal text-ink-muted"> / visit</span></div>
+            <a href="book-service.html?service=physiotherapy-visits" id="book-physio" class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors" aria-label="Book Physiotherapy Visits at Home">
+              Book service
+            </a>
+          </div>
+        </div>
+
+>>>>>>> Stashed changes
       </div>
 
       <div class="service-card">
@@ -639,6 +953,7 @@
   </section>
 
   <!-- ===== ABOUT US SECTION ===== -->
+<<<<<<< Updated upstream
   <section id="about" class="about-section">
     <div class="about-content">
       <div class="about-values">
@@ -649,6 +964,81 @@
         <div class="value-card" style="background-color: #e8f7ef;">
           <div class="emoji">&#129658;</div>
           <p>Medical Expertise</p>
+=======
+  <section id="about" class="py-20 bg-white border-y border-black/[0.06]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Visual side -->
+        <div class="lg:col-span-5 reveal order-2 lg:order-1">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-surface rounded-xl border border-black/[0.06] p-5">
+              <div class="w-9 h-9 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-3">
+                <i data-lucide="heart"></i>
+              </div>
+              <p class="font-semibold text-ink text-sm">Compassionate care</p>
+              <p class="text-xs text-ink-secondary mt-1">Attentive support tailored to daily routines.</p>
+            </div>
+            <div class="bg-surface rounded-xl border border-black/[0.06] p-5 mt-5">
+              <div class="w-9 h-9 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-3">
+                <i data-lucide="stethoscope"></i>
+              </div>
+              <p class="font-semibold text-ink text-sm">Clinical training</p>
+              <p class="text-xs text-ink-secondary mt-1">Qualified nurses and physiotherapists.</p>
+            </div>
+            <div class="bg-surface rounded-xl border border-black/[0.06] p-5">
+              <div class="w-9 h-9 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-3">
+                <i data-lucide="home"></i>
+              </div>
+              <p class="font-semibold text-ink text-sm">Home comfort</p>
+              <p class="text-xs text-ink-secondary mt-1">Recovery in familiar surroundings.</p>
+            </div>
+            <div class="bg-surface rounded-xl border border-black/[0.06] p-5 mt-5">
+              <div class="w-9 h-9 rounded-lg bg-accent-light text-accent flex items-center justify-center mb-3">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <p class="font-semibold text-ink text-sm">Verified staff</p>
+              <p class="text-xs text-ink-secondary mt-1">Background-checked before placement.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text side -->
+        <div class="lg:col-span-7 reveal order-1 lg:order-2">
+          <p class="text-[13px] font-medium text-accent mb-2">About us</p>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-5 leading-snug">
+            Dependable healthcare delivered with calm and consistency
+          </h2>
+          <p class="text-[15px] text-ink-secondary leading-relaxed mb-6">
+            We are a team of healthcare professionals dedicated to making recovery and elder care manageable at home. Families choose us for verified caregivers, clear shift options, and straightforward pricing.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-ink">
+              <span class="w-6 h-6 rounded-md bg-accent-light text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </span>
+              <span class="text-[14px] font-medium">Certified and background-verified caregivers</span>
+            </li>
+            <li class="flex items-center gap-3 text-ink">
+              <span class="w-6 h-6 rounded-md bg-accent-light text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </span>
+              <span class="text-[14px] font-medium">Flexible 12-hour and 24-hour care options</span>
+            </li>
+            <li class="flex items-center gap-3 text-ink">
+              <span class="w-6 h-6 rounded-md bg-accent-light text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </span>
+              <span class="text-[14px] font-medium">Care plans matched to patient needs and language</span>
+            </li>
+            <li class="flex items-center gap-3 text-ink">
+              <span class="w-6 h-6 rounded-md bg-accent-light text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </span>
+              <span class="text-[14px] font-medium">Transparent pricing with no hidden charges</span>
+            </li>
+          </ul>
+>>>>>>> Stashed changes
         </div>
         <div class="value-card" style="background-color: #e8f7ef;">
           <div class="emoji">&#127968;</div>
@@ -672,6 +1062,7 @@
     </div>
   </section>
 
+<<<<<<< Updated upstream
   <!-- ===== CONTACT SECTION ===== -->
   <section id="contact" class="section">
     <div class="contact-grid">
@@ -681,6 +1072,52 @@
         <div class="contact-item">
           <strong>Phone</strong>
           <span>+91 98737 43210</span>
+=======
+  <!-- ===== CONTACT US SECTION ===== -->
+  <section id="contact" class="py-20 bg-surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+        <!-- Left: Info -->
+        <div class="lg:col-span-5 reveal">
+          <p class="text-[13px] font-medium text-accent mb-2">Contact us</p>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-4">
+            Get in touch with our team
+          </h2>
+          <p class="text-[15px] text-ink-secondary mb-8 leading-relaxed">
+            Have questions about a shift or need help choosing the right service? Reach out and we will assist you.
+          </p>
+
+          <div class="space-y-5">
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-white border border-black/[0.06] text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="phone"></i>
+              </div>
+              <div>
+                <p class="text-[13px] font-medium text-ink">Phone</p>
+                <p class="text-[14px] text-ink-secondary">+91 98737 43210</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-white border border-black/[0.06] text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="mail"></i>
+              </div>
+              <div>
+                <p class="text-[13px] font-medium text-ink">Email</p>
+                <p class="text-[14px] text-ink-secondary">support@careathome.in</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-white border border-black/[0.06] text-accent flex items-center justify-center flex-shrink-0">
+                <i data-lucide="clock"></i>
+              </div>
+              <div>
+                <p class="text-[13px] font-medium text-ink">Support hours</p>
+                <p class="text-[14px] text-ink-secondary">Mon–Sun, 6 AM – 10 PM</p>
+              </div>
+            </div>
+          </div>
+>>>>>>> Stashed changes
         </div>
         <div class="contact-item">
           <strong>Email</strong>
@@ -692,6 +1129,7 @@
         </div>
       </div>
 
+<<<<<<< Updated upstream
       <div class="contact-form-wrap">
         <h3>Send us a Message</h3>
         <form id="contact-form">
@@ -703,6 +1141,42 @@
             <div class="form-group">
               <label for="contact-email">Email Address *</label>
               <input type="email" id="contact-email" class="form-input" placeholder="you@email.com" required>
+=======
+        <!-- Right: Form -->
+        <div class="lg:col-span-7 reveal">
+          <div class="bg-white rounded-xl border border-black/[0.06] p-6 sm:p-8">
+            <h3 class="text-lg font-semibold text-ink mb-5">Send us a message</h3>
+            <form id="contact-form" novalidate>
+              <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label for="contact-name" class="block text-[13px] font-medium text-ink mb-1.5">Full name <span class="text-red-600">*</span></label>
+                  <input type="text" id="contact-name" name="fullName" class="form-input" placeholder="Anand Mishra" required aria-label="Full Name" />
+                </div>
+                <div>
+                  <label for="contact-email" class="block text-[13px] font-medium text-ink mb-1.5">Email address <span class="text-red-600">*</span></label>
+                  <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@email.com" required aria-label="Email Address" />
+                </div>
+              </div>
+              <div class="mb-4">
+                <label for="contact-phone" class="block text-[13px] font-medium text-ink mb-1.5">Phone number</label>
+                <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+91 98765 43210" aria-label="Phone Number" />
+              </div>
+              <div class="mb-6">
+                <label for="contact-message" class="block text-[13px] font-medium text-ink mb-1.5">Message <span class="text-red-600">*</span></label>
+                <textarea id="contact-message" name="message" rows="4" class="form-input resize-none" placeholder="How can we help you?" required aria-label="Message"></textarea>
+              </div>
+              <button type="submit" id="contact-submit" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-3 rounded-lg w-full transition-colors inline-flex items-center justify-center gap-2" aria-label="Send Message">
+                <i data-lucide="send"></i>Send message
+              </button>
+            </form>
+
+            <!-- Success message -->
+            <div id="contact-success" class="hidden mt-5 p-4 bg-accent-light border border-accent/20 rounded-lg flex items-center gap-3" role="alert" aria-live="polite">
+              <div class="w-8 h-8 rounded-md bg-accent text-white flex items-center justify-center flex-shrink-0">
+                <i data-lucide="check"></i>
+              </div>
+              <p class="text-accent-dark font-medium text-sm">Thank you. We will get back to you shortly.</p>
+>>>>>>> Stashed changes
             </div>
           </div>
           <div class="form-group">
@@ -723,6 +1197,7 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
+<<<<<<< Updated upstream
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
@@ -737,6 +1212,57 @@
           <li><a href="#about">About Us</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
+=======
+  <footer class="bg-dark text-white pt-14 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </div>
+            <span class="text-base font-semibold tracking-tight">Care At Home</span>
+          </div>
+          <p class="text-white/60 text-[14px] leading-relaxed max-w-xs">
+            Providing dependable home healthcare services with trained caregivers right at your doorstep.
+          </p>
+          <div class="flex gap-4 mt-5 text-[13px] text-white/65">
+            <a href="https://www.facebook.com/01parz1val/" aria-label="Facebook" class="hover:text-white transition-colors">Facebook</a>
+            <a href="https://www.instagram.com/parzival.37/" aria-label="Instagram" class="hover:text-white transition-colors">Instagram</a>
+            <a href="https://x.com/msanaullah451" aria-label="X (Twitter)" class="hover:text-white transition-colors">X</a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Quick links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#hero" class="text-white/60 text-[13px] hover:text-white transition-colors">Home</a></li>
+            <li><a href="#services" class="text-white/60 text-[13px] hover:text-white transition-colors">Services</a></li>
+            <li><a href="#about" class="text-white/60 text-[13px] hover:text-white transition-colors">About us</a></li>
+            <li><a href="#contact" class="text-white/60 text-[13px] hover:text-white transition-colors">Contact us</a></li>
+          </ul>
+        </div>
+
+        <!-- Services links -->
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="book-service.html?service=home-nursing-attendant" class="text-white/60 text-[13px] hover:text-white transition-colors">Home nursing</a></li>
+            <li><a href="book-service.html?service=elder-caretaker" class="text-white/60 text-[13px] hover:text-white transition-colors">Elder caretaker</a></li>
+            <li><a href="book-service.html?service=post-surgery-wound-dressing" class="text-white/60 text-[13px] hover:text-white transition-colors">Wound dressing</a></li>
+            <li><a href="book-service.html?service=physiotherapy-visits" class="text-white/60 text-[13px] hover:text-white transition-colors">Physiotherapy</a></li>
+            <li><a href="fee-calculator.html" class="text-white/60 text-[13px] hover:text-white transition-colors">Fee calculator</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/45">
+        <p>© 2026 Care At Home. All rights reserved.</p>
+>>>>>>> Stashed changes
       </div>
       <div class="footer-links">
         <h4>Services</h4>
@@ -755,6 +1281,7 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
+<<<<<<< Updated upstream
     // --- Mobile menu toggle ---
     var hamburger = document.getElementById("hamburger");
     var mobileMenu = document.getElementById("mobile-menu");
@@ -780,6 +1307,63 @@
       setTimeout(function () {
         contactSuccess.style.display = "none";
       }, 4000);
+=======
+    // Initialize Lucide icons for static elements
+    lucide.createIcons();
+
+    // ── Mobile menu toggle ────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('hamburger-open-icon');
+    const closeIcon = document.getElementById('hamburger-close-icon');
+
+    function setMobileMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      openIcon.classList.toggle('hidden', open);
+      closeIcon.classList.toggle('hidden', !open);
+    }
+
+    hamburger.addEventListener('click', () => {
+      setMobileMenu(!mobileMenu.classList.contains('open'));
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => setMobileMenu(false));
+    });
+
+    // ── Scroll reveal ─────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Contact form submit ───────────────────────────────
+    const contactForm = document.getElementById('contact-form');
+    const contactSuccess = document.getElementById('contact-success');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+      const btn = document.getElementById('contact-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(() => {
+        contactForm.reset();
+        btn.disabled = false;
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send message';
+        contactSuccess.classList.remove('hidden');
+        setTimeout(() => contactSuccess.classList.add('hidden'), 5000);
+      }, 900);
+>>>>>>> Stashed changes
     });
   </script>
 

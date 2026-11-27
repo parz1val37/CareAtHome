@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book a Service — Care At Home</title>
+<<<<<<< Updated upstream
   <style>
     /* ---- Basic Reset ---- */
     * {
@@ -44,8 +45,58 @@
 
     .logo span {
       color: #4A90D9;
+=======
+  <meta name="description" content="Book a professional home healthcare service with Care At Home. Choose from nursing, elder care, wound dressing, and physiotherapy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#faf9f7',
+            accent: {
+              DEFAULT: '#2a7d6a',
+              dark: '#1f6354',
+              light: '#eef6f3',
+            },
+            ink: {
+              DEFAULT: '#1a1a1a',
+              secondary: '#5c5c5c',
+              muted: '#9a9a9a',
+            },
+            dark: {
+              DEFAULT: '#1a1d21',
+              raised: '#24272c',
+            }
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
     }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    * { font-family: 'DM Sans', sans-serif; }
+    body { background-color: #faf9f7; color: #1a1a1a; font-size: 15px; }
 
+    svg.lucide { width: 18px; height: 18px; stroke-width: 1.5; }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height 0.25s ease, opacity 0.2s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+>>>>>>> Stashed changes
+    }
+    #mobile-menu.open { max-height: 360px; opacity: 1; }
+
+<<<<<<< Updated upstream
     .nav-links {
       display: flex;
       gap: 20px;
@@ -188,13 +239,39 @@
       gap: 8px;
     }
 
+=======
+    /* Form inputs */
+    .form-input {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      padding: 0.625rem 0.875rem;
+      width: 100%;
+      font-size: 15px;
+      background: #ffffff;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-input:focus {
+      border-color: #2a7d6a;
+      box-shadow: 0 0 0 3px rgba(42, 125, 106, 0.12);
+    }
+    .form-input:disabled {
+      background: #f3f2ef;
+      color: #9a9a9a;
+      cursor: not-allowed;
+    }
+
+    /* Step indicator */
+>>>>>>> Stashed changes
     .step-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+<<<<<<< Updated upstream
       font-weight: bold;
       font-size: 14px;
       color: #fff;
@@ -207,10 +284,29 @@
 
     .step-dot.done {
       background-color: #4CAF80;
+=======
+      font-weight: 600;
+      font-size: 13px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+>>>>>>> Stashed changes
     }
-
+    .step-dot.active {
+      background-color: #2a7d6a;
+      color: #ffffff;
+    }
+    .step-dot.done {
+      background-color: #eef6f3;
+      color: #1f6354;
+      border: 1px solid rgba(42, 125, 106, 0.25);
+    }
+    .step-dot.pending {
+      background-color: #efeeea;
+      color: #9a9a9a;
+    }
     .step-line {
       flex: 1;
+<<<<<<< Updated upstream
       height: 3px;
       background-color: #ddd;
     }
@@ -368,20 +464,46 @@
       width: 260px;
       background-color: #fff;
       cursor: pointer;
+=======
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.08);
+      transition: background-color 0.25s ease;
+    }
+    .step-line.done {
+      background-color: #2a7d6a;
     }
 
+    /* Nurse card */
+    .nurse-card {
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+>>>>>>> Stashed changes
+    }
     .nurse-card:hover {
+<<<<<<< Updated upstream
       border-color: #4A90D9;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+=======
+      border-color: rgba(42, 125, 106, 0.45);
+>>>>>>> Stashed changes
     }
-
     .nurse-card.selected {
+<<<<<<< Updated upstream
       border-color: #4CAF80;
       background-color: #f0fbf5;
+=======
+      border-color: #2a7d6a;
+      background-color: rgba(238, 246, 243, 0.45);
+      box-shadow: 0 0 0 1px #2a7d6a;
+>>>>>>> Stashed changes
     }
 
     .nurse-photo {
       width: 100%;
+<<<<<<< Updated upstream
       height: 200px;
       object-fit: cover;
       object-position: top center;
@@ -610,6 +732,86 @@
     <div class="nav-buttons">
       <a href="fee-calculator.html" class="btn btn-outline">Fee Calculator</a>
       <a href="book-service.html" class="btn btn-primary">Book a Service</a>
+=======
+      height: 240px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f3f2ef;
+      margin-bottom: 14px;
+    }
+    .nurse-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    #nurse-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      #nurse-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      #nurse-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    #confirm-nurse-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-surface text-ink antialiased">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.06]" role="navigation" aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <a href="index.html" class="flex items-center gap-2.5" aria-label="Care At Home — Home">
+          <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+          </div>
+          <span class="text-base font-semibold tracking-tight text-ink">Care At Home</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-7">
+          <a href="index.html#hero" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Home</a>
+          <a href="index.html#services" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Services</a>
+          <a href="index.html#about" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">About us</a>
+          <a href="index.html#contact" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2.5">
+          <a href="fee-calculator.html" class="text-[13px] font-medium text-ink-secondary hover:text-ink px-3.5 py-2 rounded-lg border border-black/[0.1] hover:border-black/[0.2] bg-white transition-colors inline-flex items-center gap-1.5" aria-label="Open Fee Calculator">
+            <i data-lucide="calculator"></i>Fee calculator
+          </a>
+          <a href="book-service.html" class="text-[13px] font-medium text-white bg-accent hover:bg-accent-dark px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5" aria-label="Book a Service">
+            Book a service
+          </a>
+        </div>
+
+        <button id="hamburger" class="md:hidden p-2 rounded-lg text-ink-secondary hover:text-ink hover:bg-black/[0.04] transition-colors" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg id="hamburger-open-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="hamburger-close-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-black/[0.06] px-4">
+      <div class="flex flex-col gap-2 py-4">
+        <a href="index.html#hero" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">Home</a>
+        <a href="index.html#services" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">Services</a>
+        <a href="index.html#about" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">About us</a>
+        <a href="index.html#contact" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">Contact</a>
+        <hr class="border-black/[0.06] my-1.5" />
+        <a href="fee-calculator.html" class="text-sm font-medium text-ink px-4 py-2.5 rounded-lg border border-black/[0.1] text-center">Fee calculator</a>
+        <a href="book-service.html" class="text-sm font-medium text-white bg-accent px-4 py-2.5 rounded-lg text-center">Book a service</a>
+      </div>
+>>>>>>> Stashed changes
     </div>
     <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
@@ -623,15 +825,28 @@
   </div>
 
   <!-- ===== PAGE HEADER ===== -->
+<<<<<<< Updated upstream
   <div class="page-header">
     <div class="breadcrumb">
       <a href="index.html">Home</a> &gt; <span>Book a Service</span>
+=======
+  <div class="bg-white border-b border-black/[0.06]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <nav class="flex items-center gap-2 text-[13px] text-ink-muted mb-4" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-ink transition-colors">Home</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        <span class="text-ink font-medium">Book a service</span>
+      </nav>
+      <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-2">Book a service</h1>
+      <p class="text-[15px] text-ink-secondary">Select a service, enter patient details, and choose an available nurse.</p>
+>>>>>>> Stashed changes
     </div>
     <h1>Book a Service</h1>
     <p>Select your preferred service and fill in patient details. We'll reach out to confirm your booking.</p>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
+<<<<<<< Updated upstream
   <div class="main-container">
 
     <!-- Step Indicator -->
@@ -682,6 +897,205 @@
 
       <div style="text-align: right;">
         <button class="btn btn-primary" id="next-btn" disabled>Continue &rarr;</button>
+=======
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-20">
+
+    <!-- Step indicator -->
+    <div class="flex items-center gap-3 mb-8" role="progressbar" aria-label="Booking steps" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" id="step-indicator">
+      <div class="step-dot active" id="step1-dot">1</div>
+      <div class="step-line" id="step-line-1"></div>
+      <div class="step-dot pending" id="step2-dot">2</div>
+      <div class="step-line" id="step-line-2"></div>
+      <div class="step-dot pending" id="step3-dot">3</div>
+      <div class="ml-2 text-[13px] font-medium text-ink-secondary hidden sm:block" id="step-label">Step 1 of 3 — Service selection</div>
+    </div>
+
+    <div class="bg-white rounded-xl border border-black/[0.06] overflow-hidden">
+
+      <!-- ── STEP 1: Service Selection ── -->
+      <div id="step1" class="p-6 sm:p-8">
+        <h2 class="text-lg font-semibold text-ink mb-6">Select your service</h2>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-6">
+          <div>
+            <label for="service-select" class="block text-[13px] font-medium text-ink mb-1.5">
+              Service <span class="text-red-600">*</span>
+            </label>
+            <select id="service-select" class="form-input" required aria-label="Select a service" aria-required="true">
+              <option value="">— Choose a service —</option>
+              <option value="home-nursing-attendant">Home Nursing Attendant</option>
+              <option value="elder-caretaker">Elder Caretaker</option>
+              <option value="post-surgery-wound-dressing">Post-Surgery Wound Dressing</option>
+              <option value="physiotherapy-visits">Physiotherapy Visits at Home</option>
+            </select>
+          </div>
+
+          <div id="shift-wrapper" class="hidden">
+            <label for="shift-select" class="block text-[13px] font-medium text-ink mb-1.5">
+              Shift type <span class="text-red-600">*</span>
+            </label>
+            <select id="shift-select" class="form-input" aria-label="Select shift type">
+              <option value="12hr">12-Hour Duty</option>
+              <option value="24hr">24-Hour Duty</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic service info card -->
+        <div id="service-info" class="hidden rounded-xl border border-black/[0.08] bg-surface p-5 mb-6">
+          <div class="flex items-start gap-4">
+            <div id="service-icon-box" class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center flex-shrink-0"></div>
+            <div class="flex-1 min-w-0">
+              <h3 id="service-title" class="font-semibold text-ink mb-1 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+                <span id="service-title-text"></span>
+              </h3>
+              <p id="service-desc" class="text-ink-secondary text-[14px] leading-relaxed"></p>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-black/[0.06] flex items-center justify-between">
+            <span class="text-[13px] text-ink-secondary">Estimated rate</span>
+            <span id="service-price" class="text-base font-semibold text-accent-dark bg-accent-light px-3.5 py-1 rounded-md"></span>
+          </div>
+        </div>
+
+        <!-- Placeholder when nothing selected -->
+        <div id="service-placeholder" class="rounded-xl border border-dashed border-black/[0.14] p-8 text-center text-ink-muted mb-6">
+          <i data-lucide="mouse-pointer-click" class="mx-auto mb-2.5 opacity-60"></i>
+          <p class="text-[14px]">Select a service above to see details and pricing.</p>
+        </div>
+
+        <div class="flex justify-end">
+          <button id="next-btn" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-2.5 rounded-lg opacity-45 cursor-not-allowed transition-colors inline-flex items-center gap-2" disabled aria-label="Proceed to booking form">
+            Continue
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: Booking Form ── -->
+      <div id="step2" class="hidden p-6 sm:p-8">
+        <h2 class="text-lg font-semibold text-ink mb-6">Patient details</h2>
+
+        <!-- Selected service summary -->
+        <div class="bg-surface rounded-xl p-4 mb-6 flex items-center gap-4 border border-black/[0.06]">
+          <div id="summary-icon-box" class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center flex-shrink-0"></div>
+          <div class="min-w-0">
+            <p class="text-xs text-ink-muted">Selected service</p>
+            <p class="font-semibold text-ink text-sm truncate" id="summary-service"></p>
+            <p class="text-accent-dark font-semibold text-[13px]" id="summary-price"></p>
+          </div>
+          <button id="change-service-btn" class="ml-auto text-[13px] text-accent font-medium hover:underline inline-flex items-center gap-1 flex-shrink-0" aria-label="Change selected service">
+            <i data-lucide="pencil" class="w-3.5 h-3.5"></i> Change
+          </button>
+        </div>
+
+        <form id="booking-form" novalidate>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="book-name" class="block text-[13px] font-medium text-ink mb-1.5">Patient full name <span class="text-red-600">*</span></label>
+              <input type="text" id="book-name" name="fullName" class="form-input" placeholder="e.g. Anand Mishra" required aria-label="Full Name" />
+            </div>
+            <div>
+              <label for="book-age" class="block text-[13px] font-medium text-ink mb-1.5">Patient age <span class="text-red-600">*</span></label>
+              <input type="number" id="book-age" name="Age" class="form-input" placeholder="e.g. 67" required aria-label="Patient Age" />
+            </div>
+            <div>
+              <label for="book-email" class="block text-[13px] font-medium text-ink mb-1.5">Email address <span class="text-red-600">*</span></label>
+              <input type="email" id="book-email" name="email" class="form-input" placeholder="you@email.com" required aria-label="Email Address" />
+            </div>
+            <div>
+              <label for="book-phone" class="block text-[13px] font-medium text-ink mb-1.5">Phone number <span class="text-red-600">*</span></label>
+              <input type="tel" id="book-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required aria-label="Phone Number" />
+            </div>
+            <div>
+              <label for="book-address" class="block text-[13px] font-medium text-ink mb-1.5">Address <span class="text-red-600">*</span></label>
+              <input type="text" id="book-address" name="address" class="form-input" placeholder="House / Flat, Street, Area" required aria-label="Street Address" />
+            </div>
+            <div>
+              <label for="book-city" class="block text-[13px] font-medium text-ink mb-1.5">City <span class="text-red-600">*</span></label>
+              <input type="text" id="book-city" name="city" class="form-input" placeholder="e.g. Mumbai" required aria-label="City" />
+            </div>
+            <div>
+              <label for="book-state" class="block text-[13px] font-medium text-ink mb-1.5">State <span class="text-red-600">*</span></label>
+              <input type="text" id="book-state" name="state" class="form-input" placeholder="e.g. Maharashtra" required aria-label="State" />
+            </div>
+            <div>
+              <label for="book-zip" class="block text-[13px] font-medium text-ink mb-1.5">PIN / ZIP code <span class="text-red-600">*</span></label>
+              <input type="text" id="book-zip" name="zip" class="form-input" placeholder="e.g. 400001" required aria-label="ZIP Code" />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-black/[0.06]">
+            <button type="button" id="back-btn" class="text-sm font-medium text-ink-secondary hover:text-ink px-5 py-2.5 rounded-lg border border-black/[0.12] hover:border-black/[0.2] bg-white transition-colors inline-flex items-center gap-2" aria-label="Go back to service selection">
+              <i data-lucide="arrow-left"></i>Back
+            </button>
+            <button type="button" id="to-step3-btn" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-2.5 rounded-lg transition-colors inline-flex items-center gap-2" aria-label="Continue to choose nurse">
+              Continue
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ── STEP 3: Choose Your Nurse ── -->
+      <div id="step3" class="hidden p-6 sm:p-8">
+        <h2 class="text-lg font-semibold text-ink mb-1">Choose your nurse</h2>
+        <p class="text-ink-secondary text-[14px] mb-5">All listed nurses are verified and matched to your selected service.</p>
+
+        <!-- Service + Price header -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-7 p-4 rounded-xl bg-surface border border-black/[0.06]">
+          <div class="flex items-center gap-3">
+            <div id="step3-summary-icon-box" class="w-10 h-10 rounded-lg bg-accent-light text-accent flex items-center justify-center flex-shrink-0"></div>
+            <div>
+              <p class="text-xs text-ink-muted">Selected service</p>
+              <p class="font-semibold text-ink text-sm" id="step3-summary-service"></p>
+            </div>
+          </div>
+          <div class="bg-accent-light text-accent-dark px-3.5 py-1.5 rounded-md text-sm font-semibold">
+            <span id="step3-price-text"></span>
+          </div>
+        </div>
+
+        <!-- Nurse cards -->
+        <div id="nurse-grid" class="mb-6"></div>
+
+        <!-- Empty state -->
+        <div id="no-nurses" class="hidden rounded-xl border border-dashed border-black/[0.14] p-10 text-center text-ink-muted mb-6">
+          <i data-lucide="user-x" class="mx-auto mb-3 opacity-50"></i>
+          <p class="font-medium text-ink mb-1">No nurses available</p>
+          <p class="text-[14px]">No nurses match the selected service and shift. Please go back and adjust your selection.</p>
+        </div>
+
+        <!-- Step 3 actions -->
+        <div class="flex items-center justify-between gap-3 pt-6 border-t border-black/[0.06]">
+          <button type="button" id="back-to-step2-btn" class="text-sm font-medium text-ink-secondary hover:text-ink px-5 py-2.5 rounded-lg border border-black/[0.12] hover:border-black/[0.2] bg-white transition-colors inline-flex items-center gap-2" aria-label="Go back to patient details">
+            <i data-lucide="arrow-left"></i>Back
+          </button>
+          <button type="button" id="confirm-nurse-btn" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-2.5 rounded-lg transition-colors inline-flex items-center gap-2" disabled aria-label="Confirm Booking">
+            <i data-lucide="check"></i>Confirm booking
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Success Message ── -->
+    <div id="booking-success" class="hidden mt-6 bg-white rounded-xl border border-black/[0.06] p-10 text-center">
+      <div class="w-12 h-12 rounded-lg bg-accent-light text-accent flex items-center justify-center mx-auto mb-5">
+        <i data-lucide="check-circle-2"></i>
+      </div>
+      <h2 class="text-xl font-semibold text-ink mb-2">Booking submitted</h2>
+      <p class="text-[15px] text-ink-secondary mb-2 max-w-md mx-auto">Your booking request has been received. Our coordinator will contact you shortly to confirm the visit.</p>
+      <p class="text-sm font-medium text-accent-dark mb-6" id="success-nurse-info"></p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="index.html" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors inline-flex items-center gap-2" aria-label="Return to Home">
+          Back to home
+        </a>
+        <button id="book-another" class="text-sm font-medium text-ink-secondary hover:text-ink px-5 py-2.5 rounded-lg border border-black/[0.12] hover:border-black/[0.2] bg-white transition-colors" aria-label="Book another service">
+          Book another service
+        </button>
+>>>>>>> Stashed changes
       </div>
     </div>
 
@@ -792,6 +1206,7 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
+<<<<<<< Updated upstream
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
@@ -806,6 +1221,47 @@
           <li><a href="index.html#about">About Us</a></li>
           <li><a href="index.html#contact">Contact Us</a></li>
         </ul>
+=======
+  <footer class="bg-dark text-white pt-14 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </div>
+            <span class="text-base font-semibold tracking-tight">Care At Home</span>
+          </div>
+          <p class="text-white/60 text-[14px] leading-relaxed max-w-xs">Providing dependable home healthcare services with trained caregivers right at your doorstep.</p>
+          <div class="flex gap-4 mt-5 text-[13px] text-white/65">
+            <a href="https://www.facebook.com/01parz1val/" aria-label="Facebook" class="hover:text-white transition-colors">Facebook</a>
+            <a href="https://www.instagram.com/parzival.37/" aria-label="Instagram" class="hover:text-white transition-colors">Instagram</a>
+            <a href="https://x.com/msanaullah451" aria-label="X (Twitter)" class="hover:text-white transition-colors">X</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Quick links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="index.html#hero" class="text-white/60 text-[13px] hover:text-white transition-colors">Home</a></li>
+            <li><a href="index.html#services" class="text-white/60 text-[13px] hover:text-white transition-colors">Services</a></li>
+            <li><a href="index.html#about" class="text-white/60 text-[13px] hover:text-white transition-colors">About us</a></li>
+            <li><a href="index.html#contact" class="text-white/60 text-[13px] hover:text-white transition-colors">Contact us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="book-service.html?service=home-nursing-attendant" class="text-white/60 text-[13px] hover:text-white transition-colors">Home nursing</a></li>
+            <li><a href="book-service.html?service=elder-caretaker" class="text-white/60 text-[13px] hover:text-white transition-colors">Elder caretaker</a></li>
+            <li><a href="book-service.html?service=post-surgery-wound-dressing" class="text-white/60 text-[13px] hover:text-white transition-colors">Wound dressing</a></li>
+            <li><a href="book-service.html?service=physiotherapy-visits" class="text-white/60 text-[13px] hover:text-white transition-colors">Physiotherapy</a></li>
+            <li><a href="fee-calculator.html" class="text-white/60 text-[13px] hover:text-white transition-colors">Fee calculator</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.08] pt-6 text-xs text-white/45">
+        <p>© 2026 Care At Home. All rights reserved.</p>
+>>>>>>> Stashed changes
       </div>
       <div class="footer-links">
         <h4>Services</h4>
@@ -824,33 +1280,73 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
+<<<<<<< Updated upstream
     // ===== SERVICE DATA =====
     var services = {
       "home-nursing-attendant": {
         name: "Home Nursing Attendant",
         specialty: "Home Nursing Attendant",
         description: "We provide trained and compassionate home nursing attendants for both 12-hour and 24-hour shifts. Our attendants assist with daily activities, medication reminders, mobility support, and companionship.",
+=======
+    lucide.createIcons();
+
+    // Inline SVG icons for dynamic service summaries (avoids re-running lucide on dynamic DOM)
+    const serviceIcons = {
+      'home-nursing-attendant': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>',
+      'elder-caretaker': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      'post-surgery-wound-dressing': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>',
+      'physiotherapy-visits': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>'
+    };
+
+    // ── Service Data ──────────────────────────────────────
+    const services = {
+      'home-nursing-attendant': {
+        name: 'Home Nursing Attendant',
+        specialty: 'Home Nursing Attendant',
+        description: 'Trained and compassionate home nursing attendants for 12-hour and 24-hour shifts. Attendants assist with daily activities, medication reminders, mobility support, and vitals monitoring.',
+>>>>>>> Stashed changes
         hasShift: true,
         prices: { "12hr": "₹1,000 / day", "24hr": "₹1,800 / day" }
       },
+<<<<<<< Updated upstream
       "elder-caretaker": {
         name: "Elder Caretaker",
         specialty: "Elder Caretaker",
         description: "Our elder caretakers offer comprehensive support for seniors — meal preparation, personal care, light housekeeping, companionship, and health monitoring. Available in 12 and 24 hour care.",
+=======
+      'elder-caretaker': {
+        name: 'Elder Caretaker',
+        specialty: 'Elder Caretaker',
+        description: 'Comprehensive support for seniors, including meal preparation, personal care, light housekeeping, companionship, and health monitoring across 12-hour and 24-hour shifts.',
+>>>>>>> Stashed changes
         hasShift: true,
         prices: { "12hr": "₹1,200 / day", "24hr": "₹2,000 / day" }
       },
+<<<<<<< Updated upstream
       "post-surgery-wound-dressing": {
         name: "Post-Surgery Wound Dressing",
         specialty: "Post-Surgery Wound Dressing",
         description: "Professional wound care services by certified nurses at your doorstep. We handle post-surgical wound dressing, dressing changes, and wound care to promote healing and prevent infections.",
+=======
+      'post-surgery-wound-dressing': {
+        name: 'Post-Surgery Wound Dressing',
+        specialty: 'Post-Surgery Wound Dressing',
+        description: 'Wound care provided by certified nurses at your doorstep, handling post-surgical dressing changes and sterile care to support healing and prevent infection.',
+>>>>>>> Stashed changes
         hasShift: false,
         prices: { "default": "₹500 / visit" }
       },
+<<<<<<< Updated upstream
       "physiotherapy-visits": {
         name: "Physiotherapy Visits at Home",
         specialty: "Physiotherapy Visits at Home",
         description: "Receive expert physiotherapy care at home. Our licensed physiotherapists provide personalized treatment plans including therapeutic exercises, manual therapy, and rehabilitation programs.",
+=======
+      'physiotherapy-visits': {
+        name: 'Physiotherapy Visits at Home',
+        specialty: 'Physiotherapy Visits at Home',
+        description: 'Licensed physiotherapists visit your home with personalized treatment plans, therapeutic exercises, manual therapy, and mobility rehabilitation.',
+>>>>>>> Stashed changes
         hasShift: false,
         prices: { "default": "₹800 / visit" }
       }
@@ -858,9 +1354,15 @@
 
     var shiftLabels = { "12hr": "12-Hour Duty", "24hr": "24-Hour Duty" };
 
+<<<<<<< Updated upstream
     // ===== NURSE DATA =====
     var allNurses = [];
     var selectedNurse = null;
+=======
+    // ── Nurse state ───────────────────────────────────────
+    let allNurses = [];
+    let selectedNurse = null;
+>>>>>>> Stashed changes
 
     // Load nurse data from JSON file
     function loadNurses() {
@@ -926,7 +1428,56 @@
       return s.prices["default"];
     }
 
+<<<<<<< Updated upstream
     // Update the service info box when selection changes
+=======
+    // ── Elements ──────────────────────────────────────────
+    const serviceSelect = document.getElementById('service-select');
+    const shiftWrapper = document.getElementById('shift-wrapper');
+    const shiftSelect = document.getElementById('shift-select');
+    const serviceInfo = document.getElementById('service-info');
+    const servicePlaceholder = document.getElementById('service-placeholder');
+    const nextBtn = document.getElementById('next-btn');
+
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const step1Dot = document.getElementById('step1-dot');
+    const step2Dot = document.getElementById('step2-dot');
+    const step3Dot = document.getElementById('step3-dot');
+    const stepLine1 = document.getElementById('step-line-1');
+    const stepLine2 = document.getElementById('step-line-2');
+    const stepLabel = document.getElementById('step-label');
+    const stepIndicator = document.getElementById('step-indicator');
+
+    const summaryIconBox = document.getElementById('summary-icon-box');
+    const summaryService = document.getElementById('summary-service');
+    const summaryPrice = document.getElementById('summary-price');
+
+    const backBtn = document.getElementById('back-btn');
+    const changeBtn = document.getElementById('change-service-btn');
+    const toStep3Btn = document.getElementById('to-step3-btn');
+    const backToStep2Btn = document.getElementById('back-to-step2-btn');
+    const confirmNurseBtn = document.getElementById('confirm-nurse-btn');
+
+    const nurseGrid = document.getElementById('nurse-grid');
+    const noNurses = document.getElementById('no-nurses');
+
+    const bookingForm = document.getElementById('booking-form');
+    const bookingSuccess = document.getElementById('booking-success');
+    const bookAnother = document.getElementById('book-another');
+    const successNurseInfo = document.getElementById('success-nurse-info');
+
+    // ── Helpers ───────────────────────────────────────────
+    function getPrice(svcKey) {
+      if (!svcKey) return '';
+      const s = services[svcKey];
+      if (!s) return '';
+      if (s.hasShift) return s.prices[shiftSelect.value] || s.prices['12hr'];
+      return s.prices.default;
+    }
+
+>>>>>>> Stashed changes
     function updateServiceInfo() {
       var key = serviceSelect.value;
 
@@ -935,9 +1486,14 @@
         servicePlaceholder.classList.remove("hidden");
         shiftWrapper.classList.add("hidden");
         nextBtn.disabled = true;
+<<<<<<< Updated upstream
+=======
+        nextBtn.classList.add('opacity-45', 'cursor-not-allowed');
+>>>>>>> Stashed changes
         return;
       }
 
+<<<<<<< Updated upstream
       var s = services[key];
 
       // Show or hide shift dropdown
@@ -945,6 +1501,25 @@
         shiftWrapper.classList.remove("hidden");
       } else {
         shiftWrapper.classList.add("hidden");
+=======
+      document.getElementById('service-icon-box').innerHTML = serviceIcons[key] || '';
+      document.getElementById('service-title-text').textContent = s.name;
+      document.getElementById('service-desc').textContent = s.description;
+      document.getElementById('service-price').textContent = getPrice(key);
+
+      serviceInfo.classList.remove('hidden');
+      nextBtn.disabled = false;
+      nextBtn.classList.remove('opacity-45', 'cursor-not-allowed');
+    }
+
+    function revalidateNurseSelection() {
+      if (!selectedNurse) return;
+      const filtered = filterNurses();
+      const stillValid = filtered.some(n => n.name === selectedNurse.name);
+      if (!stillValid) {
+        selectedNurse = null;
+        confirmNurseBtn.disabled = true;
+>>>>>>> Stashed changes
       }
 
       // Fill in service info
@@ -966,6 +1541,7 @@
       var dots = [step1Dot, step2Dot, step3Dot];
       var lines = [stepLine1, stepLine2];
 
+<<<<<<< Updated upstream
       for (var i = 0; i < 3; i++) {
         var n = i + 1;
         dots[i].className = "step-dot";
@@ -978,6 +1554,12 @@
           dots[i].textContent = n;
         } else {
           dots[i].textContent = n;
+=======
+      return allNurses.filter(nurse => {
+        if (!nurse.specialties || !nurse.specialties.includes(selectedSpecialty)) return false;
+        if (selectedShiftLabel && Array.isArray(nurse.shift) && nurse.shift.length > 0) {
+          return nurse.shift.includes(selectedShiftLabel);
+>>>>>>> Stashed changes
         }
       }
 
@@ -986,6 +1568,7 @@
       stepLine2.className = step > 2 ? "step-line done" : "step-line";
     }
 
+<<<<<<< Updated upstream
     // Filter nurses based on selected service and shift
     function filterNurses() {
       var key = serviceSelect.value;
@@ -1013,6 +1596,19 @@
         result.push(nurse);
       }
       return result;
+=======
+    // ── Star rating SVG ───────────────────────────────────
+    function starsHTML(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.5 ? 1 : 0;
+      const empty = 5 - full - half;
+      const starFilled = '<svg width="13" height="13" viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+      const starEmpty = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+      let h = '';
+      for (let i = 0; i < full + half; i++) h += starFilled;
+      for (let i = 0; i < empty; i++) h += starEmpty;
+      return h;
+>>>>>>> Stashed changes
     }
 
     // Build star rating text (using ★ and ☆)
@@ -1043,6 +1639,7 @@
       nurseGrid.classList.remove("hidden");
       noNurses.classList.add("hidden");
 
+<<<<<<< Updated upstream
       for (var i = 0; i < nurses.length; i++) {
         var nurse = nurses[i];
         var isSelected = selectedNurse && selectedNurse.name === nurse.name;
@@ -1086,6 +1683,55 @@
             selectNurse(n);
           });
         })(nurse);
+=======
+      nurses.forEach(nurse => {
+        const isSelected = selectedNurse && selectedNurse.name === nurse.name;
+        const card = document.createElement('div');
+        card.className = 'nurse-card p-5 flex flex-col' + (isSelected ? ' selected' : '');
+        card.setAttribute('role', 'option');
+        card.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        card.setAttribute('data-nurse', nurse.name);
+
+        const certBadges = (nurse.certifications || []).map(c =>
+          `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-surface text-ink-secondary border border-black/[0.06]">${c}</span>`
+        ).join('');
+        const specialtyBadges = (nurse.specialties || []).map(sp =>
+          `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-accent-light text-accent-dark">${sp}</span>`
+        ).join('');
+        const langList = (nurse.languages || []).join(', ');
+        const avatarFallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(nurse.name)}&background=eef6f3&color=1f6354&size=128&bold=true&font-size=0.4`;
+
+        card.innerHTML = `
+          <div class="nurse-photo-wrap">
+            <img src="${nurse.photo}" alt="Photo of ${nurse.name}" loading="lazy"
+                 onerror="this.onerror=null;this.src='${avatarFallback}'">
+          </div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <h3 class="font-semibold text-base text-ink flex items-center gap-2 min-w-0">
+              <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0"></span>
+              <span class="truncate">${nurse.name}</span>
+            </h3>
+            <div class="flex items-center gap-1 flex-shrink-0">
+              <div class="flex items-center gap-0.5">${starsHTML(nurse.rating)}</div>
+              <span class="text-xs font-semibold text-ink ml-0.5">${nurse.rating.toFixed(1)}</span>
+              <span class="text-xs text-ink-muted">(${nurse.reviewCount})</span>
+            </div>
+          </div>
+          <div class="text-[13px] text-ink-secondary space-y-0.5 mb-3">
+            <p>${nurse.experienceYears} yrs experience</p>
+            <p class="truncate text-ink-muted">${langList}</p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-4 flex-1 content-start">
+            ${certBadges}
+            ${specialtyBadges}
+          </div>
+          <button type="button" class="nurse-select-btn w-full py-2 px-4 rounded-lg text-[13px] font-medium transition-colors ${isSelected ? 'bg-accent text-white' : 'border border-black/[0.12] text-ink hover:border-accent hover:text-accent bg-white'}"
+                  data-nurse="${nurse.name}"
+                  aria-label="${isSelected ? 'Selected: ' : 'Select nurse '}${nurse.name}">
+            ${isSelected ? 'Selected' : 'Select nurse'}
+          </button>
+        `;
+>>>>>>> Stashed changes
 
         nurseGrid.appendChild(card);
       }
@@ -1096,6 +1742,7 @@
       selectedNurse = nurse;
       confirmNurseBtn.disabled = false;
 
+<<<<<<< Updated upstream
       // Update all cards
       var cards = document.querySelectorAll(".nurse-card");
       for (var i = 0; i < cards.length; i++) {
@@ -1110,10 +1757,28 @@
           cards[i].classList.remove("selected");
           btn.classList.remove("selected-state");
           btn.textContent = "Select";
+=======
+      document.querySelectorAll('.nurse-card').forEach(card => {
+        const name = card.getAttribute('data-nurse');
+        const btn = card.querySelector('.nurse-select-btn');
+        if (name === nurse.name) {
+          card.classList.add('selected');
+          card.setAttribute('aria-selected', 'true');
+          btn.className = 'nurse-select-btn w-full py-2 px-4 rounded-lg text-[13px] font-medium transition-colors bg-accent text-white';
+          btn.textContent = 'Selected';
+          btn.setAttribute('aria-label', `Selected: ${nurse.name}`);
+        } else {
+          card.classList.remove('selected');
+          card.setAttribute('aria-selected', 'false');
+          btn.className = 'nurse-select-btn w-full py-2 px-4 rounded-lg text-[13px] font-medium transition-colors border border-black/[0.12] text-ink hover:border-accent hover:text-accent bg-white';
+          btn.textContent = 'Select nurse';
+          btn.setAttribute('aria-label', `Select nurse ${name}`);
+>>>>>>> Stashed changes
         }
       }
     }
 
+<<<<<<< Updated upstream
     // Go back to Step 1
     function goToStep1() {
       step2.classList.add("hidden");
@@ -1121,6 +1786,29 @@
       step1.classList.remove("hidden");
       setStepIndicator(1);
       window.scrollTo(0, 0);
+=======
+    // ── Step indicator helper ─────────────────────────────
+    function setStepIndicator(step) {
+      const labels = ['Service selection', 'Patient details', 'Choose your nurse'];
+      stepLabel.textContent = `Step ${step} of 3 — ${labels[step - 1]}`;
+      stepIndicator.setAttribute('aria-valuenow', step);
+
+      [step1Dot, step2Dot, step3Dot].forEach((dot, i) => {
+        const n = i + 1;
+        if (n < step) {
+          dot.className = 'step-dot done';
+          dot.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        } else if (n === step) {
+          dot.className = 'step-dot active';
+          dot.textContent = n;
+        } else {
+          dot.className = 'step-dot pending';
+          dot.textContent = n;
+        }
+      });
+      stepLine1.classList.toggle('done', step > 1);
+      stepLine2.classList.toggle('done', step > 2);
+>>>>>>> Stashed changes
     }
 
     // ===== EVENT LISTENERS =====
@@ -1244,6 +1932,7 @@
     var hamburger = document.getElementById("hamburger");
     var mobileMenu = document.getElementById("mobile-menu");
 
+<<<<<<< Updated upstream
     hamburger.addEventListener("click", function () {
       if (mobileMenu.classList.contains("open")) {
         mobileMenu.classList.remove("open");
@@ -1258,5 +1947,120 @@
     loadNurses();
   </script>
 
+=======
+    // Step 1 -> Step 2
+    nextBtn.addEventListener('click', () => {
+      if (!serviceSelect.value) return;
+      const key = serviceSelect.value;
+      const s = services[key];
+
+      summaryIconBox.innerHTML = serviceIcons[key] || '';
+      summaryService.textContent = s.hasShift
+        ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
+        : s.name;
+      summaryPrice.textContent = getPrice(key);
+
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+      setStepIndicator(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Step 2/3 -> Step 1
+    function goToStep1() {
+      step2.classList.add('hidden');
+      step3.classList.add('hidden');
+      step1.classList.remove('hidden');
+      setStepIndicator(1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    backBtn.addEventListener('click', goToStep1);
+    changeBtn.addEventListener('click', goToStep1);
+
+    // Step 2 -> Step 3
+    toStep3Btn.addEventListener('click', () => {
+      if (!bookingForm.checkValidity()) {
+        bookingForm.reportValidity();
+        return;
+      }
+      const key = serviceSelect.value;
+      const s = services[key];
+      const price = getPrice(key);
+
+      document.getElementById('step3-summary-icon-box').innerHTML = serviceIcons[key] || '';
+      document.getElementById('step3-summary-service').textContent = s.hasShift
+        ? `${s.name} (${shiftSelect.options[shiftSelect.selectedIndex].text})`
+        : s.name;
+      document.getElementById('step3-price-text').textContent = price;
+
+      renderNurses();
+
+      step2.classList.add('hidden');
+      step3.classList.remove('hidden');
+      setStepIndicator(3);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Step 3 -> Step 2
+    backToStep2Btn.addEventListener('click', () => {
+      step3.classList.add('hidden');
+      step2.classList.remove('hidden');
+      setStepIndicator(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Confirm booking (Step 3)
+    confirmNurseBtn.addEventListener('click', () => {
+      if (!selectedNurse) return;
+      confirmNurseBtn.disabled = true;
+      confirmNurseBtn.textContent = 'Submitting...';
+
+      setTimeout(() => {
+        const key = serviceSelect.value;
+        const s = services[key];
+        successNurseInfo.textContent =
+          `Assigned nurse: ${selectedNurse.name} · ${s.hasShift ? shiftSelect.options[shiftSelect.selectedIndex].text : s.name}`;
+
+        bookingForm.reset();
+        step3.classList.add('hidden');
+        bookingSuccess.classList.remove('hidden');
+        stepIndicator.classList.add('hidden');
+
+        selectedNurse = null;
+        confirmNurseBtn.disabled = true;
+        confirmNurseBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Confirm booking';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 900);
+    });
+
+    // Book another
+    bookAnother.addEventListener('click', () => {
+      bookingSuccess.classList.add('hidden');
+      step1.classList.remove('hidden');
+      serviceSelect.value = '';
+      selectedNurse = null;
+      updateServiceInfo();
+      stepIndicator.classList.remove('hidden');
+      setStepIndicator(1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Mobile menu ───────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('hamburger-open-icon');
+    const closeIcon = document.getElementById('hamburger-close-icon');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      openIcon.classList.toggle('hidden', open);
+      closeIcon.classList.toggle('hidden', !open);
+    });
+
+    // ── Init ──────────────────────────────────────────────
+    loadNurses();
+  </script>
+>>>>>>> Stashed changes
 </body>
 </html>

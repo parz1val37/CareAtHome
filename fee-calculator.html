@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fee Calculator — Care At Home</title>
+<<<<<<< Updated upstream
   <style>
     /* ---- Basic Reset ---- */
     * {
@@ -505,6 +506,128 @@
     <div class="nav-buttons">
       <a href="fee-calculator.html" class="btn btn-primary">Fee Calculator</a>
       <a href="book-service.html" class="btn btn-outline">Book a Service</a>
+=======
+  <meta name="description" content="Estimate the cost of home healthcare services with Care At Home's fee calculator. Transparent pricing for nursing, elder care, wound dressing, and physiotherapy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#faf9f7',
+            accent: {
+              DEFAULT: '#2a7d6a',
+              dark: '#1f6354',
+              light: '#eef6f3',
+            },
+            ink: {
+              DEFAULT: '#1a1a1a',
+              secondary: '#5c5c5c',
+              muted: '#9a9a9a',
+            },
+            dark: {
+              DEFAULT: '#1a1d21',
+              raised: '#24272c',
+            }
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    * { font-family: 'DM Sans', sans-serif; }
+    body { background-color: #faf9f7; color: #1a1a1a; font-size: 15px; }
+
+    svg.lucide { width: 18px; height: 18px; stroke-width: 1.5; }
+
+    #mobile-menu {
+      transition: max-height 0.25s ease, opacity 0.2s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+    #mobile-menu.open { max-height: 360px; opacity: 1; }
+
+    .form-input {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      padding: 0.625rem 0.875rem;
+      width: 100%;
+      font-size: 15px;
+      background: #ffffff;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-input:focus {
+      border-color: #2a7d6a;
+      box-shadow: 0 0 0 3px rgba(42, 125, 106, 0.12);
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+  </style>
+</head>
+<body class="bg-surface text-ink antialiased">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.06]" role="navigation" aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <a href="index.html" class="flex items-center gap-2.5" aria-label="Care At Home — Home">
+          <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+          </div>
+          <span class="text-base font-semibold tracking-tight text-ink">Care At Home</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-7">
+          <a href="index.html#hero" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Home</a>
+          <a href="index.html#services" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Services</a>
+          <a href="index.html#about" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">About us</a>
+          <a href="index.html#contact" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2.5">
+          <a href="fee-calculator.html" class="text-[13px] font-medium text-ink px-3.5 py-2 rounded-lg border border-black/[0.16] bg-surface transition-colors inline-flex items-center gap-1.5" aria-label="Fee Calculator (current page)">
+            <i data-lucide="calculator"></i>Fee calculator
+          </a>
+          <a href="book-service.html" class="text-[13px] font-medium text-white bg-accent hover:bg-accent-dark px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5" aria-label="Book a Service">
+            Book a service
+          </a>
+        </div>
+
+        <button id="hamburger" class="md:hidden p-2 rounded-lg text-ink-secondary hover:text-ink hover:bg-black/[0.04] transition-colors" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg id="hamburger-open-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="hamburger-close-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-black/[0.06] px-4">
+      <div class="flex flex-col gap-2 py-4">
+        <a href="index.html#hero" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">Home</a>
+        <a href="index.html#services" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">Services</a>
+        <a href="index.html#about" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">About us</a>
+        <a href="index.html#contact" class="text-sm font-medium text-ink-secondary hover:text-ink py-1.5">Contact</a>
+        <hr class="border-black/[0.06] my-1.5" />
+        <a href="fee-calculator.html" class="text-sm font-medium text-ink px-4 py-2.5 rounded-lg border border-black/[0.1] text-center">Fee calculator</a>
+        <a href="book-service.html" class="text-sm font-medium text-white bg-accent px-4 py-2.5 rounded-lg text-center">Book a service</a>
+      </div>
+>>>>>>> Stashed changes
     </div>
     <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
@@ -518,15 +641,28 @@
   </div>
 
   <!-- ===== PAGE HEADER ===== -->
+<<<<<<< Updated upstream
   <div class="page-header">
     <div class="breadcrumb">
       <a href="index.html">Home</a> &gt; <span>Fee Calculator</span>
+=======
+  <div class="bg-white border-b border-black/[0.06]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <nav class="flex items-center gap-2 text-[13px] text-ink-muted mb-4" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-ink transition-colors">Home</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        <span class="text-ink font-medium">Fee calculator</span>
+      </nav>
+      <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-2">Fee calculator</h1>
+      <p class="text-[15px] text-ink-secondary">Get an instant estimate for your home healthcare service with no hidden charges.</p>
+>>>>>>> Stashed changes
     </div>
     <h1>Fee Calculator</h1>
     <p>Get an instant estimate for your home healthcare service. No hidden charges.</p>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
+<<<<<<< Updated upstream
   <div class="main-layout">
 
     <!-- Calculator Panel -->
@@ -578,9 +714,189 @@
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <button type="submit" class="btn btn-primary" id="calc-btn" disabled>Calculate Total</button>
             <button type="button" class="btn btn-reset hidden" id="reset-btn">Reset</button>
+=======
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-20">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+
+      <!-- ── Calculator Panel ── -->
+      <div class="lg:col-span-8">
+        <div class="bg-white rounded-xl border border-black/[0.06] p-6 sm:p-8">
+          <h2 class="text-lg font-semibold text-ink mb-6 flex items-center gap-2">
+            <i data-lucide="sliders-horizontal" class="text-accent"></i>
+            Calculate your estimate
+          </h2>
+
+          <form id="calc-form" novalidate>
+            <div class="grid sm:grid-cols-2 gap-4 mb-5">
+
+              <!-- Service -->
+              <div>
+                <label for="calc-service" class="block text-[13px] font-medium text-ink mb-1.5">
+                  Service <span class="text-red-600">*</span>
+                </label>
+                <select id="calc-service" class="form-input" required aria-label="Select a service" aria-required="true">
+                  <option value="">— Choose a service —</option>
+                  <option value="home-nursing-attendant">Home Nursing Attendant</option>
+                  <option value="elder-caretaker">Elder Caretaker</option>
+                  <option value="post-surgery-wound-dressing">Post-Surgery Wound Dressing</option>
+                  <option value="physiotherapy-visits">Physiotherapy Visits at Home</option>
+                </select>
+              </div>
+
+              <!-- Shift type (services 1 & 2 only) -->
+              <div id="calc-shift-wrapper" class="hidden">
+                <label for="calc-shift" class="block text-[13px] font-medium text-ink mb-1.5">
+                  Shift type <span class="text-red-600">*</span>
+                </label>
+                <select id="calc-shift" class="form-input" aria-label="Select shift type">
+                  <option value="12hr">12-Hour Duty</option>
+                  <option value="24hr">24-Hour Duty</option>
+                </select>
+              </div>
+
+              <!-- Number of Days (services 1 & 2) -->
+              <div id="calc-days-wrapper" class="hidden">
+                <label for="calc-days" class="block text-[13px] font-medium text-ink mb-1.5">
+                  Number of days <span class="text-red-600">*</span>
+                </label>
+                <input type="number" id="calc-days" class="form-input" min="1" max="365" value="1" placeholder="e.g. 7" aria-label="Number of Days" />
+              </div>
+
+              <!-- Number of Visits (services 3 & 4) -->
+              <div id="calc-visits-wrapper" class="hidden">
+                <label for="calc-visits" class="block text-[13px] font-medium text-ink mb-1.5">
+                  Number of visits <span class="text-red-600">*</span>
+                </label>
+                <input type="number" id="calc-visits" class="form-input" min="1" max="500" value="1" placeholder="e.g. 5" aria-label="Number of Visits" />
+              </div>
+            </div>
+
+            <!-- Empty state nudge -->
+            <div id="calc-nudge" class="rounded-xl border border-dashed border-black/[0.14] p-7 text-center text-ink-muted mb-5">
+              <i data-lucide="calculator" class="mx-auto mb-2.5 opacity-55"></i>
+              <p class="text-[14px]">Select a service above to calculate your estimate.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="submit" id="calc-btn" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-2.5 rounded-lg opacity-45 cursor-not-allowed transition-colors inline-flex items-center gap-2" disabled aria-label="Calculate Total">
+                Calculate total
+              </button>
+              <button type="button" id="reset-btn" class="text-sm font-medium text-ink-secondary hover:text-ink px-5 py-2.5 rounded-lg border border-black/[0.12] hover:border-black/[0.2] bg-white transition-colors hidden inline-flex items-center gap-1.5" aria-label="Reset Calculator">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>Reset
+              </button>
+            </div>
+          </form>
+
+          <!-- ── Result ── -->
+          <div id="result-card" class="hidden mt-8 rounded-xl border border-black/[0.08] overflow-hidden">
+            <div class="bg-dark px-6 py-4 flex items-center justify-between">
+              <div class="flex items-center gap-2.5 text-white">
+                <i data-lucide="receipt"></i>
+                <h3 class="font-semibold text-base">Cost breakdown</h3>
+              </div>
+            </div>
+
+            <div class="p-6 bg-white">
+              <div id="breakdown-content" class="mb-5"></div>
+
+              <!-- Total -->
+              <div class="bg-accent-light border border-accent/15 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <p class="text-[13px] font-medium text-accent-dark">Total estimated cost</p>
+                  <p class="text-xs text-ink-secondary mt-0.5">Indicative estimate based on standard rates.</p>
+                </div>
+                <p id="total-amount" class="text-3xl font-semibold text-ink"></p>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-6 pt-5 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <p class="text-ink-secondary text-[14px]">Ready to schedule a caregiver?</p>
+                <a id="book-now-link" href="book-service.html" class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-5 py-2.5 rounded-lg inline-flex items-center justify-center gap-2 transition-colors" aria-label="Book this service">
+                  Book this service
+                  <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Pricing Reference ── -->
+      <div class="lg:col-span-4">
+        <div class="bg-white rounded-xl border border-black/[0.06] p-6 sticky top-20">
+          <h3 class="text-base font-semibold text-ink mb-5 flex items-center gap-2">
+            <i data-lucide="tag" class="text-accent"></i>
+            Pricing reference
+          </h3>
+
+          <!-- Nursing -->
+          <div class="mb-5">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="heart-pulse" class="text-accent w-4 h-4"></i>
+              <p class="text-[13px] font-semibold text-ink">Home Nursing Attendant</p>
+            </div>
+            <div class="rounded-lg overflow-hidden border border-black/[0.06]">
+              <div class="flex justify-between px-3 py-2 bg-surface">
+                <span class="text-xs text-ink-secondary">12-Hour Duty</span>
+                <span class="text-xs font-semibold text-ink">₹1,000 / day</span>
+              </div>
+              <div class="flex justify-between px-3 py-2 bg-white border-t border-black/[0.04]">
+                <span class="text-xs text-ink-secondary">24-Hour Duty</span>
+                <span class="text-xs font-semibold text-ink">₹1,800 / day</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Elder -->
+          <div class="mb-5">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="users" class="text-accent w-4 h-4"></i>
+              <p class="text-[13px] font-semibold text-ink">Elder Caretaker</p>
+            </div>
+            <div class="rounded-lg overflow-hidden border border-black/[0.06]">
+              <div class="flex justify-between px-3 py-2 bg-surface">
+                <span class="text-xs text-ink-secondary">12-Hour Duty</span>
+                <span class="text-xs font-semibold text-ink">₹1,200 / day</span>
+              </div>
+              <div class="flex justify-between px-3 py-2 bg-white border-t border-black/[0.04]">
+                <span class="text-xs text-ink-secondary">24-Hour Duty</span>
+                <span class="text-xs font-semibold text-ink">₹2,000 / day</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wound -->
+          <div class="mb-5">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="scissors" class="text-accent w-4 h-4"></i>
+              <p class="text-[13px] font-semibold text-ink">Wound Dressing</p>
+            </div>
+            <div class="rounded-lg overflow-hidden border border-black/[0.06]">
+              <div class="flex justify-between px-3 py-2 bg-surface">
+                <span class="text-xs text-ink-secondary">Per visit</span>
+                <span class="text-xs font-semibold text-ink">₹500 / visit</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Physio -->
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="activity" class="text-accent w-4 h-4"></i>
+              <p class="text-[13px] font-semibold text-ink">Physiotherapy</p>
+            </div>
+            <div class="rounded-lg overflow-hidden border border-black/[0.06]">
+              <div class="flex justify-between px-3 py-2 bg-surface">
+                <span class="text-xs text-ink-secondary">Per visit</span>
+                <span class="text-xs font-semibold text-ink">₹800 / visit</span>
+              </div>
+            </div>
+>>>>>>> Stashed changes
           </div>
         </form>
 
+<<<<<<< Updated upstream
         <!-- Result -->
         <div class="result-card hidden" id="result-card">
           <div class="result-header">Cost Breakdown</div>
@@ -595,6 +911,11 @@
               <p>Ready to book? Let's get started.</p>
               <a id="book-now-link" href="book-service.html" class="btn btn-primary">Book This Service</a>
             </div>
+=======
+          <div class="mt-5 p-3 bg-surface rounded-lg border border-black/[0.06] flex items-center gap-2 text-xs text-ink-secondary">
+            <i data-lucide="shield-check" class="text-accent w-4 h-4 flex-shrink-0"></i>
+            <span>Transparent pricing with no hidden charges.</span>
+>>>>>>> Stashed changes
           </div>
         </div>
 
@@ -679,6 +1000,7 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
+<<<<<<< Updated upstream
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
@@ -693,6 +1015,47 @@
           <li><a href="index.html#about">About Us</a></li>
           <li><a href="index.html#contact">Contact Us</a></li>
         </ul>
+=======
+  <footer class="bg-dark text-white pt-14 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </div>
+            <span class="text-base font-semibold tracking-tight">Care At Home</span>
+          </div>
+          <p class="text-white/60 text-[14px] leading-relaxed max-w-xs">Providing dependable home healthcare services with trained caregivers right at your doorstep.</p>
+          <div class="flex gap-4 mt-5 text-[13px] text-white/65">
+            <a href="https://www.facebook.com/01parz1val/" aria-label="Facebook" class="hover:text-white transition-colors">Facebook</a>
+            <a href="https://www.instagram.com/parzival.37/" aria-label="Instagram" class="hover:text-white transition-colors">Instagram</a>
+            <a href="https://x.com/msanaullah451" aria-label="X (Twitter)" class="hover:text-white transition-colors">X</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Quick links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="index.html#hero" class="text-white/60 text-[13px] hover:text-white transition-colors">Home</a></li>
+            <li><a href="index.html#services" class="text-white/60 text-[13px] hover:text-white transition-colors">Services</a></li>
+            <li><a href="index.html#about" class="text-white/60 text-[13px] hover:text-white transition-colors">About us</a></li>
+            <li><a href="index.html#contact" class="text-white/60 text-[13px] hover:text-white transition-colors">Contact us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="book-service.html?service=home-nursing-attendant" class="text-white/60 text-[13px] hover:text-white transition-colors">Home nursing</a></li>
+            <li><a href="book-service.html?service=elder-caretaker" class="text-white/60 text-[13px] hover:text-white transition-colors">Elder caretaker</a></li>
+            <li><a href="book-service.html?service=post-surgery-wound-dressing" class="text-white/60 text-[13px] hover:text-white transition-colors">Wound dressing</a></li>
+            <li><a href="book-service.html?service=physiotherapy-visits" class="text-white/60 text-[13px] hover:text-white transition-colors">Physiotherapy</a></li>
+            <li><a href="fee-calculator.html" class="text-white/60 text-[13px] hover:text-white transition-colors">Fee calculator</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.08] pt-6 text-xs text-white/45">
+        <p>© 2026 Care At Home. All rights reserved.</p>
+>>>>>>> Stashed changes
       </div>
       <div class="footer-links">
         <h4>Services</h4>
@@ -711,31 +1074,55 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
+<<<<<<< Updated upstream
     // ===== SERVICE DATA =====
     var services = {
       "home-nursing-attendant": {
         name: "Home Nursing Attendant",
+=======
+    lucide.createIcons();
+
+    // ── Data ──────────────────────────────────────────────
+    const services = {
+      'home-nursing-attendant': {
+        name: 'Home Nursing Attendant',
+>>>>>>> Stashed changes
         hasShift: true,
         rates: { "12hr": 1000, "24hr": 1800 },
         rateLabel: { "12hr": "₹1,000 / day", "24hr": "₹1,800 / day" },
         unit: "day"
       },
+<<<<<<< Updated upstream
       "elder-caretaker": {
         name: "Elder Caretaker",
+=======
+      'elder-caretaker': {
+        name: 'Elder Caretaker',
+>>>>>>> Stashed changes
         hasShift: true,
         rates: { "12hr": 1200, "24hr": 2000 },
         rateLabel: { "12hr": "₹1,200 / day", "24hr": "₹2,000 / day" },
         unit: "day"
       },
+<<<<<<< Updated upstream
       "post-surgery-wound-dressing": {
         name: "Post-Surgery Wound Dressing",
+=======
+      'post-surgery-wound-dressing': {
+        name: 'Post-Surgery Wound Dressing',
+>>>>>>> Stashed changes
         hasShift: false,
         rates: { "default": 500 },
         rateLabel: { "default": "₹500 / visit" },
         unit: "visit"
       },
+<<<<<<< Updated upstream
       "physiotherapy-visits": {
         name: "Physiotherapy Visits at Home",
+=======
+      'physiotherapy-visits': {
+        name: 'Physiotherapy Visits at Home',
+>>>>>>> Stashed changes
         hasShift: false,
         rates: { "default": 800 },
         rateLabel: { "default": "₹800 / visit" },
@@ -743,6 +1130,7 @@
       }
     };
 
+<<<<<<< Updated upstream
     // ===== GET ELEMENTS =====
     var calcService = document.getElementById("calc-service");
     var calcShiftWrapper = document.getElementById("calc-shift-wrapper");
@@ -762,6 +1150,23 @@
     // ===== SERVICE CHANGE =====
     calcService.addEventListener("change", function () {
       var key = calcService.value;
+=======
+    // ── Elements ──────────────────────────────────────────
+    const calcService      = document.getElementById('calc-service');
+    const calcShiftWrapper = document.getElementById('calc-shift-wrapper');
+    const calcShift        = document.getElementById('calc-shift');
+    const calcDaysWrapper  = document.getElementById('calc-days-wrapper');
+    const calcDays         = document.getElementById('calc-days');
+    const calcVisitsWrapper= document.getElementById('calc-visits-wrapper');
+    const calcVisits       = document.getElementById('calc-visits');
+    const calcNudge        = document.getElementById('calc-nudge');
+    const calcBtn          = document.getElementById('calc-btn');
+    const resetBtn         = document.getElementById('reset-btn');
+    const resultCard       = document.getElementById('result-card');
+    const breakdownContent = document.getElementById('breakdown-content');
+    const totalAmount      = document.getElementById('total-amount');
+    const bookNowLink      = document.getElementById('book-now-link');
+>>>>>>> Stashed changes
 
       if (!key) {
         calcShiftWrapper.classList.add("hidden");
@@ -769,6 +1174,10 @@
         calcVisitsWrapper.classList.add("hidden");
         calcNudge.classList.remove("hidden");
         calcBtn.disabled = true;
+<<<<<<< Updated upstream
+=======
+        calcBtn.classList.add('opacity-45', 'cursor-not-allowed');
+>>>>>>> Stashed changes
         return;
       }
 
@@ -786,6 +1195,10 @@
       }
 
       calcBtn.disabled = false;
+<<<<<<< Updated upstream
+=======
+      calcBtn.classList.remove('opacity-45', 'cursor-not-allowed');
+>>>>>>> Stashed changes
     });
 
     // ===== CALCULATE =====
@@ -794,6 +1207,7 @@
       var key = calcService.value;
       if (!key) return;
 
+<<<<<<< Updated upstream
       var s = services[key];
       var shift = s.hasShift ? calcShift.value : "default";
       var rate = s.rates[shift];
@@ -841,13 +1255,38 @@
       html += '  <span class="breakdown-label">' + durationLabel + '</span>';
       html += '  <span class="breakdown-value">' + durationValue + '</span>';
       html += '</div>';
+=======
+      const s = services[key];
+      const shift      = s.hasShift ? calcShift.value : 'default';
+      const rate       = s.rates[shift];
+      const rLabel     = s.rateLabel[shift];
+      const qty        = s.hasShift ? Math.max(1, parseInt(calcDays.value) || 1) : Math.max(1, parseInt(calcVisits.value) || 1);
+      const shiftLabel = s.hasShift ? calcShift.options[calcShift.selectedIndex].text : null;
+      const total      = rate * qty;
+
+      let html = '';
+      const row = (label, val, cls = 'text-ink') =>
+        `<div class="breakdown-row"><span class="text-[13px] text-ink-secondary">${label}</span><span class="text-[13px] font-medium ${cls}">${val}</span></div>`;
+
+      html += row('Service', s.name);
+      if (shiftLabel) html += row('Shift type', shiftLabel);
+      html += row('Rate', rLabel, 'text-accent-dark');
+      html += row(s.hasShift ? 'Duration' : 'Number of visits', s.hasShift ? `${qty} day${qty > 1 ? 's' : ''}` : `${qty} visit${qty > 1 ? 's' : ''}`);
+>>>>>>> Stashed changes
 
       breakdownContent.innerHTML = html;
       totalAmount.textContent = "₹" + total.toLocaleString("en-IN");
       bookNowLink.href = "book-service.html?service=" + key;
 
+<<<<<<< Updated upstream
       resultCard.classList.remove("hidden");
       resetBtn.classList.remove("hidden");
+=======
+      resultCard.classList.remove('hidden');
+      resetBtn.classList.remove('hidden');
+
+      setTimeout(() => resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+>>>>>>> Stashed changes
     });
 
     // ===== RESET =====
@@ -861,6 +1300,7 @@
       calcShift.value = "12hr";
       calcNudge.classList.remove("hidden");
       calcBtn.disabled = true;
+<<<<<<< Updated upstream
       resultCard.classList.add("hidden");
       resetBtn.classList.add("hidden");
       window.scrollTo(0, 0);
@@ -878,6 +1318,25 @@
         mobileMenu.classList.add("open");
         hamburger.innerHTML = "&#10005;";
       }
+=======
+      calcBtn.classList.add('opacity-45', 'cursor-not-allowed');
+      resultCard.classList.add('hidden');
+      resetBtn.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ── Mobile menu ───────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('hamburger-open-icon');
+    const closeIcon = document.getElementById('hamburger-close-icon');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      openIcon.classList.toggle('hidden', open);
+      closeIcon.classList.toggle('hidden', !open);
+>>>>>>> Stashed changes
     });
   </script>
 

@@ -14,7 +14,7 @@
 - **Fee Calculator** — Instantly estimate total costs based on service type, shift duration, and number of days/visits
 - **Contact Form** — Reach out with questions or custom requests
 - **Fully Responsive** — Mobile-first design with hamburger menu, works across all screen sizes
-- **Scroll Animations** — Smooth reveal-on-scroll effects and floating card animations
+- **Scroll Animations** — Subtle reveal-on-scroll transitions
 
 ## 🩺 Services Offered
 
@@ -45,12 +45,21 @@ This is a **frontend-only** static website — no server, no database, no build 
 
 | Technology | Purpose |
 |---|---|
+<<<<<<< Updated upstream
 | **HTML5** | Page structure, forms, and semantic elements |
 | **CSS3** (internal `<style>` tags) | Styling — colors, layout (flexbox), borders, responsive design |
 | **Vanilla JavaScript** | DOM manipulation, event handling, form validation, multi-step wizard logic |
 | **JSON** | Nurse data stored in a static `nurse_details.json` file, loaded via `fetch()` |
 
 > **No external libraries or CDNs are used** — everything is built with plain HTML, CSS, and JavaScript.
+=======
+| **HTML5** | Semantic page structure and accessibility (ARIA labels) |
+| **Tailwind CSS** (CDN) | Utility-first responsive styling |
+| **Vanilla JavaScript** | DOM manipulation, form handling, multi-step wizard logic |
+| **Lucide Icons** (CDN) | Line icons throughout the UI |
+| **Google Fonts (DM Sans)** | Typography |
+| **JSON** | Nurse data stored in a static `nurse_details.json` file |
+>>>>>>> Stashed changes
 
 ## 🚀 Getting Started
 
