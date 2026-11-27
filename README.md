@@ -45,12 +45,12 @@ This is a **frontend-only** static website — no server, no database, no build 
 
 | Technology | Purpose |
 |---|---|
-| **HTML5** | Page structure, forms, and semantic elements |
-| **CSS3** (internal `<style>` tags) | Styling — colors, layout (flexbox), borders, responsive design |
-| **Vanilla JavaScript** | DOM manipulation, event handling, form validation, multi-step wizard logic |
+| **HTML5** | Semantic page structure, forms, and ARIA accessibility |
+| **Tailwind CSS** (CDN) | Utility-first responsive styling |
+| **Vanilla JavaScript** | DOM manipulation, inline validation, carousel controls, multi-step booking logic |
+| **Lucide Icons** (CDN) | Line icons throughout the UI |
+| **Google Fonts (DM Sans)** | Typography |
 | **JSON** | Nurse data stored in a static `nurse_details.json` file, loaded via `fetch()` |
-
-> **No external libraries or CDNs are used** — everything is built with plain HTML, CSS, and JavaScript.
 
 ## 🚀 Getting Started
 

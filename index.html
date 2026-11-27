@@ -1,787 +1,795 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Care At Home — Quality Home Healthcare Services</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo/user-md.svg" />
+  <title>Care At Home — Home Healthcare Services</title>
+  <meta name="description"
+    content="Care At Home provides home nursing, elder caretaking, post-surgery wound dressing, and physiotherapy services at your doorstep." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: '#faf9f7',
+            accent: {
+              DEFAULT: '#2a7d6a',
+              dark: '#1f6354',
+              light: '#eef6f3',
+            },
+            ink: {
+              DEFAULT: '#1a1a1a',
+              secondary: '#5c5c5c',
+              muted: '#9a9a9a',
+            },
+            dark: {
+              DEFAULT: '#1a1d21',
+              raised: '#24272c',
+            }
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
-    /* ---- Basic Reset ---- */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      color: #333;
-      line-height: 1.6;
+      background-color: #faf9f7;
+      color: #1a1a1a;
+      font-size: 15px;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    svg.lucide {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.5;
     }
 
-    /* ---- Navbar ---- */
-    .navbar {
-      background-color: #fff;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    :focus-visible {
+      outline: 2px solid #2a7d6a;
+      outline-offset: 2px;
     }
 
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
+    button,
+    a,
+    select,
+    input,
+    textarea {
+      touch-action: manipulation;
     }
 
-    .logo span {
-      color: #4A90D9;
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height 0.25s ease, opacity 0.2s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
     }
 
-    .nav-links a {
-      color: #666;
-      font-size: 14px;
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
     }
 
-    .nav-links a:hover {
-      color: #4A90D9;
+    /* Subtle scroll reveal (12px rise, 0.4s) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .nav-buttons {
-      display: flex;
-      gap: 10px;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* ---- Buttons ---- */
-    .btn {
-      display: inline-block;
-      padding: 10px 24px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background-color: #4A90D9;
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background-color: #2f72b8;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: #4A90D9;
-      border: 2px solid #4A90D9;
-    }
-
-    .btn-outline:hover {
-      background-color: #4A90D9;
-      color: #fff;
-    }
-
-    .btn-green {
-      background-color: #4CAF80;
-      color: #fff;
-    }
-
-    .btn-green:hover {
-      background-color: #38895f;
-    }
-
-    /* ---- Hamburger Menu (Mobile) ---- */
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      padding: 15px 30px;
-      background-color: #fff;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .mobile-menu.open {
-      display: flex;
-    }
-
-    .mobile-menu a {
-      color: #555;
-      font-size: 14px;
-      padding: 5px 0;
-    }
-
-    /* ---- Hero Section ---- */
-    .hero {
-      background-color: #1a2f4e;
-      color: #fff;
-      padding: 80px 30px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      color: #4CAF80;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #bbb;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 50px;
-      flex-wrap: wrap;
-    }
-
-    .stat-card {
-      background-color: rgba(255, 255, 255, 0.08);
-      padding: 20px 30px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .stat-card h3 {
-      font-size: 28px;
-      color: #4A90D9;
-    }
-
-    .stat-card p {
-      font-size: 13px;
-      color: #999;
-      margin-top: 5px;
-    }
-
-    /* ---- Section Styles ---- */
-    .section {
-      padding: 60px 30px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #666;
-    }
-
-    /* ---- Services Grid ---- */
-    .services-grid {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .service-card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 25px;
-      width: 240px;
-      text-align: center;
-    }
-
-    .service-card:hover {
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .service-card .emoji {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-
-    .service-card h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .service-card p {
-      color: #666;
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-
-    .service-card .price {
-      font-size: 22px;
-      font-weight: bold;
-      color: #4A90D9;
-      margin-bottom: 15px;
-    }
-
-    .service-card .price span {
-      font-size: 13px;
-      font-weight: normal;
-      color: #999;
-    }
-
-    /* ---- About Section ---- */
-    .about-section {
-      background-color: #f5f5f5;
-      padding: 60px 30px;
-    }
-
-    .about-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .about-values {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      flex: 1;
-      min-width: 260px;
-    }
-
-    .value-card {
-      background-color: #e8f2fc;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      width: 130px;
-    }
-
-    .value-card .emoji {
-      font-size: 36px;
-      margin-bottom: 8px;
-    }
-
-    .value-card p {
-      font-size: 13px;
-      font-weight: bold;
-      color: #555;
-    }
-
-    .about-text {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .about-text h2 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
-
-    .about-text h2 span {
-      color: #4A90D9;
-    }
-
-    .about-text p {
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .about-text ul {
-      list-style: none;
-    }
-
-    .about-text ul li {
-      padding: 5px 0;
-      color: #555;
-      font-size: 14px;
-    }
-
-    .about-text ul li::before {
-      content: "✓ ";
-      color: #4CAF80;
-      font-weight: bold;
-    }
-
-    /* ---- Contact Section ---- */
-    .contact-grid {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .contact-info {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .contact-info h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .contact-info h2 span {
-      color: #4A90D9;
-    }
-
-    .contact-info > p {
-      color: #666;
-      margin-bottom: 25px;
-    }
-
-    .contact-item {
-      margin-bottom: 18px;
-    }
-
-    .contact-item strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 3px;
-    }
-
-    .contact-item span {
-      color: #666;
-      font-size: 13px;
-    }
-
-    .contact-form-wrap {
-      flex: 1;
-      min-width: 280px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 30px;
-    }
-
-    .contact-form-wrap h3 {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    /* ---- Form Styles ---- */
-    .form-row {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-    }
-
-    .form-group {
-      flex: 1;
-      min-width: 200px;
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #555;
-    }
-
+    /* Form inputs */
     .form-input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1.5px solid #ddd;
+      border: 1px solid rgba(0, 0, 0, 0.14);
       border-radius: 8px;
-      font-size: 14px;
-      font-family: Arial, sans-serif;
+      padding: 0.625rem 0.875rem;
+      min-height: 44px;
+      width: 100%;
+      font-size: 15px;
+      background: #ffffff;
+      color: #1a1a1a;
       outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .form-input:focus {
-      border-color: #4A90D9;
+      border-color: #2a7d6a;
+      box-shadow: 0 0 0 3px rgba(42, 125, 106, 0.12);
     }
 
-    textarea.form-input {
-      resize: vertical;
-      min-height: 100px;
+    .form-input[aria-invalid="true"] {
+      border-color: #b91c1c;
     }
 
-    .success-msg {
-      display: none;
-      background-color: #e8f7ef;
-      border: 1px solid #4CAF80;
-      color: #38895f;
-      padding: 12px;
-      border-radius: 8px;
-      margin-top: 15px;
-      font-size: 14px;
+    .form-input::placeholder {
+      color: #9a9a9a;
     }
 
-    /* ---- Footer ---- */
-    .footer {
-      background-color: #1a2f4e;
-      color: #fff;
-      padding: 40px 30px 20px;
-    }
+    @media (prefers-reduced-motion: reduce) {
 
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .footer-brand {
-      flex: 2;
-      min-width: 250px;
-    }
-
-    .footer-brand h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .footer-brand p {
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    .footer-links {
-      flex: 1;
-      min-width: 150px;
-    }
-
-    .footer-links h4 {
-      font-size: 13px;
-      text-transform: uppercase;
-      color: #ccc;
-      margin-bottom: 12px;
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-links ul li a {
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    .footer-links ul li a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      padding-top: 15px;
-      text-align: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .footer-bottom p {
-      color: #888;
-      font-size: 13px;
-    }
-
-    /* ---- Responsive ---- */
-    @media (max-width: 768px) {
-      .nav-links,
-      .nav-buttons {
-        display: none;
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
 
-      .hamburger {
-        display: block;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      .service-card {
-        width: 100%;
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
-<body>
+
+<body class="bg-surface text-ink antialiased overflow-x-hidden">
+
+  <a href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
 
   <!-- ===== NAVBAR ===== -->
-  <nav class="navbar">
-    <a href="index.html" class="logo">Care <span>At Home</span></a>
-    <div class="nav-links">
-      <a href="#hero">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">About Us</a>
-      <a href="#contact">Contact Us</a>
+  <nav id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-black/[0.06]" role="navigation"
+    aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+
+        <a href="index.html" class="flex items-center gap-2.5" aria-label="Care At Home — Home">
+          <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor"
+              aria-hidden="true">
+              <path
+                d="m12,12c3.309,0,6-2.691,6-6S15.309,0,12,0s-6,2.691-6,6,2.691,6,6,6Zm0-10c2.206,0,4,1.794,4,4s-1.794,4-4,4-4-1.794-4-4,1.794-4,4-4Zm10,21c0,.553-.447,1-1,1s-1-.447-1-1c0-2.786-1.637-5.198-4-6.324v2.496c1.164.413,2,1.524,2,2.828v1c0,.553-.447,1-1,1s-1-.447-1-1v-1c0-.552-.448-1-1-1s-1,.448-1,1v1c0,.553-.447,1-1,1s-1-.447-1-1v-1c0-1.304.836-2.415,2-2.828v-3.1c-.327-.047-.661-.072-1-.072h-2c-.695,0-1.366.102-2,.292v2.977c.598.346,1,.992,1,1.732,0,1.105-.895,2-2,2s-2-.895-2-2c0-.74.402-1.386,1-1.732v-2.009c-1.812,1.267-3,3.368-3,5.741,0,.553-.447,1-1,1s-1-.447-1-1c0-4.963,4.037-9,9-9h2c4.963,0,9,4.037,9,9Z" />
+            </svg>
+          </div>
+          <span class="text-base font-semibold tracking-tight text-ink">Care At Home</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#hero" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Home</a>
+          <a href="#services"
+            class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Services</a>
+          <a href="#about" class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">About
+            us</a>
+          <a href="#contact"
+            class="text-[13px] font-medium text-ink-secondary hover:text-ink transition-colors">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="fee-calculator.html" id="nav-fee-calc"
+            class="text-[13px] font-medium text-ink-secondary hover:text-ink px-3 py-2 transition-colors inline-flex items-center gap-1.5">
+            <i data-lucide="calculator" aria-hidden="true"></i>Fee calculator
+          </a>
+          <a href="book-service.html" id="nav-book"
+            class="text-[13px] font-medium text-white bg-accent hover:bg-accent-dark px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5">
+            Book a service
+          </a>
+        </div>
+
+        <button id="hamburger"
+          class="md:hidden w-11 h-11 flex items-center justify-center rounded-lg text-ink-secondary hover:text-ink hover:bg-black/[0.04] transition-colors"
+          aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg id="hamburger-open-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          <svg id="hamburger-close-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
     </div>
-    <div class="nav-buttons">
-      <a href="fee-calculator.html" class="btn btn-outline">Fee Calculator</a>
-      <a href="book-service.html" class="btn btn-primary">Book a Service</a>
+
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-black/[0.06] px-4">
+      <div class="flex flex-col gap-1 py-4">
+        <a href="#hero"
+          class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-2.5 px-2 rounded-lg">Home</a>
+        <a href="#services"
+          class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-2.5 px-2 rounded-lg">Services</a>
+        <a href="#about"
+          class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-2.5 px-2 rounded-lg">About us</a>
+        <a href="#contact"
+          class="mobile-link text-sm font-medium text-ink-secondary hover:text-ink py-2.5 px-2 rounded-lg">Contact</a>
+        <hr class="border-black/[0.06] my-2" />
+        <a href="fee-calculator.html"
+          class="text-sm font-medium text-ink px-4 py-2.5 rounded-lg border border-black/[0.12] text-center">Fee
+          calculator</a>
+        <a href="book-service.html"
+          class="text-sm font-medium text-white bg-accent px-4 py-2.5 rounded-lg text-center">Book a service</a>
+      </div>
     </div>
-    <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#hero">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About Us</a>
-    <a href="#contact">Contact Us</a>
-    <a href="fee-calculator.html">Fee Calculator</a>
-    <a href="book-service.html">Book a Service</a>
-  </div>
+  <main id="main-content">
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="bg-dark text-white py-20 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
 
-  <!-- ===== HERO SECTION ===== -->
-  <section id="hero" class="hero">
-    <h1>Book a Service for <span>Your Loved One</span></h1>
-    <p>Get all your home healthcare needs at one place. Providing the best in health at your doorstep. We take care of you with expertise and compassion.</p>
-    <div class="hero-buttons">
-      <a href="book-service.html" class="btn btn-primary">Book a Service</a>
-      <a href="#services" class="btn btn-outline" style="border-color: #fff; color: #fff;">Our Services &rarr;</a>
-    </div>
-    <div class="stats-row">
-      <div class="stat-card">
-        <h3>500+</h3>
-        <p>Happy Families</p>
-      </div>
-      <div class="stat-card">
-        <h3>200+</h3>
-        <p>Trained Caregivers</p>
-      </div>
-      <div class="stat-card">
-        <h3>4</h3>
-        <p>Core Services</p>
-      </div>
-      <div class="stat-card">
-        <h3>98%</h3>
-        <p>Satisfaction Rate</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES SECTION ===== -->
-  <section id="services" class="section">
-    <div class="section-title">
-      <h2>Our Services</h2>
-      <p>Professional healthcare delivered with compassion, right at your doorstep.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="emoji">&#129489;&#8205;&#9877;&#65039;</div>
-        <h3>Home Nursing Attendant</h3>
-        <p>Professional care at home for 12 or 24 hours.</p>
-        <div class="price">&#8377;1,000<span>/day</span></div>
-        <a href="book-service.html?service=home-nursing-attendant" class="btn btn-primary">Book Now</a>
-      </div>
-
-      <div class="service-card">
-        <div class="emoji">&#128116;</div>
-        <h3>Elder Caretaker</h3>
-        <p>Comprehensive support for seniors, 12 or 24 hours.</p>
-        <div class="price" style="color: #4CAF80;">&#8377;1,200<span>/day</span></div>
-        <a href="book-service.html?service=elder-caretaker" class="btn btn-green">Book Now</a>
-      </div>
-
-      <div class="service-card">
-        <div class="emoji">&#129657;</div>
-        <h3>Post-Surgery Wound Dressing</h3>
-        <p>Certified nurse visits for wound care and dressing.</p>
-        <div class="price">&#8377;500<span>/visit</span></div>
-        <a href="book-service.html?service=post-surgery-wound-dressing" class="btn btn-primary">Book Now</a>
-      </div>
-
-      <div class="service-card">
-        <div class="emoji">&#127939;</div>
-        <h3>Physiotherapy at Home</h3>
-        <p>Licensed physiotherapist visits for rehabilitation.</p>
-        <div class="price" style="color: #4CAF80;">&#8377;800<span>/visit</span></div>
-        <a href="book-service.html?service=physiotherapy-visits" class="btn btn-green">Book Now</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== ABOUT US SECTION ===== -->
-  <section id="about" class="about-section">
-    <div class="about-content">
-      <div class="about-values">
-        <div class="value-card">
-          <div class="emoji">&#10084;&#65039;</div>
-          <p>Compassionate Care</p>
-        </div>
-        <div class="value-card" style="background-color: #e8f7ef;">
-          <div class="emoji">&#129658;</div>
-          <p>Medical Expertise</p>
-        </div>
-        <div class="value-card" style="background-color: #e8f7ef;">
-          <div class="emoji">&#127968;</div>
-          <p>Home Comfort</p>
-        </div>
-        <div class="value-card">
-          <div class="emoji">&#11088;</div>
-          <p>Quality Assured</p>
-        </div>
-      </div>
-      <div class="about-text">
-        <h2>Delivering Healthcare with <span>Heart &amp; Expertise</span></h2>
-        <p>We are a team of dedicated professionals who are passionate about providing quality healthcare services. We believe everyone deserves to receive the best possible care, delivered with expertise and compassion.</p>
-        <ul>
-          <li>Certified and background-verified caregivers</li>
-          <li>Flexible 12-hour and 24-hour care options</li>
-          <li>Personalized care plans tailored to each patient</li>
-          <li>Transparent pricing — no hidden charges</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT SECTION ===== -->
-  <section id="contact" class="section">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h2>Get in Touch <span>With Us</span></h2>
-        <p>Have questions or need help choosing the right service? Our team is here to assist you.</p>
-        <div class="contact-item">
-          <strong>Phone</strong>
-          <span>+91 98737 43210</span>
-        </div>
-        <div class="contact-item">
-          <strong>Email</strong>
-          <span>support@careathome.in</span>
-        </div>
-        <div class="contact-item">
-          <strong>Support Hours</strong>
-          <span>Mon &ndash; Sun, 6 AM &ndash; 10 PM</span>
-        </div>
-      </div>
-
-      <div class="contact-form-wrap">
-        <h3>Send us a Message</h3>
-        <form id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contact-name">Full Name *</label>
-              <input type="text" id="contact-name" class="form-input" placeholder="Your name" required>
+          <!-- Left: Text content -->
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 text-[13px] font-medium text-white/75 mb-5">
+              <span class="w-2 h-2 rounded-full bg-accent inline-block" aria-hidden="true"></span>
+              Home healthcare across India
             </div>
-            <div class="form-group">
-              <label for="contact-email">Email Address *</label>
-              <input type="email" id="contact-email" class="form-input" placeholder="you@email.com" required>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-tight leading-[1.15] text-white mb-5">
+              Reliable medical care at home for your family
+            </h1>
+
+            <p class="text-[15px] leading-relaxed text-white/70 mb-8 max-w-xl">
+              Trained nursing attendants, elder caretakers, wound dressing nurses, and physiotherapists available for
+              12-hour shifts, 24-hour duty, or single home visits.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="book-service.html" id="hero-book-btn"
+                class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 min-h-[44px]">
+                Book a service
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </a>
+              <a href="fee-calculator.html"
+                class="bg-dark-raised hover:bg-white/[0.1] text-white/90 text-sm font-medium px-6 py-3 rounded-lg border border-white/[0.12] transition-colors inline-flex items-center gap-2 min-h-[44px]">
+                Estimate fees
+              </a>
             </div>
           </div>
-          <div class="form-group">
-            <label for="contact-phone">Phone Number</label>
-            <input type="tel" id="contact-phone" class="form-input" placeholder="+91 98765 43210">
+
+          <!-- Right: Code-built nurse assignment card -->
+          <!-- <div class="lg:col-span-5">
+            <div class="bg-dark-raised rounded-xl border border-white/[0.08] p-6">
+              <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-accent inline-block" aria-hidden="true"></span>
+                  <span class="text-[13px] font-medium text-white/90">Nurse assigned</span>
+                </div>
+                <span class="text-xs text-white/55">12-Hour Duty</span>
+              </div>
+
+              <div class="flex items-center gap-4 mb-5">
+                <img src="assets/photos/Muskan.jpg" alt="Muskan, Home Nursing Attendant" width="64" height="64"
+                  class="w-16 h-16 rounded-lg object-cover object-top border border-white/[0.1] flex-shrink-0" />
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0" aria-hidden="true"></span>
+                    <p class="text-base font-semibold text-white truncate">Muskan</p>
+                  </div>
+                  <p class="text-[13px] text-white/65 mt-0.5">Home Nursing Attendant</p>
+                  <p class="text-xs text-white/50 mt-1 tabular-nums">6 yrs experience · Hindi, English</p>
+                </div>
+              </div>
+
+              <div class="bg-dark rounded-lg p-4 border border-white/[0.06] space-y-2 text-[13px]">
+                <div class="flex items-center justify-between">
+                  <span class="text-white/55">Visit schedule</span>
+                  <span class="text-white/90 font-medium tabular-nums">8:00 AM – 8:00 PM</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-white/55">Daily rate</span>
+                  <span class="text-white font-semibold tabular-nums">₹1,000 / day</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+
+        <!-- Quiet stats strip -->
+        <div class="mt-14 pt-8 border-t border-white/[0.08] grid grid-cols-2 md:grid-cols-4 gap-6 tabular-nums">
+          <div>
+            <p class="text-2xl font-semibold text-white">5+ years</p>
+            <p class="text-[13px] text-white/55 mt-1">Experience in home care</p>
           </div>
-          <div class="form-group">
-            <label for="contact-message">Message *</label>
-            <textarea id="contact-message" class="form-input" placeholder="How can we help you?" required></textarea>
+          <div>
+            <p class="text-2xl font-semibold text-white">200+</p>
+            <p class="text-[13px] text-white/55 mt-1">Trained caregivers</p>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-        </form>
-        <div class="success-msg" id="contact-success">
-          &#10003; Thank you! We'll get back to you shortly.
+          <div>
+            <p class="text-2xl font-semibold text-white">4 services</p>
+            <p class="text-[13px] text-white/55 mt-1">Nursing, elder care, wound, physio</p>
+          </div>
+          <div>
+            <p class="text-2xl font-semibold text-white">98%</p>
+            <p class="text-[13px] text-white/55 mt-1">Family satisfaction rate</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section id="services" class="py-20 bg-surface">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 reveal">
+          <div class="max-w-xl">
+            <p class="text-[13px] font-medium text-accent-dark mb-2">Our services</p>
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-2">Home healthcare services</h2>
+            <p class="text-[15px] text-ink-secondary leading-relaxed">Clear daily and per-visit pricing with verified
+              caregivers matched to your schedule.</p>
+          </div>
+          <a href="fee-calculator.html"
+            class="text-[13px] font-medium text-accent-dark hover:text-accent inline-flex items-center gap-1.5 flex-shrink-0">
+            Compare in fee calculator
+            <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <!-- Service 1 -->
+          <div
+            class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+            <div class="w-10 h-10 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-5">
+              <i data-lucide="heart-pulse" aria-hidden="true"></i>
+            </div>
+            <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0" aria-hidden="true"></span>
+              Home Nursing Attendant
+            </h3>
+            <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Daily personal care, medication reminders,
+              and vitals monitoring for 12 or 24 hours.</p>
+            <div class="mt-6 pt-4 border-t border-black/[0.06]">
+              <div class="text-xs text-ink-muted mb-1">Starting from</div>
+              <div class="text-xl font-semibold text-ink mb-4 tabular-nums">₹1,000<span
+                  class="text-[13px] font-normal text-ink-muted"> / day</span></div>
+              <a href="book-service.html?service=home-nursing-attendant" id="book-nursing"
+                class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors">
+                Book service
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div
+            class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+            <div class="w-10 h-10 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-5">
+              <i data-lucide="users" aria-hidden="true"></i>
+            </div>
+            <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0" aria-hidden="true"></span>
+              Elder Caretaker
+            </h3>
+            <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Mobility assistance, meal support, and
+              companionship for seniors, 12 or 24 hours.</p>
+            <div class="mt-6 pt-4 border-t border-black/[0.06]">
+              <div class="text-xs text-ink-muted mb-1">Starting from</div>
+              <div class="text-xl font-semibold text-ink mb-4 tabular-nums">₹1,200<span
+                  class="text-[13px] font-normal text-ink-muted"> / day</span></div>
+              <a href="book-service.html?service=elder-caretaker" id="book-elder"
+                class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors">
+                Book service
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div
+            class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+            <div class="w-10 h-10 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-5">
+              <i data-lucide="scissors" aria-hidden="true"></i>
+            </div>
+            <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0" aria-hidden="true"></span>
+              Wound Dressing
+            </h3>
+            <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Certified nurse visits at home for sterile
+              post-surgical dressing and wound care.</p>
+            <div class="mt-6 pt-4 border-t border-black/[0.06]">
+              <div class="text-xs text-ink-muted mb-1">Per visit</div>
+              <div class="text-xl font-semibold text-ink mb-4 tabular-nums">₹500<span
+                  class="text-[13px] font-normal text-ink-muted"> / visit</span></div>
+              <a href="book-service.html?service=post-surgery-wound-dressing" id="book-wound"
+                class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors">
+                Book service
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div
+            class="bg-white rounded-xl border border-black/[0.06] p-6 flex flex-col reveal hover:border-black/[0.14] transition-colors">
+            <div class="w-10 h-10 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-5">
+              <i data-lucide="activity" aria-hidden="true"></i>
+            </div>
+            <h3 class="text-base font-semibold text-ink mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-accent inline-block flex-shrink-0" aria-hidden="true"></span>
+              Physiotherapy Visits
+            </h3>
+            <p class="text-[14px] text-ink-secondary leading-relaxed flex-1">Licensed physiotherapist visits for guided
+              rehabilitation and mobility recovery.</p>
+            <div class="mt-6 pt-4 border-t border-black/[0.06]">
+              <div class="text-xs text-ink-muted mb-1">Per visit</div>
+              <div class="text-xl font-semibold text-ink mb-4 tabular-nums">₹800<span
+                  class="text-[13px] font-normal text-ink-muted"> / visit</span></div>
+              <a href="book-service.html?service=physiotherapy-visits" id="book-physio"
+                class="bg-accent hover:bg-accent-dark text-white text-[13px] font-medium px-4 py-2.5 rounded-lg w-full text-center block transition-colors">
+                Book service
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT US SECTION ===== -->
+    <section id="about" class="py-20 bg-white border-y border-black/[0.06]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+          <div class="lg:col-span-5 reveal order-2 lg:order-1">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white rounded-xl border border-black/[0.06] p-5">
+                <div class="w-9 h-9 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-3">
+                  <i data-lucide="heart" aria-hidden="true"></i>
+                </div>
+                <p class="font-semibold text-ink text-sm">Compassionate care</p>
+                <p class="text-xs text-ink-secondary mt-1">Attentive support tailored to daily routines.</p>
+              </div>
+              <div class="bg-white rounded-xl border border-black/[0.06] p-5 mt-5">
+                <div class="w-9 h-9 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-3">
+                  <i data-lucide="stethoscope" aria-hidden="true"></i>
+                </div>
+                <p class="font-semibold text-ink text-sm">Clinical training</p>
+                <p class="text-xs text-ink-secondary mt-1">Qualified nurses and physiotherapists.</p>
+              </div>
+              <div class="bg-white rounded-xl border border-black/[0.06] p-5">
+                <div class="w-9 h-9 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-3">
+                  <i data-lucide="home" aria-hidden="true"></i>
+                </div>
+                <p class="font-semibold text-ink text-sm">Home comfort</p>
+                <p class="text-xs text-ink-secondary mt-1">Recovery in familiar surroundings.</p>
+              </div>
+              <div class="bg-white rounded-xl border border-black/[0.06] p-5 mt-5">
+                <div class="w-9 h-9 rounded-lg bg-accent-light text-accent-dark flex items-center justify-center mb-3">
+                  <i data-lucide="shield-check" aria-hidden="true"></i>
+                </div>
+                <p class="font-semibold text-ink text-sm">Verified staff</p>
+                <p class="text-xs text-ink-secondary mt-1">Background-checked before placement.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal order-1 lg:order-2">
+            <p class="text-[13px] font-medium text-accent-dark mb-2">About us</p>
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-5 leading-snug">
+              Dependable healthcare delivered with calm and consistency
+            </h2>
+            <p class="text-[15px] text-ink-secondary leading-relaxed mb-6">
+              We are a team of healthcare professionals dedicated to making recovery and elder care manageable at home.
+              Families choose us for verified caregivers, clear shift options, and straightforward pricing.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-ink">
+                <span
+                  class="w-6 h-6 rounded-md bg-accent-light text-accent-dark flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </span>
+                <span class="text-[14px] font-medium">Certified and background-verified caregivers</span>
+              </li>
+              <li class="flex items-center gap-3 text-ink">
+                <span
+                  class="w-6 h-6 rounded-md bg-accent-light text-accent-dark flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </span>
+                <span class="text-[14px] font-medium">Flexible 12-hour and 24-hour care options</span>
+              </li>
+              <li class="flex items-center gap-3 text-ink">
+                <span
+                  class="w-6 h-6 rounded-md bg-accent-light text-accent-dark flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </span>
+                <span class="text-[14px] font-medium">Care plans matched to patient needs and language</span>
+              </li>
+              <li class="flex items-center gap-3 text-ink">
+                <span
+                  class="w-6 h-6 rounded-md bg-accent-light text-accent-dark flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </span>
+                <span class="text-[14px] font-medium">Transparent pricing with no hidden charges</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT US SECTION ===== -->
+    <section id="contact" class="py-20 bg-surface">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+          <div class="lg:col-span-5 reveal">
+            <p class="text-[13px] font-medium text-accent-dark mb-2">Contact us</p>
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-4">
+              Get in touch with our team
+            </h2>
+            <p class="text-[15px] text-ink-secondary mb-8 leading-relaxed">
+              Have questions about a shift or need help choosing the right service? Reach out and we will assist you.
+            </p>
+
+            <div class="space-y-5">
+              <div class="flex items-start gap-3.5">
+                <div
+                  class="w-10 h-10 rounded-lg bg-surface border border-black/[0.06] text-ink-secondary flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="phone" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="text-[13px] font-medium text-ink">Phone</p>
+                  <p class="text-[14px] text-ink-secondary tabular-nums">+91 98737 43210</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3.5">
+                <div
+                  class="w-10 h-10 rounded-lg bg-surface border border-black/[0.06] text-ink-secondary flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="mail" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="text-[13px] font-medium text-ink">Email</p>
+                  <p class="text-[14px] text-ink-secondary">support@careathome.in</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3.5">
+                <div
+                  class="w-10 h-10 rounded-lg bg-surface border border-black/[0.06] text-ink-secondary flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="clock" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="text-[13px] font-medium text-ink">Support hours</p>
+                  <p class="text-[14px] text-ink-secondary">Mon–Sun, 6 AM – 10 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal">
+            <div class="bg-surface rounded-xl border border-black/[0.06] p-6 sm:p-8">
+              <h3 class="text-lg font-semibold text-ink mb-5">Send us a message</h3>
+              <form id="contact-form" novalidate>
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="contact-name" class="block text-[13px] font-medium text-ink mb-1.5">Full name <span
+                        class="text-red-700" aria-hidden="true">*</span></label>
+                    <input type="text" id="contact-name" name="fullName" autocomplete="name" class="form-input"
+                      placeholder="Anand Mishra" required aria-describedby="contact-name-err" />
+                    <p id="contact-name-err" class="hidden text-xs text-red-700 mt-1" role="alert"></p>
+                  </div>
+                  <div>
+                    <label for="contact-email" class="block text-[13px] font-medium text-ink mb-1.5">Email address <span
+                        class="text-red-700" aria-hidden="true">*</span></label>
+                    <input type="email" id="contact-email" name="email" autocomplete="email" class="form-input"
+                      placeholder="you@email.com" required aria-describedby="contact-email-err" />
+                    <p id="contact-email-err" class="hidden text-xs text-red-700 mt-1" role="alert"></p>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="contact-phone" class="block text-[13px] font-medium text-ink mb-1.5">Phone number</label>
+                  <input type="tel" id="contact-phone" name="phone" autocomplete="tel" inputmode="tel"
+                    class="form-input" placeholder="+91 98765 43210" />
+                </div>
+                <div class="mb-6">
+                  <label for="contact-message" class="block text-[13px] font-medium text-ink mb-1.5">Message <span
+                      class="text-red-700" aria-hidden="true">*</span></label>
+                  <textarea id="contact-message" name="message" rows="4" class="form-input resize-none"
+                    placeholder="How can we help you?" required aria-describedby="contact-message-err"></textarea>
+                  <p id="contact-message-err" class="hidden text-xs text-red-700 mt-1" role="alert"></p>
+                </div>
+                <button type="submit" id="contact-submit"
+                  class="bg-accent hover:bg-accent-dark text-white text-sm font-medium px-6 py-3 rounded-lg w-full transition-colors inline-flex items-center justify-center gap-2 min-h-[44px]">
+                  <i data-lucide="send" aria-hidden="true"></i>Send message
+                </button>
+              </form>
+
+              <div id="contact-success"
+                class="hidden mt-5 p-4 bg-accent-light border border-accent/20 rounded-lg flex items-center gap-3"
+                role="status" aria-live="polite">
+                <div class="w-8 h-8 rounded-md bg-accent text-white flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" aria-hidden="true"></i>
+                </div>
+                <p class="text-accent-dark font-medium text-sm">Thank you. We will get back to you shortly.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <h3>Care At Home</h3>
-        <p>Providing the best in home healthcare services. Expertise, compassion, and care &mdash; right at your doorstep.</p>
+  <footer class="bg-dark text-white pt-14 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="m12,12c3.309,0,6-2.691,6-6S15.309,0,12,0s-6,2.691-6,6,2.691,6,6,6Zm0-10c2.206,0,4,1.794,4,4s-1.794,4-4,4-4-1.794-4-4,1.794-4,4-4Zm10,21c0,.553-.447,1-1,1s-1-.447-1-1c0-2.786-1.637-5.198-4-6.324v2.496c1.164.413,2,1.524,2,2.828v1c0,.553-.447,1-1,1s-1-.447-1-1v-1c0-.552-.448-1-1-1s-1,.448-1,1v1c0,.553-.447,1-1,1s-1-.447-1-1v-1c0-1.304.836-2.415,2-2.828v-3.1c-.327-.047-.661-.072-1-.072h-2c-.695,0-1.366.102-2,.292v2.977c.598.346,1,.992,1,1.732,0,1.105-.895,2-2,2s-2-.895-2-2c0-.74.402-1.386,1-1.732v-2.009c-1.812,1.267-3,3.368-3,5.741,0,.553-.447,1-1,1s-1-.447-1-1c0-4.963,4.037-9,9-9h2c4.963,0,9,4.037,9,9Z" />
+              </svg>
+            </div>
+            <span class="text-base font-semibold tracking-tight">Care At Home</span>
+          </div>
+          <p class="text-white/60 text-[14px] leading-relaxed max-w-xs">
+            Providing dependable home healthcare services with trained caregivers right at your doorstep.
+          </p>
+          <div class="flex gap-4 mt-5 text-[13px] text-white/65">
+            <a href="https://www.facebook.com/01parz1val/" aria-label="Facebook"
+              class="hover:text-white transition-colors">Facebook</a>
+            <a href="https://www.instagram.com/parzival.37/" aria-label="Instagram"
+              class="hover:text-white transition-colors">Instagram</a>
+            <a href="https://x.com/msanaullah451" aria-label="X (Twitter)"
+              class="hover:text-white transition-colors">X</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Quick links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#hero" class="text-white/60 text-[13px] hover:text-white transition-colors">Home</a></li>
+            <li><a href="#services" class="text-white/60 text-[13px] hover:text-white transition-colors">Services</a>
+            </li>
+            <li><a href="#about" class="text-white/60 text-[13px] hover:text-white transition-colors">About us</a></li>
+            <li><a href="#contact" class="text-white/60 text-[13px] hover:text-white transition-colors">Contact us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-[13px] font-semibold text-white/90 mb-4">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="book-service.html?service=home-nursing-attendant"
+                class="text-white/60 text-[13px] hover:text-white transition-colors">Home nursing</a></li>
+            <li><a href="book-service.html?service=elder-caretaker"
+                class="text-white/60 text-[13px] hover:text-white transition-colors">Elder caretaker</a></li>
+            <li><a href="book-service.html?service=post-surgery-wound-dressing"
+                class="text-white/60 text-[13px] hover:text-white transition-colors">Wound dressing</a></li>
+            <li><a href="book-service.html?service=physiotherapy-visits"
+                class="text-white/60 text-[13px] hover:text-white transition-colors">Physiotherapy</a></li>
+            <li><a href="fee-calculator.html" class="text-white/60 text-[13px] hover:text-white transition-colors">Fee
+                calculator</a></li>
+          </ul>
+        </div>
+
       </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
+
+      <div class="border-t border-white/[0.08] pt-6 text-xs text-white/45">
+        <p>© 2026 Care At Home. All rights reserved.</p>
       </div>
-      <div class="footer-links">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="book-service.html?service=home-nursing-attendant">Home Nursing</a></li>
-          <li><a href="book-service.html?service=elder-caretaker">Elder Caretaker</a></li>
-          <li><a href="book-service.html?service=post-surgery-wound-dressing">Wound Dressing</a></li>
-          <li><a href="book-service.html?service=physiotherapy-visits">Physiotherapy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Care At Home. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // --- Mobile menu toggle ---
-    var hamburger = document.getElementById("hamburger");
-    var mobileMenu = document.getElementById("mobile-menu");
+    lucide.createIcons();
 
-    hamburger.addEventListener("click", function () {
-      if (mobileMenu.classList.contains("open")) {
-        mobileMenu.classList.remove("open");
-        hamburger.innerHTML = "&#9776;";
-      } else {
-        mobileMenu.classList.add("open");
-        hamburger.innerHTML = "&#10005;";
-      }
+    // ── Mobile menu toggle ────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('hamburger-open-icon');
+    const closeIcon = document.getElementById('hamburger-close-icon');
+
+    function setMobileMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      openIcon.classList.toggle('hidden', open);
+      closeIcon.classList.toggle('hidden', !open);
+    }
+
+    hamburger.addEventListener('click', () => {
+      setMobileMenu(!mobileMenu.classList.contains('open'));
     });
 
-    // --- Contact form submission ---
-    var contactForm = document.getElementById("contact-form");
-    var contactSuccess = document.getElementById("contact-success");
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => setMobileMenu(false));
+    });
 
-    contactForm.addEventListener("submit", function (e) {
+    // ── Scroll reveal ─────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Contact form submit ───────────────────────────────
+    const contactForm = document.getElementById('contact-form');
+    const contactSuccess = document.getElementById('contact-success');
+
+    const contactFields = [
+      { id: 'contact-name', errId: 'contact-name-err', msg: 'Please enter your full name' },
+      { id: 'contact-email', errId: 'contact-email-err', msg: 'Please enter a valid email address' },
+      { id: 'contact-message', errId: 'contact-message-err', msg: 'Please enter a short message' },
+    ];
+
+    function validateField(field) {
+      const el = document.getElementById(field.id);
+      const err = document.getElementById(field.errId);
+      const val = el.value.trim();
+      let valid = val.length > 0;
+      if (valid && el.type === 'email') {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      }
+      if (!valid) {
+        el.setAttribute('aria-invalid', 'true');
+        err.textContent = field.msg;
+        err.classList.remove('hidden');
+      } else {
+        el.removeAttribute('aria-invalid');
+        err.textContent = '';
+        err.classList.add('hidden');
+      }
+      return valid;
+    }
+
+    contactFields.forEach(f => {
+      const el = document.getElementById(f.id);
+      el.addEventListener('input', () => {
+        if (el.getAttribute('aria-invalid') === 'true') validateField(f);
+      });
+    });
+
+    contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      contactForm.reset();
-      contactSuccess.style.display = "block";
-      setTimeout(function () {
-        contactSuccess.style.display = "none";
-      }, 4000);
+      let firstInvalid = null;
+      contactFields.forEach(f => {
+        const ok = validateField(f);
+        if (!ok && !firstInvalid) firstInvalid = document.getElementById(f.id);
+      });
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      const btn = document.getElementById('contact-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(() => {
+        contactForm.reset();
+        btn.disabled = false;
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send message';
+        contactSuccess.classList.remove('hidden');
+        setTimeout(() => contactSuccess.classList.add('hidden'), 5000);
+      }, 800);
     });
   </script>
-
 </body>
+
 </html>
